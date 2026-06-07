@@ -9,8 +9,11 @@
 </head>
 <body>
 
+<!-- ═══════════════ READING PROGRESS BAR ═══════════════ -->
+
 <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
 
+<!-- ═══════════════ SESSION HEADER ═══════════════ -->
 <header class="session-header">
   <div class="session-meta">
     <span class="session-badge">Módulo 0 · Orientação</span>
@@ -23,11 +26,13 @@
   </h1>
 </header>
 
+<!-- ═══════════════ PRE-LEITURA ═══════════════ -->
 <section class="pre-leitura">
   <h4>Antes de começar</h4>
   <p>Pré-requisito: <a href="s00-boas-vindas.html">S00 — Boas-vindas</a>. Você já conhece a estrutura da jornada. Agora vamos ao conteúdo: o que é, afinal, a psicanálise? Esta sessão desfaz os mal-entendidos mais comuns e estabelece as bases para tudo que virá depois. Prepare seu caderno de anotações.</p>
 </section>
 
+<!-- ═══════════════ CORPO ═══════════════ -->
 <section class="corpo">
 
 <h2>O tripé da psicanálise</h2>
@@ -93,20 +98,23 @@
 
 </section>
 
+<!-- ═══════════════ TIMELINE ANCHOR ═══════════════ -->
 <div class="timeline-mini">
   <div class="timeline-mini-dot"></div>
   <span>1895: Estudos sobre a Histeria</span>
   <div class="timeline-mini-line"></div>
-  <span style="color:var(--color-text-muted)">1900: Interpretação dos Sonhos</span>
+  <span class="timeline-mini-year">1900: Interpretação dos Sonhos</span>
 </div>
 
+<!-- ═══════════════ VIVER BEM ═══════════════ -->
 <section class="viver-bem">
-  <h4>Viver Bem? — O inconsciente no cotidiano</h4>
-  <p>Você já esqueceu o nome de alguém que ia encontrar? Já trocou uma palavra por outra sem querer? Já teve um sonho que ficou reverberando o dia inteiro? Esses fenômenos — que Freud chamou de <strong>atos falhos</strong> e <strong>sonhos</strong> — não são "erros" aleatórios: são manifestações do inconsciente na vida cotidiana.</p>
+  <h4>Viver Bem?</h4>
+  <p><em>O inconsciente no cotidiano.</em> Você já esqueceu o nome de alguém que ia encontrar? Já trocou uma palavra por outra sem querer? Já teve um sonho que ficou reverberando o dia inteiro? Esses fenômenos — que Freud chamou de <strong>atos falhos</strong> e <strong>sonhos</strong> — não são "erros" aleatórios: são manifestações do inconsciente na vida cotidiana.</p>
   <p>Pense em um momento recente em que você agiu de um modo que depois não soube explicar. Uma explosão de raiva desproporcional. Uma procrastinação que beirava a autossabotagem. Uma atração inexplicável por algo ou alguém. A hipótese psicanalítica é que <strong>há mais em jogo do que a consciência alcança</strong>.</p>
   <p>Viver bem, na perspectiva psicanalítica, não é eliminar esses fenômenos — é aprender a <strong>escutá-los</strong>. O ato falho, o sonho, o sintoma são mensagens que vêm de uma parte de nós que não fala a língua da lógica consciente. Levá-las a sério é o primeiro passo do autoconhecimento.</p>
 </section>
 
+<!-- ═══════════════ QUIZ ═══════════════ -->
 <section class="quiz" id="quiz">
   <h4>Quiz de Fixação</h4>
 
@@ -144,14 +152,16 @@
   </div>
 </section>
 
+<!-- ═══════════════ REFLEXÃO ═══════════════ -->
 <section class="reflexao">
   <h4>Reflexão escrita</h4>
   <p>Antes de estudar esta sessão, qual era sua ideia sobre o que é psicanálise? O que mudou depois da leitura? Escreva um parágrafo identificando pelo menos um mito que você acreditava (ou ainda tinha dúvidas) e como o conteúdo da sessão o/a fez repensar.</p>
   <textarea placeholder="Escreva sua reflexão aqui..." aria-label="Reflexão escrita"></textarea>
   <button onclick="salvarReflexao()">Salvar reflexão</button>
-  <p class="reflexao-salva" style="display:none;color:var(--color-quiz-correct);margin-top:8px">✓ Reflexão salva.</p>
+  <p class="reflexao-salva">✓ Reflexão salva.</p>
 </section>
 
+<!-- ═══════════════ PARA IR ALÉM ═══════════════ -->
 <section class="para-ir-alem">
   <h4>Para ir além</h4>
   <ul>
@@ -173,8 +183,12 @@
   </ul>
 </section>
 
+<!-- ═══════════════ SESSION NAV FOOTER ═══════════════ -->
 <footer class="session-nav">
   <a href="s00-boas-vindas.html" rel="prev">← S00 · Boas-vindas</a>
+  <span class="nav-center">
+    <span class="nav-hint" aria-hidden="true">← →</span>
+  </span>
   <a href="../modulo-1-fundacoes/s02-pre-historia.html" rel="next">S02 · Pré-história da Psicanálise →</a>
 </footer>
 
@@ -185,6 +199,11 @@
   var SESSION_ID = 'S01';
   var totalQuestions = document.querySelectorAll('.quiz-question').length;
   var answeredCorrect = 0;
+  var correctMessages = [
+    '✓ Correto! Método de investigação, método de tratamento e corpo teórico formam o tripé da psicanálise.',
+    '✓ Correto! A Interpretação dos Sonhos foi publicada em 1900, data simbólica do nascimento da psicanálise.',
+    '✓ Correto! Freud ampliou o conceito de sexualidade para muito além do ato genital — a libido é uma energia psíquica ampla.'
+  ];
 
   // ─── Reading Progress Bar ───
   var progressBar = document.getElementById('reading-progress');
@@ -236,12 +255,7 @@
         if (o.dataset.opt === correct) o.classList.add('correct');
         if (o.dataset.opt === chosen && !isCorrect) o.classList.add('incorrect');
       });
-      var correctMessages = [
-        '✓ Correto! Método de investigação, método de tratamento e corpo teórico formam o tripé da psicanálise.',
-        '✓ Correto! A Interpretação dos Sonhos foi publicada em 1900, data simbólica do nascimento da psicanálise.',
-        '✓ Correto! Freud ampliou o conceito de sexualidade para muito além do ato genital — a libido é uma energia psíquica ampla.'
-      ];
-      feedback.textContent = isCorrect ? (correctMessages[parseInt(correct)] || 'Correto!') : '✗ Incorreto. A resposta certa está destacada em verde.';
+feedback.textContent = isCorrect ? (correctMessages[parseInt(correct)] || 'Correto!') : '✗ Incorreto. A resposta certa está destacada em verde.';
       feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
 
       var allAnswered = document.querySelectorAll('.quiz-question[data-answered]').length === totalQuestions;

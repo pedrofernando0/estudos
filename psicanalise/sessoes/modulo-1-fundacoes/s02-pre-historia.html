@@ -9,8 +9,11 @@
 </head>
 <body>
 
+<!-- ═══════════════ READING PROGRESS BAR ═══════════════ -->
+
 <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
 
+<!-- ═══════════════ SESSION HEADER ═══════════════ -->
 <header class="session-header">
   <div class="session-meta">
     <span class="session-badge">Módulo 1 · Fundações</span>
@@ -21,15 +24,18 @@
     <span class="session-title-num">Sessão 02</span>
     Pré-história da Psicanálise
   </h1>
-  <p style="color:var(--color-text-secondary);margin-top:var(--space-2)">Charcot, hipnose, histeria e o caso que deu origem à "cura pela fala"</p>
 </header>
 
+<!-- ═══════════════ PRE-LEITURA ═══════════════ -->
 <section class="pre-leitura">
   <h4>Antes de começar</h4>
   <p>Pré-requisito: <a href="../modulo-0-orientacao/s01-introducao.html">S01 — O que é psicanálise?</a>. Você já sabe que a psicanálise nasceu da clínica. Agora vamos aos detalhes: quem eram os personagens, qual era o contexto médico-científico da Europa no final do século XIX, e como uma paciente chamada Anna O. mudou a história da psicoterapia.</p>
 </section>
 
+<!-- ═══════════════ CORPO ═══════════════ -->
 <section class="corpo">
+
+<p class="session-subtitle">Charcot, hipnose, histeria e o caso que deu origem à "cura pela fala"</p>
 
 <h2>A Europa na virada do século</h2>
 
@@ -115,20 +121,23 @@
 
 </section>
 
+<!-- ═══════════════ TIMELINE ANCHOR ═══════════════ -->
 <div class="timeline-mini">
   <div class="timeline-mini-dot"></div>
   <span>1880: Anna O. adoece</span>
   <div class="timeline-mini-line"></div>
-  <span style="color:var(--color-text-muted)">1895: Estudos sobre a Histeria</span>
+  <span class="timeline-mini-year">1895: Estudos sobre a Histeria</span>
 </div>
 
+<!-- ═══════════════ VIVER BEM ═══════════════ -->
 <section class="viver-bem">
-  <h4>Viver Bem? — A escuta como prática revolucionária</h4>
-  <p>A transição da hipnose para a associação livre não foi apenas uma mudança de técnica — foi uma <strong>revolução ética</strong>. Na hipnose, o médico ocupava o centro: ele sugestionava, comandava, ordenava. O paciente obedecia. Na associação livre, os papéis se invertem: o paciente fala, e o analista — pela primeira vez na história da medicina — <strong>escuta</strong>.</p>
+  <h4>Viver Bem?</h4>
+  <p><em>A escuta como prática revolucionária.</em> A transição da hipnose para a associação livre não foi apenas uma mudança de técnica — foi uma <strong>revolução ética</strong>. Na hipnose, o médico ocupava o centro: ele sugestionava, comandava, ordenava. O paciente obedecia. Na associação livre, os papéis se invertem: o paciente fala, e o analista — pela primeira vez na história da medicina — <strong>escuta</strong>.</p>
   <p>Pense na sua própria experiência cotidiana. Quantas vezes você sentiu que alguém realmente te escutou — sem interromper, sem dar conselhos prontos, sem julgar, sem pegar o celular no meio da conversa? A escuta psicanalítica é radical porque ela <strong>suspende</strong> todas essas reações automáticas. O analista não está ali para concordar, discordar, explicar ou resolver. Está ali para <strong>escutar</strong> — e, ao escutar, permitir que o paciente escute a si mesmo de um modo novo.</p>
   <p>Em um mundo saturado de informação e carente de atenção, a escuta é uma forma de resistência. Parar para ouvir alguém — ou a si mesmo — é um ato contracultural. A pergunta "viver bem?" passa necessariamente por isso: <strong>quem te escuta? E o que você escuta de si mesmo quando ninguém está falando?</strong></p>
 </section>
 
+<!-- ═══════════════ QUIZ ═══════════════ -->
 <section class="quiz" id="quiz">
   <h4>Quiz de Fixação</h4>
 
@@ -177,14 +186,16 @@
   </div>
 </section>
 
+<!-- ═══════════════ REFLEXÃO ═══════════════ -->
 <section class="reflexao">
   <h4>Reflexão escrita</h4>
   <p>O caso Anna O. mostra que os sintomas têm <strong>sentido</strong> — eles contam uma história que não pôde ser dita de outra forma. Pense em um momento da sua vida em que seu corpo "falou" algo que você não conseguia expressar com palavras (uma dor de cabeça em dia de prova difícil, uma insônia antes de uma conversa importante, um cansaço que aparece sempre em certas situações). Escreva sobre essa experiência: o que seu corpo pode estar tentando comunicar?</p>
   <textarea placeholder="Escreva sua reflexão aqui..." aria-label="Reflexão escrita"></textarea>
   <button onclick="salvarReflexao()">Salvar reflexão</button>
-  <p class="reflexao-salva" style="display:none;color:var(--color-quiz-correct);margin-top:8px">✓ Reflexão salva.</p>
+  <p class="reflexao-salva">✓ Reflexão salva.</p>
 </section>
 
+<!-- ═══════════════ PARA IR ALÉM ═══════════════ -->
 <section class="para-ir-alem">
   <h4>Para ir além</h4>
   <ul>
@@ -211,8 +222,12 @@
   </ul>
 </section>
 
+<!-- ═══════════════ SESSION NAV FOOTER ═══════════════ -->
 <footer class="session-nav">
   <a href="../modulo-0-orientacao/s01-introducao.html" rel="prev">← S01 · O que é psicanálise?</a>
+  <span class="nav-center">
+    <span class="nav-hint" aria-hidden="true">← →</span>
+  </span>
   <span></span><!-- S03 ainda não gerada -->
 </footer>
 
@@ -223,6 +238,12 @@
   var SESSION_ID = 'S02';
   var totalQuestions = document.querySelectorAll('.quiz-question').length;
   var answeredCorrect = 0;
+  var correctMessages = [
+    '✓ Correto! Jean-Martin Charcot foi o grande neurologista da Salpêtrière que influenciou Freud.',
+    '✓ Correto! Anna O. era o pseudônimo de Bertha Pappenheim, que mais tarde se tornou ativista feminista.',
+    '✓ Correto! A associação livre substituiu a hipnose como método de acesso ao inconsciente.',
+    '✓ Correto! Foi a própria Anna O. quem batizou o método de "talking cure" (cura pela fala).'
+  ];
 
   // ─── Reading Progress Bar ───
   var progressBar = document.getElementById('reading-progress');
@@ -273,13 +294,7 @@
         if (o.dataset.opt === correct) o.classList.add('correct');
         if (o.dataset.opt === chosen && !isCorrect) o.classList.add('incorrect');
       });
-      var correctMessages = [
-        '✓ Correto! Jean-Martin Charcot foi o grande neurologista da Salpêtrière que influenciou Freud.',
-        '✓ Correto! Anna O. era o pseudônimo de Bertha Pappenheim, que mais tarde se tornou ativista feminista.',
-        '✓ Correto! A associação livre substituiu a hipnose como método de acesso ao inconsciente.',
-        '✓ Correto! Foi a própria Anna O. quem batizou o método de "talking cure" (cura pela fala).'
-      ];
-      feedback.textContent = isCorrect ? (correctMessages[parseInt(correct)] || 'Correto!') : '✗ Incorreto. A resposta certa está destacada em verde.';
+feedback.textContent = isCorrect ? (correctMessages[parseInt(correct)] || 'Correto!') : '✗ Incorreto. A resposta certa está destacada em verde.';
       feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
 
       var allAnswered = document.querySelectorAll('.quiz-question[data-answered]').length === totalQuestions;

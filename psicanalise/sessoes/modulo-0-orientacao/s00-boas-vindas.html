@@ -9,8 +9,11 @@
 </head>
 <body>
 
+<!-- ═══════════════ READING PROGRESS BAR ═══════════════ -->
+
 <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
 
+<!-- ═══════════════ SESSION HEADER ═══════════════ -->
 <header class="session-header">
   <div class="session-meta">
     <span class="session-badge">Módulo 0 · Orientação</span>
@@ -23,11 +26,13 @@
   </h1>
 </header>
 
+<!-- ═══════════════ PRE-LEITURA ═══════════════ -->
 <section class="pre-leitura">
   <h4>Antes de começar</h4>
-  <p>Não há pré-requisitos. O único requisito é <strong>curiosidade</strong>. Prepare um caderno ou arquivo digital para anotações — a psicanálise se aprende na reflexão tanto quanto na leitura. Se possível, abra o <a href="../../index.html">Dashboard</a> em outra aba para acompanhar seu progresso.</p>
+  <p>Pré-requisito: Nenhum. O único requisito é <strong>curiosidade</strong>. Prepare um caderno ou arquivo digital para anotações — a psicanálise se aprende na reflexão tanto quanto na leitura. Se possível, abra o <a href="../../index.html">Dashboard</a> em outra aba para acompanhar seu progresso.</p>
 </section>
 
+<!-- ═══════════════ CORPO ═══════════════ -->
 <section class="corpo">
 
 <p>Bem-vindo(a). Você está iniciando uma jornada de <span class="conceito" aria-describedby="tt-psicanalise">psicanálise<span class="tooltip-content" id="tt-psicanalise" role="tooltip">Método de investigação do inconsciente, forma de tratamento do sofrimento psíquico e corpo teórico sobre o funcionamento da mente. Criado por Sigmund Freud a partir de 1895.</span></span> — da sua fundação no final do século XIX até os debates mais vivos da contemporaneidade. São <strong>36 sessões</strong> organizadas em <strong>6 módulos</strong>.</p>
@@ -133,18 +138,21 @@
 
 </section>
 
+<!-- ═══════════════ TIMELINE ANCHOR ═══════════════ -->
 <div class="timeline-mini">
   <div class="timeline-mini-dot"></div>
   <span>Início da jornada</span>
   <div class="timeline-mini-line"></div>
-  <span style="color:var(--color-text-muted)">1880</span>
+  <span class="timeline-mini-year">1880</span>
 </div>
 
+<!-- ═══════════════ VIVER BEM ═══════════════ -->
 <section class="viver-bem">
   <h4>Viver Bem?</h4>
   <p>Estudar psicanálise é, em si, um ato de resistência ao ritmo da contemporaneidade. A psicanálise exige <strong>tempo</strong>, <strong>escuta</strong> e <strong>suspensão do julgamento</strong> — três coisas que o mundo contemporâneo nos treina a evitar. Esta jornada é também um exercício de desaceleração. A pergunta "como viver bem?" começa aqui: com a decisão de parar e se dedicar a compreender a mente humana em profundidade.</p>
 </section>
 
+<!-- ═══════════════ QUIZ ═══════════════ -->
 <section class="quiz" id="quiz">
   <h4>Quiz de Fixação</h4>
 
@@ -182,14 +190,16 @@
   </div>
 </section>
 
+<!-- ═══════════════ REFLEXÃO ═══════════════ -->
 <section class="reflexao">
   <h4>Reflexão escrita</h4>
   <p>O que te trouxe até aqui? Escreva um parágrafo sobre sua motivação para estudar psicanálise e o que você espera encontrar nesta jornada. (Não há resposta certa — este é seu ponto de partida.)</p>
   <textarea placeholder="Escreva sua reflexão aqui..." aria-label="Reflexão escrita"></textarea>
   <button onclick="salvarReflexao()">Salvar reflexão</button>
-  <p class="reflexao-salva" style="display:none;color:var(--color-quiz-correct);margin-top:8px">✓ Reflexão salva.</p>
+  <p class="reflexao-salva">✓ Reflexão salva.</p>
 </section>
 
+<!-- ═══════════════ PARA IR ALÉM ═══════════════ -->
 <section class="para-ir-alem">
   <h4>Para ir além</h4>
   <ul>
@@ -211,9 +221,13 @@
   </ul>
 </section>
 
+<!-- ═══════════════ SESSION NAV FOOTER ═══════════════ -->
 <footer class="session-nav">
-  <span></span>
-  <a href="s01-introducao.html" rel="next">Próxima sessão →</a>
+  <span></span><!-- Primeira sessão -->
+  <span class="nav-center">
+    <span class="nav-hint" aria-hidden="true">← →</span>
+  </span>
+  <a href="s01-introducao.html" rel="next">S01 · O que é psicanálise? →</a>
 </footer>
 
 <script src="../../progresso/tracking.js"></script>
@@ -223,6 +237,11 @@
   var SESSION_ID = 'S00';
   var totalQuestions = document.querySelectorAll('.quiz-question').length;
   var answeredCorrect = 0;
+  var correctMessages = [
+    '✓ Correto! São 7 módulos (0 a 6), totalizando 36 sessões.',
+    '✓ Correto! Método de investigação do inconsciente, forma de tratamento e corpo teórico.',
+    '✓ Correto! São 7 módulos numerados de 0 a 6.'
+  ];
 
   // ─── Reading Progress Bar ───
   var progressBar = document.getElementById('reading-progress');
@@ -274,12 +293,7 @@
         if (o.dataset.opt === correct) o.classList.add('correct');
         if (o.dataset.opt === chosen && !isCorrect) o.classList.add('incorrect');
       });
-      var correctMessages = [
-        '✓ Correto! São 7 módulos (0 a 6), totalizando 36 sessões.',
-        '✓ Correto! Método de investigação do inconsciente, forma de tratamento e corpo teórico.',
-        '✓ Correto! São 7 módulos numerados de 0 a 6.'
-      ];
-      feedback.textContent = isCorrect ? (correctMessages[parseInt(correct)] || 'Correto!') : '✗ Incorreto. A resposta certa está destacada em verde.';
+feedback.textContent = isCorrect ? (correctMessages[parseInt(correct)] || 'Correto!') : '✗ Incorreto. A resposta certa está destacada em verde.';
       feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
 
       // Track quiz result when all answered
