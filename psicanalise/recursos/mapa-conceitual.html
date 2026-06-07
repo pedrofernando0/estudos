@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa Conceitual da Psicanálise — Estudos</title>
+	<link rel="stylesheet" href="../../templates/fonts/fonts.css">
+<link rel="stylesheet" href="../../templates/style.css">
+<style>
+/* ─── Page-specific: Concept Map ─── */
+body { max-width: 1000px; }
+
+.conceptmap-intro {
+  margin-bottom: var(--space-6);
+}
+
+/* ─── Legend ─── */
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.map-legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.swatch-freud { background: #2c5282; }
+.swatch-pos { background: #276749; }
+.swatch-contemp { background: #b7791f; }
+
+/* ─── Tree Layout ─── */
+.concept-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin: var(--space-8) 0;
+  position: relative;
+}
+
+/* ─── Root ─── */
+.concept-root {
+  position: relative;
+  z-index: 2;
+}
+
+/* ─── Nodes ─── */
+.concept-node {
+  position: relative;
+  z-index: 2;
+}
+
+.concept-node-inner {
+  display: inline-block;
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-bg-card);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: all var(--transition);
+  cursor: pointer;
+  min-width: 120px;
+  max-width: 200px;
+}
+
+.concept-node-inner:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.concept-node-inner:active {
+  transform: translateY(0);
+}
+
+.concept-node-inner .node-name {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.concept-node-inner .node-tag {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 1px 8px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.node-tag.tag-freud {
+  background: #ebf4ff;
+  color: #2c5282;
+}
+.node-tag.tag-pos {
+  background: #f0fff4;
+  color: #276749;
+}
+.node-tag.tag-contemp {
+  background: #fffff0;
+  color: #b7791f;
+}
+
+@media (prefers-color-scheme: dark) {
+  .node-tag.tag-freud { background: #1a3050; color: #7eb8da; }
+  .node-tag.tag-pos { background: #1a3028; color: #68d391; }
+  .node-tag.tag-contemp { background: #1a1a10; color: #ecc94b; }
+}
+
+/* ─── Node sizes ─── */
+.concept-node.size-lg .concept-node-inner { padding: var(--space-4) var(--space-6); min-width: 160px; }
+.concept-node.size-lg .node-name { font-size: var(--text-lg); }
+.concept-node.size-sm .concept-node-inner { padding: var(--space-2) var(--space-3); min-width: 90px; max-width: 150px; }
+.concept-node.size-sm .node-name { font-size: var(--text-xs); }
+
+/* ─── Color borders per era ─── */
+.concept-node.era-freud .concept-node-inner { border-color: #2c5282; }
+.concept-node.era-pos .concept-node-inner { border-color: #276749; }
+.concept-node.era-contemp .concept-node-inner { border-color: #b7791f; }
+
+/* ─── Branch row ─── */
+.branch-row {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+  position: relative;
+  margin-top: var(--space-4);
+  padding-top: var(--space-6);
+}
+
+.branch-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: var(--color-border);
+}
+
+/* ─── Vertical connector from parent to children row ─── */
+.concept-level {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.connector-down {
+  width: 2px;
+  height: var(--space-6);
+  background: var(--color-border);
+  margin: 0 auto;
+}
+
+.connector-label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--color-bg);
+  padding: 0 var(--space-2);
+  white-space: nowrap;
+  z-index: 1;
+  top: -9px;
+}
+
+/* ─── Sub-branch ─── */
+.sub-branch-row {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-top: var(--space-3);
+  position: relative;
+  padding-top: var(--space-4);
+}
+
+.sub-branch-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  border-top: 1px dashed var(--color-border);
+}
+
+/* ─── Click detail panel ─── */
+.node-detail-panel {
+  margin: var(--space-6) 0;
+  padding: var(--space-5) var(--space-6);
+  background: var(--color-bg-card);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  display: none;
+}
+
+.node-detail-panel.show { display: block; }
+
+.node-detail-panel h3 {
+  margin: 0 0 var(--space-3);
+  color: var(--color-accent);
+}
+
+.node-detail-panel p {
+  margin-bottom: var(--space-3);
+  font-size: var(--text-sm);
+}
+
+.node-detail-panel .panel-relations {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.node-detail-panel .panel-relations a {
+  font-size: var(--text-sm);
+}
+
+.node-detail-panel .panel-close {
+  display: inline-block;
+  margin-top: var(--space-2);
+  padding: var(--space-1) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-xs);
+  cursor: pointer;
+  background: var(--color-bg);
+  color: var(--color-text-secondary);
+  transition: all var(--transition);
+}
+
+.node-detail-panel .panel-close:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+@media (max-width: 600px) {
+  .branch-row { gap: var(--space-3); }
+  .concept-node-inner { min-width: 80px; padding: var(--space-2) var(--space-3); }
+  .concept-node.size-lg .concept-node-inner { min-width: 120px; }
+}
+</style>
+</head>
+<body>
+
+<a href="../index.html">&larr; Voltar ao Dashboard</a>
+
+<div class="conceptmap-intro">
+  <h1>Mapa Conceitual da Psican&aacute;lise</h1>
+  <p>Rela&ccedil;&otilde;es entre conceitos fundamentais, organizados por escolas hist&oacute;ricas. Clique em cada n&oacute; para detalhes.</p>
+</div>
+
+<div class="map-legend">
+  <span class="map-legend-item"><span class="map-legend-swatch swatch-freud"></span> Funda&ccedil;&otilde;es Freudianas</span>
+  <span class="map-legend-item"><span class="map-legend-swatch swatch-pos"></span> P&oacute;s-Freudianos</span>
+  <span class="map-legend-item"><span class="map-legend-swatch swatch-contemp"></span> Contempor&acirc;neos</span>
+  <span style="margin-left:auto;font-size:var(--text-xs);color:var(--color-text-muted);">Clique nos conceitos para expandir</span>
+</div>
+
+<div class="concept-tree" id="conceptTree">
+
+  <!-- LEVEL 0: Root — Inconsciente -->
+  <div class="concept-level">
+    <div class="concept-root concept-node era-freud size-lg" data-node="inconsciente">
+      <div class="concept-node-inner">
+        <span class="node-name">Inconsciente</span>
+        <span class="node-tag tag-freud">Freud</span>
+      </div>
+    </div>
+    <div class="connector-down" style="height:var(--space-8)"></div>
+  </div>
+
+  <!-- LEVEL 1: Main branches -->
+  <div class="branch-row">
+
+    <!-- Pulsão -->
+    <div class="concept-level">
+      <div class="concept-node era-freud" data-node="pulsao">
+        <div class="concept-node-inner">
+          <span class="node-name">Puls&atilde;o<br>(Trieb)</span>
+          <span class="node-tag tag-freud">Freud</span>
+        </div>
+      </div>
+      <div class="connector-down"></div>
+      <div class="sub-branch-row">
+        <div class="concept-node era-freud size-sm" data-node="eros">
+          <div class="concept-node-inner">
+            <span class="node-name">Eros &amp; T&acirc;natos</span>
+            <span class="node-tag tag-freud">1920</span>
+          </div>
+        </div>
+        <div class="concept-node era-freud size-sm" data-node="sexualidade">
+          <div class="concept-node-inner">
+            <span class="node-name">Sexualidade Infantil</span>
+            <span class="node-tag tag-freud">1905</span>
+          </div>
+        </div>
+        <div class="concept-node era-pos size-sm" data-node="gozo">
+          <div class="concept-node-inner">
+            <span class="node-name">Gozo (Jouissance)</span>
+            <span class="node-tag tag-pos">Lacan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Repressão -->
+    <div class="concept-level">
+      <div class="concept-node era-freud" data-node="repressao">
+        <div class="concept-node-inner">
+          <span class="node-name">Repress&atilde;o</span>
+          <span class="node-tag tag-freud">Freud</span>
+        </div>
+      </div>
+      <div class="connector-down"></div>
+      <div class="sub-branch-row">
+        <div class="concept-node era-freud size-sm" data-node="recalque">
+          <div class="concept-node-inner">
+            <span class="node-name">Recalque (Verdr&auml;ngung)</span>
+            <span class="node-tag tag-freud">Defesa</span>
+          </div>
+        </div>
+        <div class="concept-node era-freud size-sm" data-node="sublimacao">
+          <div class="concept-node-inner">
+            <span class="node-name">Sublima&ccedil;&atilde;o</span>
+            <span class="node-tag tag-freud">Freud</span>
+          </div>
+        </div>
+        <div class="concept-node era-freud size-sm" data-node="formacao-reativa">
+          <div class="concept-node-inner">
+            <span class="node-name">Forma&ccedil;&atilde;o Reativa</span>
+            <span class="node-tag tag-freud">Defesa</span>
+          </div>
+        </div>
+        <div class="concept-node era-freud size-sm" data-node="foraclusao">
+          <div class="concept-node-inner">
+            <span class="node-name">Foraclus&atilde;o</span>
+            <span class="node-tag tag-freud">Lacan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transferência -->
+    <div class="concept-level">
+      <div class="concept-node era-freud" data-node="transferencia">
+        <div class="concept-node-inner">
+          <span class="node-name">Transfer&ecirc;ncia</span>
+          <span class="node-tag tag-freud">T&eacute;cnica</span>
+        </div>
+      </div>
+      <div class="connector-down"></div>
+      <div class="sub-branch-row">
+        <div class="concept-node era-freud size-sm" data-node="resistencia">
+          <div class="concept-node-inner">
+            <span class="node-name">Resist&ecirc;ncia</span>
+            <span class="node-tag tag-freud">T&eacute;cnica</span>
+          </div>
+        </div>
+        <div class="concept-node era-freud size-sm" data-node="repeticao">
+          <div class="concept-node-inner">
+            <span class="node-name">Compuls&atilde;o &agrave; Repeti&ccedil;&atilde;o</span>
+            <span class="node-tag tag-freud">1920</span>
+          </div>
+        </div>
+        <div class="concept-node era-contemp size-sm" data-node="vinculo">
+          <div class="concept-node-inner">
+            <span class="node-name">V&iacute;nculo</span>
+            <span class="node-tag tag-contemp">Relacional</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sonhos -->
+    <div class="concept-level">
+      <div class="concept-node era-freud" data-node="sonhos">
+        <div class="concept-node-inner">
+          <span class="node-name">Interpreta&ccedil;&atilde;o dos Sonhos</span>
+          <span class="node-tag tag-freud">1900</span>
+        </div>
+      </div>
+      <div class="connector-down"></div>
+      <div class="sub-branch-row">
+        <div class="concept-node era-freud size-sm" data-node="condensacao">
+          <div class="concept-node-inner">
+            <span class="node-name">Condensa&ccedil;&atilde;o</span>
+            <span class="node-tag tag-freud">Mecanismo</span>
+          </div>
+        </div>
+        <div class="concept-node era-freud size-sm" data-node="deslocamento">
+          <div class="concept-node-inner">
+            <span class="node-name">Deslocamento</span>
+            <span class="node-tag tag-freud">Mecanismo</span>
+          </div>
+        </div>
+        <div class="concept-node era-freud size-sm" data-node="elaboracao-onirica">
+          <div class="concept-node-inner">
+            <span class="node-name">Elabora&ccedil;&atilde;o On&iacute;rica</span>
+            <span class="node-tag tag-freud">Trabalho</span>
+          </div>
+        </div>
+        <div class="concept-node era-freud size-sm" data-node="atos-falhos">
+          <div class="concept-node-inner">
+            <span class="node-name">Atos Falhos</span>
+            <span class="node-tag tag-freud">1901</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /branch-row level 1 -->
+
+  <!-- LEVEL 2 -->
+  <div class="connector-down" style="height:var(--space-6)"></div>
+
+  <div class="branch-row">
+
+    <!-- Estrutura psíquica -->
+    <div class="concept-level">
+      <div class="concept-node era-freud" data-node="estrutura-psiquica">
+        <div class="concept-node-inner">
+          <span class="node-name">Estrutura Ps&iacute;quica</span>
+          <span class="node-tag tag-freud">2&ordf; T&oacute;pica</span>
+        </div>
+      </div>
+      <div class="connector-down"></div>
+      <div class="sub-branch-row">
+        <div class="concept-node era-freud size-sm" data-node="id">
+          <div class="concept-node-inner">
+            <span class="node-name">Id (Isso)</span>
+            <span class="node-tag tag-freud">Pulsional</span>
+          </div>
+        </div>
+        <div class="concept-node era-freud size-sm" data-node="ego">
+          <div class="concept-node-inner">
+            <span class="node-name">Ego (Eu)</span>
+            <span class="node-tag tag-freud">Realidade</span>
+          </div>
+        </div>
+        <div class="concept-node era-freud size-sm" data-node="superego">
+          <div class="concept-node-inner">
+            <span class="node-name">Superego</span>
+            <span class="node-tag tag-freud">&Eacute;dipo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Relações Objetais -->
+    <div class="concept-level">
+      <div class="concept-node era-pos" data-node="relacoes-objetais">
+        <div class="concept-node-inner">
+          <span class="node-name">Rela&ccedil;&otilde;es Objetais</span>
+          <span class="node-tag tag-pos">Escola Inglesa</span>
+        </div>
+      </div>
+      <div class="connector-down"></div>
+      <div class="sub-branch-row">
+        <div class="concept-node era-pos size-sm" data-node="klein">
+          <div class="concept-node-inner">
+            <span class="node-name">M. Klein</span>
+            <span class="node-tag tag-pos">Posi&ccedil;&otilde;es</span>
+          </div>
+        </div>
+        <div class="concept-node era-pos size-sm" data-node="winnicott">
+          <div class="concept-node-inner">
+            <span class="node-name">Winnicott</span>
+            <span class="node-tag tag-pos">Potencial</span>
+          </div>
+        </div>
+        <div class="concept-node era-pos size-sm" data-node="bowlby">
+          <div class="concept-node-inner">
+            <span class="node-name">Bowlby</span>
+            <span class="node-tag tag-pos">Apego</span>
+          </div>
+        </div>
+        <div class="concept-node era-pos size-sm" data-node="bion">
+          <div class="concept-node-inner">
+            <span class="node-name">Bion</span>
+            <span class="node-tag tag-pos">Container</span>
+          </div>
+        </div>
+        <div class="concept-node era-pos size-sm" data-node="fairbairn">
+          <div class="concept-node-inner">
+            <span class="node-name">Fairbairn</span>
+            <span class="node-tag tag-pos">Objetos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lacan -->
+    <div class="concept-level">
+      <div class="concept-node era-pos" data-node="lacan">
+        <div class="concept-node-inner">
+          <span class="node-name">Lacan</span>
+          <span class="node-tag tag-pos">Estruturalismo</span>
+        </div>
+      </div>
+      <div class="connector-down"></div>
+      <div class="sub-branch-row">
+        <div class="concept-node era-pos size-sm" data-node="rsi">
+          <div class="concept-node-inner">
+            <span class="node-name">RSI</span>
+            <span class="node-tag tag-pos">N&oacute;</span>
+          </div>
+        </div>
+        <div class="concept-node era-pos size-sm" data-node="significante">
+          <div class="concept-node-inner">
+            <span class="node-name">Significante</span>
+            <span class="node-tag tag-pos">Saussure</span>
+          </div>
+        </div>
+        <div class="concept-node era-pos size-sm" data-node="objeto-a">
+          <div class="concept-node-inner">
+            <span class="node-name">Objeto a</span>
+            <span class="node-tag tag-pos">Desejo</span>
+          </div>
+        </div>
+        <div class="concept-node era-pos size-sm" data-node="sinthome">
+          <div class="concept-node-inner">
+            <span class="node-name">Sinthome</span>
+            <span class="node-tag tag-pos">&Uacute;ltimo Lacan</span>
+          </div>
+        </div>
+        <div class="concept-node era-pos size-sm" data-node="estadio-espelho">
+          <div class="concept-node-inner">
+            <span class="node-name">Est&aacute;dio do Espelho</span>
+            <span class="node-tag tag-pos">Imagin&aacute;rio</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contemporâneo -->
+    <div class="concept-level">
+      <div class="concept-node era-contemp" data-node="contemporaneo">
+        <div class="concept-node-inner">
+          <span class="node-name">Contempor&acirc;neos</span>
+          <span class="node-tag tag-contemp">1980+</span>
+        </div>
+      </div>
+      <div class="connector-down"></div>
+      <div class="sub-branch-row">
+        <div class="concept-node era-contemp size-sm" data-node="intersubjetividade">
+          <div class="concept-node-inner">
+            <span class="node-name">Intersubjetividade</span>
+            <span class="node-tag tag-contemp">Relacional</span>
+          </div>
+        </div>
+        <div class="concept-node era-contemp size-sm" data-node="campo-analitico">
+          <div class="concept-node-inner">
+            <span class="node-name">Campo Anal&iacute;tico</span>
+            <span class="node-tag tag-contemp">Ferro</span>
+          </div>
+        </div>
+        <div class="concept-node era-contemp size-sm" data-node="neuropsicanalise">
+          <div class="concept-node-inner">
+            <span class="node-name">Neuropsican&aacute;lise</span>
+            <span class="node-tag tag-contemp">Solms</span>
+          </div>
+        </div>
+        <div class="concept-node era-contemp size-sm" data-node="mentalizacao">
+          <div class="concept-node-inner">
+            <span class="node-name">Mentaliza&ccedil;&atilde;o</span>
+            <span class="node-tag tag-contemp">Fonagy</span>
+          </div>
+        </div>
+        <div class="concept-node era-contemp size-sm" data-node="apego-contemp">
+          <div class="concept-node-inner">
+            <span class="node-name">Teoria do Apego</span>
+            <span class="node-tag tag-contemp">Bowlby</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /branch-row level 2 -->
+
+</div><!-- /concept-tree -->
+
+<!-- Detail panel -->
+<div class="node-detail-panel" id="nodeDetailPanel">
+  <h3 id="detailTitle"></h3>
+  <p id="detailDesc"></p>
+  <div class="panel-relations" id="detailRelations"></div>
+  <span class="panel-close" id="detailClose">Fechar</span>
+</div>
+
+<script>
+(function() {
+  var panel = document.getElementById('nodeDetailPanel');
+  var title = document.getElementById('detailTitle');
+  var desc = document.getElementById('detailDesc');
+  var relations = document.getElementById('detailRelations');
+  var closeBtn = document.getElementById('detailClose');
+
+  var nodeData = {
+    inconsciente: {
+      name: 'Inconsciente',
+      desc: 'Conceito fundamental da psicanálise. Não é meramente o que está fora da consciência, mas um sistema psíquico com leis próprias: processo primário, livre circulação de energia, atemporalidade. Freud o descreveu como "a outra cena" (ein anderer Schauplatz). É o objeto da psicanálise: o que insiste, se repete e retorna apesar da consciência.',
+      relations: 'Pulsão · Repressão · Transferência · Sonhos · Estrutura Psíquica',
+    },
+    pulsao: {
+      name: 'Pulsão (Trieb)',
+      desc: 'Conceito fronteiriço entre o somático e o psíquico. Diferente do instinto (Instinkt), a pulsão tem fonte (zona erógena), alvo (satisfação) e objeto (variável). Freud distinguiu pulsões sexuais (Eros) e de autoconservação, e posteriormente pulsão de vida e pulsão de morte.',
+      relations: 'Eros & Tânatos · Sexualidade Infantil · Gozo (Jouissance)',
+    },
+    eros: {
+      name: 'Eros & Tânatos',
+      desc: 'Dualismo pulsional final de Freud (1920): Eros (pulsão de vida, ligação, unificação) vs. Tânatos (pulsão de morte, desligamento, retorno ao inorgânico). Toda pulsão é uma mistura das duas forças em proporções variáveis.',
+      relations: 'Pulsão · Compulsão à Repetição · Mal-Estar',
+    },
+    sexualidade: {
+      name: 'Sexualidade Infantil',
+      desc: 'Freud revolucionou a visão da infância ao demonstrar que a sexualidade não surge na puberdade, mas desde o início da vida, passando por fases: oral, anal, fálica, período de latência e genital. A sexualidade infantil é perverso-polimorfa.',
+      relations: 'Pulsão · Complexo de Édipo · Libido',
+    },
+    gozo: {
+      name: 'Gozo (Jouissance)',
+      desc: 'Conceito lacaniano que designa um excesso de prazer que tangencia a dor, ultrapassando o princípio do prazer. Distingue-se do prazer (limitado, regulado) por ser uma satisfação paradoxal e desregulada.',
+      relations: 'Pulsão · Desejo · Objeto a · Sinthome',
+    },
+    repressao: {
+      name: 'Repressão (Verdrängung)',
+      desc: 'Operação fundamental pela qual o sujeito mantém fora da consciência representações incompatíveis. O reprimido não é anulado — retorna sob formas disfarçadas: sonhos, sintomas, chistes, atos falhos. Pedra angular do funcionamento neurótico.',
+      relations: 'Recalque · Sublimação · Formação Reativa · Foraclusão',
+    },
+    recalque: {
+      name: 'Recalque (Verdrängung)',
+      desc: 'Sinônimo técnico de repressão. Operação psíquica que mantém afastados da consciência conteúdos incompatíveis. O recalque bem-sucedido é uma defesa; o fracasso do recalque produz sintomas.',
+      relations: 'Repressão · Formação Reativa · Atos Falhos',
+    },
+    sublimacao: {
+      name: 'Sublimação',
+      desc: 'Processo pelo qual a pulsão é desviada de seu alvo original (sexual) para alvos não-sexuais socialmente valorizados — arte, ciência, trabalho intelectual. Diferencia-se de outras defesas por não implicar recalque.',
+      relations: 'Pulsão · Libido · Formação Reativa',
+    },
+    'formacao-reativa': {
+      name: 'Formação Reativa',
+      desc: 'Mecanismo de defesa pelo qual um impulso inconsciente é substituído por seu oposto manifesto. Exemplo: hostilidade inconsciente torna-se gentileza excessiva. Distingue-se da formação genuína por seu caráter rígido e compulsivo.',
+      relations: 'Repressão · Sublimação · Deslocamento',
+    },
+    foraclusao: {
+      name: 'Foraclusão (Verwerfung)',
+      desc: 'Mecanismo específico da psicose. Diferente do recalque (que retorna pelo sintoma), a foraclusão é a rejeição do Nome-do-Pai do universo simbólico. O que é foracluído retorna no Real sob forma de alucinações e delírios.',
+      relations: 'Nome-do-Pai · RSI · Clivagem · Negação',
+    },
+    transferencia: {
+      name: 'Transferência',
+      desc: 'Fenômeno central da clínica psicanalítica: o analisando atualiza na relação com o analista desejos e conflitos inconscientes do passado. A transferência não é obstáculo, mas o campo onde o trabalho analítico se realiza.',
+      relations: 'Resistência · Compulsão à Repetição · Vínculo · Contratransferência',
+    },
+    resistencia: {
+      name: 'Resistência',
+      desc: 'Força oposta ao trabalho analítico que protege as defesas do sujeito. Manifesta-se como silêncio, intelectualização, atrasos, atuações. Onde resiste, há sentido inconsciente.',
+      relations: 'Transferência · Acting Out · Enquadre',
+    },
+    repeticao: {
+      name: 'Compulsão à Repetição',
+      desc: 'Tendência a repetir experiências traumáticas em vez de recordá-las. Freud a descreveu em 1920 como manifestação da pulsão de morte. Opera aquém do princípio do prazer.',
+      relations: 'Pulsão de Morte · Transferência · Trauma',
+    },
+    vinculo: {
+      name: 'Vínculo',
+      desc: 'Conceito da psicanálise relacional e da teoria do apego. A matriz relacional como constituinte do psiquismo: o self emerge e se transforma na qualidade dos vínculos com os outros.',
+      relations: 'Intersubjetividade · Apego · Mentalização',
+    },
+    sonhos: {
+      name: 'Interpretação dos Sonhos',
+      desc: 'Método de acesso ao inconsciente através dos sonhos. Distingue conteúdo manifesto e pensamentos latentes. A interpretação percorre o caminho inverso da elaboração onírica, desfazendo condensação e deslocamento.',
+      relations: 'Condensação · Deslocamento · Elaboração Onírica · Atos Falhos',
+    },
+    condensacao: {
+      name: 'Condensação',
+      desc: 'Fusão de vários pensamentos latentes em uma única imagem ou elemento manifesto. Uma figura no sonho pode representar várias pessoas; uma palavra pode condensar múltiplos significados.',
+      relations: 'Deslocamento · Elaboração Onírica',
+    },
+    deslocamento: {
+      name: 'Deslocamento',
+      desc: 'Transferência da intensidade psíquica de uma representação para outra menos carregada. Permite que conteúdos angustiantes apareçam de forma disfarçada. Base dos mecanismos de defesa como a fobia.',
+      relations: 'Condensação · Formação Reativa',
+    },
+    'elaboracao-onirica': {
+      name: 'Elaboração Onírica',
+      desc: 'Conjunto de operações que transformam pensamentos latentes em conteúdo manifesto: condensação, deslocamento, figuração e elaboração secundária. É o modelo do funcionamento inconsciente.',
+      relations: 'Condensação · Deslocamento · Interpretação dos Sonhos',
+    },
+    'atos-falhos': {
+      name: 'Atos Falhos',
+      desc: 'Lapsos, esquecimentos e trocas de palavras que revelam conteúdo inconsciente. Freud demonstrou em 1901 que esses "acidentes" são formações do inconsciente com sentido e intenção.',
+      relations: 'Inconsciente · Associação Livre · Repressão',
+    },
+    'estrutura-psiquica': {
+      name: 'Estrutura Psíquica (2ª Tópica)',
+      desc: 'Segundo modelo estrutural de Freud (1923): Id (pulsional, inconsciente), Ego (mediador, realidade), Superego (crítica, ideais, culpa). O conflito entre essas três instâncias é a dinâmica fundamental da vida psíquica.',
+      relations: 'Id · Ego · Superego · Complexo de Édipo',
+    },
+    id: {
+      name: 'Id (Isso)',
+      desc: 'Instância pulsional do aparelho psíquico, regida pelo princípio do prazer. Totalmente inconsciente, contém as moções pulsionais e o recalcado. É a fonte de energia para o Ego e o Superego.',
+      relations: 'Ego · Superego · Pulsão',
+    },
+    ego: {
+      name: 'Ego (Eu)',
+      desc: 'Instância que se desenvolve a partir do Id para mediar entre as pulsões e a realidade. Opera pelo princípio da realidade. Parte é consciente, parte inconsciente. Funções: percepção, memória, defesa, ação.',
+      relations: 'Id · Superego · Resistência · Narcisismo',
+    },
+    superego: {
+      name: 'Superego',
+      desc: 'Herdeiro do complexo de Édipo. Instância crítica e ideal, fonte de culpa e auto-observação. Forma-se pela internalização das proibições e ideais parentais. Pode ser feroz ou benevolente.',
+      relations: 'Id · Ego · Complexo de Édipo · Mal-Estar',
+    },
+    'relacoes-objetais': {
+      name: 'Relações Objetais',
+      desc: 'Paradigma que enfatiza a busca de objeto (não de prazer) como força primária do psiquismo. A mente se estrutura a partir das relações internalizadas com os outros. Principais autores: Klein, Fairbairn, Winnicott.',
+      relations: 'Klein · Winnicott · Bowlby · Bion · Fairbairn',
+    },
+    klein: {
+      name: 'Melanie Klein',
+      desc: 'Pioneira da psicanálise com crianças. Desenvolveu os conceitos de posição esquizo-paranoide e depressiva, identificação projetiva e fantasia inconsciente. Ênfase no mundo interno e nas relações de objeto precoces.',
+      relations: 'Posições · Identificação Projetiva · Fantasia',
+    },
+    winnicott: {
+      name: 'Donald Winnicott',
+      desc: 'Pediatra e psicanalista inglês. Criou os conceitos de objeto transicional, espaço potencial, self verdadeiro/falso e mãe suficientemente boa. Ênfase no desenvolvimento emocional primitivo e no ambiente.',
+      relations: 'Objeto Transicional · Espaço Potencial · Self Verdadeiro/Falso',
+    },
+    bowlby: {
+      name: 'John Bowlby',
+      desc: 'Psiquiatra e psicanalista inglês, fundador da teoria do apego (attachment). Demonstrou que o vínculo entre bebê e cuidador é uma necessidade primária, não derivada da alimentação.',
+      relations: 'Apego · Mentalização · Intersubjetividade',
+    },
+    bion: {
+      name: 'Wilfred Bion',
+      desc: 'Psicanalista inglês que desenvolveu a teoria do pensar, o modelo Container/Contido, a rêverie e a Grade. Expandiu a compreensão dos processos psicóticos e do funcionamento dos grupos.',
+      relations: 'Container/Contido · Rêverie · Campo Analítico',
+    },
+    fairbairn: {
+      name: 'W. R. D. Fairbairn',
+      desc: 'Psiquiatra e psicanalista escocês. Propôs que a libido é primariamente busca por objeto, não por prazer. Sua teoria das relações objetais influenciou profundamente a escola relacional britânica.',
+      relations: 'Relações Objetais · Klein · Winnicott',
+    },
+    lacan: {
+      name: 'Jacques Lacan',
+      desc: 'Psicanalista francês que propôs um "retorno a Freud" pela via da linguística estrutural. Desenvolveu os registros RSI, o estádio do espelho, o Nome-do-Pai, o objeto a e a lógica do significante.',
+      relations: 'RSI · Significante · Objeto a · Sinthome · Estádio do Espelho',
+    },
+    rsi: {
+      name: 'Real / Simbólico / Imaginário',
+      desc: 'Três registros fundamentais do nó borromeano lacaniano. O Imaginário é a imagem e o eu; o Simbólico é a linguagem e a lei; o Real é o impossível de simbolizar — o que retorna e insiste.',
+      relations: 'Nome-do-Pai · Sinthome · Gozo · Estádio do Espelho',
+    },
+    significante: {
+      name: 'Significante',
+      desc: 'Unidade básica da linguagem segundo Saussure, radicalizada por Lacan. O significante é o que representa o sujeito para outro significante. O inconsciente é estruturado como uma linguagem.',
+      relations: 'RSI · Nome-do-Pai · Desejo',
+    },
+    'objeto-a': {
+      name: 'Objeto a',
+      desc: 'Objeto causa do desejo, irredutível a qualquer objeto empírico. Resto da operação de constituição do sujeito — o que se perde na entrada na linguagem. Manifesta-se como olhar, voz, seio, fezes, falo.',
+      relations: 'Desejo · Falta · Gozo · Fantasia',
+    },
+    sinthome: {
+      name: 'Sinthome',
+      desc: 'Conceito tardio de Lacan: quarto anel que sustenta a amarração entre RSI quando o Nome-do-Pai é insuficiente. Invenção singular do sujeito — um modo de gozar que mantém o psiquismo coeso.',
+      relations: 'RSI · Gozo · Nome-do-Pai',
+    },
+    'estadio-espelho': {
+      name: 'Estádio do Espelho',
+      desc: 'Momento fundamental (6-18 meses) em que a criança se identifica com sua imagem no espelho. Essa identificação instaura o eu (moi) como uma imagem unificada, mas funda uma alienação estrutural.',
+      relations: 'Narcisismo · Imaginário · RSI',
+    },
+    contemporaneo: {
+      name: 'Contemporâneos',
+      desc: 'A psicanálise a partir dos anos 1980, marcada pela virada intersubjetiva, pela psicanálise de campo, pelo diálogo com as neurociências e pela expansão a novos contextos clínicos e culturais.',
+      relations: 'Intersubjetividade · Campo Analítico · Neuropsicanálise · Mentalização · Apego',
+    },
+    intersubjetividade: {
+      name: 'Intersubjetividade',
+      desc: 'Dimensão relacional do psiquismo. A psicanálise contemporânea substitui o modelo unipessoal (mente isolada) por um modelo bipessoal: o psiquismo emerge e se transforma no encontro com o outro.',
+      relations: 'Campo Analítico · Contratransferência · Vínculo · Mentalização',
+    },
+    'campo-analitico': {
+      name: 'Campo Analítico',
+      desc: 'Modelo desenvolvido por Baranger e Ferro: a situação analítica é um campo dinâmico onde analista e analisando coconstroem significados em uma matriz intersubjetiva habitada por personagens e fantasmas.',
+      relations: 'Rêverie · Container/Contido · Intersubjetividade',
+    },
+    neuropsicanalise: {
+      name: 'Neuropsicanálise',
+      desc: 'Campo fundado por Mark Solms que integra conceitos psicanalíticos com neurociências modernas: correlatos neurais dos sonhos, afeto, inconsciente e memória. Diálogo com Damasio, Panksepp e LeDoux.',
+      relations: 'Inconsciente · Pulsão · Mentalização · Afeto',
+    },
+    mentalizacao: {
+      name: 'Mentalização',
+      desc: 'Capacidade de compreender comportamento em termos de estados mentais. Desenvolvida no contexto do apego seguro. Integra psicanálise, teoria do apego e neurociência cognitiva (Fonagy & Target).',
+      relations: 'Apego · Intersubjetividade · Neuropsicanálise',
+    },
+    'apego-contemp': {
+      name: 'Teoria do Apego',
+      desc: 'Apego como tendência inata a formar vínculos afetivos. Padrões: seguro, ansioso-ambivalente, evitativo, desorganizado. Diálogo crescente com a psicanálise contemporânea e a clínica do trauma.',
+      relations: 'Bowlby · Mentalização · Intersubjetividade · Trauma',
+    },
+  };
+
+  // ─── Click handler ───
+  var nodes = document.querySelectorAll('.concept-node');
+  nodes.forEach(function(node) {
+    node.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var key = node.getAttribute('data-node');
+      var data = nodeData[key];
+      if (!data) return;
+
+      title.textContent = data.name;
+      desc.textContent = data.desc;
+      relations.innerHTML = '<strong>Relações:</strong> ' + data.relations;
+      panel.classList.add('show');
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  });
+
+  closeBtn.addEventListener('click', function() {
+    panel.classList.remove('show');
+  });
+})();
+</script>
+
+<footer style="margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--color-border); font-size: var(--text-sm); color: var(--color-text-muted);">
+  <p><a href="../index.html">&larr; Voltar ao Dashboard</a></p>
+</footer>
+</body>
+</html>

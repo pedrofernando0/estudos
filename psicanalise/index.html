@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psicanálise & Viver Bem — Dashboard</title>
+	<link rel="stylesheet" href="../templates/fonts/fonts.css">
+<link rel="stylesheet" href="../templates/style.css">
+<style>
+  .back-link { display: inline-block; margin-bottom: var(--space-6); font-size: var(--text-sm); }
+  .hero { margin-bottom: var(--space-8); }
+  .hero h1 { margin-bottom: var(--space-1); }
+  .hero p { color: var(--color-text-secondary); font-style: italic; }
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); margin-bottom: var(--space-8); }
+  .stat-card { padding: var(--space-4); background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-align: center; }
+  .stat-value { font-family: var(--font-heading); font-size: var(--text-3xl); color: var(--color-accent); }
+  .stat-label { font-size: var(--text-xs); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: var(--space-1); }
+  .cta-card { padding: var(--space-5); background: var(--color-accent-light); border: 1px solid var(--color-accent); border-radius: var(--radius-lg); margin-bottom: var(--space-8); text-align: center; }
+  .cta-card a { font-size: var(--text-lg); font-weight: 600; }
+  .badges-row { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-4); }
+  .badge-item { display: inline-flex; align-items: center; gap: 4px; padding: var(--space-1) var(--space-3); background: var(--color-accent-light); border: 1px solid var(--color-accent); border-radius: var(--radius-full); font-size: var(--text-xs); }
+  .badge-item.earned { background: var(--color-accent); color: white; }
+  .resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--space-3); margin-bottom: var(--space-8); }
+  .resource-link { display: block; padding: var(--space-3); background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-align: center; text-decoration: none; color: var(--color-text); font-size: var(--text-sm); transition: all 150ms ease; }
+  .resource-link:hover { border-color: var(--color-accent); background: var(--color-accent-light); }
+  @media (max-width: 600px) { .stats-row { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+
+<a href="../index.html" class="back-link">← Voltar para Estudos</a>
+
+<header class="hero">
+  <h1>🧠 Psicanálise &amp; Viver Bem</h1>
+  <p>36 sessões · 6 módulos · Da fundação freudiana à contemporaneidade</p>
+</header>
+
+<div class="stats-row" id="stats-row">
+  <div class="stat-card"><div class="stat-value" id="stat-completed">0</div><div class="stat-label">de 36 sessões</div></div>
+  <div class="stat-card"><div class="stat-value" id="stat-streak">0</div><div class="stat-label">dias de streak</div></div>
+  <div class="stat-card"><div class="stat-value" id="stat-concepts">0</div><div class="stat-label">conceitos</div></div>
+  <div class="stat-card"><div class="stat-value" id="stat-score">--%</div><div class="stat-label">média quiz</div></div>
+</div>
+
+<div id="badges-container" style="margin-bottom:var(--space-6)"></div>
+
+<div class="cta-card" id="cta-card">
+  <p style="margin-bottom:var(--space-2)">📍 Sua próxima sessão:</p>
+  <a href="sessoes/modulo-0-orientacao/s00-boas-vindas.html">S00 — Boas-vindas à Jornada →</a>
+</div>
+
+<h3 style="margin-bottom:var(--space-3)">📖 Recursos de Consulta</h3>
+<div class="resources-grid">
+  <a href="recursos/glossario.html" class="resource-link">📖 Glossário</a>
+  <a href="recursos/linha-do-tempo.html" class="resource-link">📅 Linha do Tempo</a>
+  <a href="recursos/mapa-conceitual.html" class="resource-link">🧠 Mapa Conceitual</a>
+  <a href="recursos/autores.html" class="resource-link">👤 Autores</a>
+  <a href="recursos/referencias.html" class="resource-link">📚 Referências</a>
+</div>
+
+<h3 style="margin-bottom:var(--space-3)">🗂 Módulos</h3>
+<div class="modules-timeline" id="modules-list"></div>
+
+<footer class="footer-note" style="text-align:center;margin-top:var(--space-12);font-size:var(--text-sm);color:var(--color-text-muted)">
+  <p>Use a skill <code>estudo-psicanalise</code> com Claude Code para gerar novas sessões.</p>
+  <p style="margin-top:var(--space-2)"><button onclick="if(confirm('Redefinir todo o progresso? Esta ação não pode ser desfeita.')){localStorage.removeItem(EstudosTracking.STORAGE_KEY);location.reload();}" style="font-size:var(--text-xs);padding:4px 12px;background:transparent;border:1px solid var(--color-border);border-radius:var(--radius-sm);color:var(--color-text-muted);cursor:pointer;">Redefinir progresso</button></p>
+</footer>
+
+<script src="progresso/tracking.js"></script>
+<script>
+(function() {
+  var T = EstudosTracking;
+  var progress = T.loadProgress();
+  var completed = progress.completedSessions || [];
+
+  // Stats
+  document.getElementById('stat-completed').textContent = completed.length;
+  document.getElementById('stat-streak').textContent = progress.streak || 0;
+  document.getElementById('stat-concepts').textContent = (progress.conceptsLearned || []).length;
+
+  var avg = T.getQuizAverage();
+  document.getElementById('stat-score').textContent = avg !== null ? avg + '%' : '--%';
+
+  // Badges
+  var allBadges = [
+    { id:'primeira-sessao', label:'🎯 Primeira sessão', desc:'Completou sua primeira sessão' },
+    { id:'5-sessoes', label:'📚 5 sessões', desc:'Completou 5 sessões' },
+    { id:'10-sessoes', label:'🧠 10 sessões', desc:'Completou 10 sessões' },
+    { id:'metade', label:'🏔 Metade do caminho', desc:'Completou 18 sessões' },
+    { id:'todas-sessoes', label:'🏆 Jornada completa', desc:'Completou todas as 36 sessões' },
+    { id:'streak-7', label:'🔥 7 dias', desc:'Manteve streak de 7 dias' }
+  ];
+  var earned = progress.badges || [];
+  var badgesHtml = '<div class="badges-row">';
+  for (var i = 0; i < allBadges.length; i++) {
+    var b = allBadges[i];
+    var isEarned = earned.indexOf(b.id) !== -1;
+    badgesHtml += '<span class="badge-item' + (isEarned ? ' earned' : '') + '" title="' + b.desc + '">' + b.label + '</span>';
+  }
+  badgesHtml += '</div>';
+  document.getElementById('badges-container').innerHTML = badgesHtml;
+
+  // CTA — próxima sessão
+  var next = T.getNextSession();
+  if (next) {
+    var path = T.getSessionPath(next.id);
+    document.getElementById('cta-card').innerHTML =
+      '<p style="margin-bottom:var(--space-2)">📍 Sua próxima sessão:</p>' +
+      '<a href="' + path + '">' + next.id + ' — ' + next.title + ' →</a>';
+  } else {
+    document.getElementById('cta-card').innerHTML =
+      '<p style="margin-bottom:var(--space-2)">🎉 Jornada completa!</p><p>Todas as 36 sessões foram concluídas. Incrível!</p>';
+  }
+
+  // Modules timeline
+  var list = document.getElementById('modules-list');
+  T.MODULES.forEach(function(m) {
+    var mp = T.getModuleProgress(m.num);
+    var cls = 'module-row';
+    if (mp.pct === 100) cls += ' completed';
+    else if (mp.pct > 0) cls += ' active';
+
+    // Construir range de sessões visual
+    var rangeStart = m.range[0];
+    var rangeEnd = m.range[1];
+    var rangeLabel = 'S' + String(rangeStart).padStart(2,'0') + '–S' + String(rangeEnd).padStart(2,'0');
+
+    var row = document.createElement('div');
+    row.className = cls;
+    row.innerHTML =
+      '<span class="module-num">' + m.num + '</span>' +
+      '<div class="module-info"><h4>' + m.title + '</h4><p>' + rangeLabel + ' · ' + mp.completed + '/' + mp.total + ' concluídas</p></div>' +
+      '<div class="module-progress"><div class="module-progress-bar" style="width:' + mp.pct + '%"></div></div>';
+    list.appendChild(row);
+  });
+})();
+</script>
+</body>
+</html>

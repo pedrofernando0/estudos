@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glossário de Psicanálise — Estudos</title>
+	<link rel="stylesheet" href="../../templates/fonts/fonts.css">
+<link rel="stylesheet" href="../../templates/style.css">
+<style>
+/* ─── Page-specific: Glossário ─── */
+body { max-width: 860px; }
+
+.glossario-top {
+  margin-bottom: var(--space-6);
+}
+
+.search-field {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  transition: border-color var(--transition);
+}
+
+.search-field:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.search-field::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* ─── Alphabetical Jump Nav ─── */
+.alpha-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin-bottom: var(--space-6);
+  padding: var(--space-3);
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+}
+
+.alpha-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border-bottom: none;
+  color: var(--color-text-secondary);
+  transition: all var(--transition);
+}
+
+.alpha-nav a:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.alpha-nav a.empty {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* ─── Letter Section ─── */
+.letter-section {
+  margin-bottom: var(--space-6);
+}
+
+.letter-heading {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--color-accent);
+}
+
+/* ─── Term Card ─── */
+.term-card {
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-4);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition);
+}
+
+.term-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.term-card h3 {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-xl);
+  color: var(--color-accent);
+}
+
+.term-card .term-original {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-bottom: var(--space-2);
+}
+
+.term-card p {
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+.term-card .ver-tambem {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-2);
+}
+
+.term-card .ver-tambem a {
+  display: inline-block;
+  margin-right: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+/* ─── Search result filter ─── */
+.term-card.hidden {
+  display: none;
+}
+
+/* ─── Counter ─── */
+.glossario-count {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 600px) {
+  .alpha-nav a {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: var(--text-xs);
+  }
+  .term-card h3 { font-size: var(--text-lg); }
+}
+</style>
+</head>
+<body>
+
+<a href="../index.html">&larr; Voltar ao Dashboard</a>
+
+<div class="glossario-top">
+  <h1>Gloss&aacute;rio de Psican&aacute;lise</h1>
+  <p>Defini&ccedil;&otilde;es concisas dos principais conceitos psicanal&iacute;ticos, de Freud aos contempor&acirc;neos.</p>
+  <input type="text" class="search-field" id="glossarioSearch" placeholder="Buscar termo... (ex.: pulsão, transferência, gozo)" autocomplete="off">
+  <div class="glossario-count" id="glossarioCount">50 termos</div>
+</div>
+
+<!-- Alphabetical Jump -->
+<nav class="alpha-nav" id="alphaNav" aria-label="Navegação alfabética">
+</nav>
+
+<!-- Glossary Entries -->
+<div id="glossarioEntries">
+
+<div class="letter-section" data-letter="A">
+<h2 class="letter-heading" id="letra-A">A</h2>
+
+<div class="term-card" data-term="acting out">
+<h3>Acting Out</h3>
+<p class="term-original">inglês, "encenação" / "passagem ao ato"</p>
+<p>Ação impulsiva e inconsciente pela qual o sujeito encena um conflito psíquico em vez de simbolizá-lo pela palavra. Diferencia-se da <em>passagem ao ato</em> (mais violenta e evasiva) por ocorrer dentro do enquadre analítico como uma forma de comunicação não-verbal. Conceito elaborado por Freud e posteriormente diferenciado por Lacan.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-T">Transfer&ecirc;ncia</a> <a href="#letra-R">Resist&ecirc;ncia</a> <a href="#letra-E">Enquadre (Setting)</a></div>
+</div>
+
+<div class="term-card" data-term="angústia">
+<h3>Ang&uacute;stia</h3>
+<p class="term-original">alemão: Angst</p>
+<p>Afeto fundamental para a psicanálise. Freud distingue angústia automática (resposta ao trauma) e angústia-sinal (alarme do ego ante um perigo interno). Para Lacan, a angústia é o afeto que não engana — sinal do real, da proximidade do desejo do Outro. Diferencia-se do medo por não ter objeto definido.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-T">Trauma</a> <a href="#letra-D">Desejo</a> <a href="#letra-F">Falta</a></div>
+</div>
+
+<div class="term-card" data-term="apego attachment">
+<h3>Apego (Attachment)</h3>
+<p class="term-original">inglês: Attachment</p>
+<p>Teoria desenvolvida por John Bowlby e Mary Ainsworth que descreve a tendência inata do ser humano a formar vínculos afetivos com figuras de cuidado na primeira infância. Os padrões de apego (seguro, ansioso-ambivalente, evitativo, desorganizado) influenciam o desenvolvimento emocional e as relações ao longo da vida. Diálogo crescente com a psicanálise contemporânea.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-M">Mentalização</a> <a href="#letra-I">Intersubjetividade</a> <a href="#letra-N">Neuropsicanálise</a></div>
+</div>
+
+<div class="term-card" data-term="associação livre">
+<h3>Associação Livre</h3>
+<p class="term-original">alemão: freier Einfall</p>
+<p>Regra fundamental da técnica psicanalítica: o analisando deve dizer tudo o que lhe vier à mente, sem seleção, censura ou julgamento. Freud abandonou a hipnose em favor deste método, que pressupõe que os pensamentos se encadeiam por determinação inconsciente. É o principal instrumento de acesso ao inconsciente na análise clássica.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-I">Interpretação dos Sonhos</a> <a href="#letra-I">Inconsciente</a> <a href="#letra-A">Atos Falhos</a></div>
+</div>
+
+<div class="term-card" data-term="atos falhos">
+<h3>Atos Falhos</h3>
+<p class="term-original">alemão: Fehlleistungen</p>
+<p>Lapsos, esquecimentos, trocas de palavras, pequenos erros que revelam um conteúdo inconsciente. Freud demonstrou em <em>A Psicopatologia da Vida Cotidiana</em> (1901) que esses "acidentes" são formações do inconsciente — atos psíquicos com sentido e intenção.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-A">Associação Livre</a> <a href="#letra-I">Inconsciente</a> <a href="#letra-R">Repressão (Verdrängung)</a></div>
+</div>
+
+</div><!-- /letter-section A -->
+
+<div class="letter-section" data-letter="C">
+<h2 class="letter-heading" id="letra-C">C</h2>
+
+<div class="term-card" data-term="campo analítico">
+<h3>Campo Analítico</h3>
+<p class="term-original">espanhol: Campo Analítico</p>
+<p>Conceito desenvolvido por Madeleine e Willy Baranger, posteriormente expandido por Antonino Ferro e outros. Descreve a situação analítica como um campo dinâmico e bidirecional, onde analista e analisando coconstroem significados em uma matriz intersubjetiva. O campo é habitado por fantasmas, personagens e configurações que emergem da dupla.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-I">Intersubjetividade</a> <a href="#letra-C">Container/Contido (Bion)</a> <a href="#letra-R">Rêverie</a></div>
+</div>
+
+<div class="term-card" data-term="clivagem spaltung">
+<h3>Clivagem (Spaltung)</h3>
+<p class="term-original">alemão: Spaltung</p>
+<p>Mecanismo de defesa pelo qual o ego se divide em duas atitudes coexistentes e contraditórias: uma que reconhece a realidade, outra que a recusa. Freud a descreveu no fetichismo; Lacan a elevou a estrutura fundamental do sujeito (divisão entre consciente e inconsciente). Diferencia-se da repressão por não envolver o recalque de um conteúdo, mas a coexistência de posições incompatíveis.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-F">Foraclusão (Verwerfung)</a> <a href="#letra-N">Negação (Verleugnung)</a> <a href="#letra-R">Real/Simbólico/Imaginário</a></div>
+</div>
+
+<div class="term-card" data-term="complexo de édipo">
+<h3>Complexo de &Eacute;dipo</h3>
+<p class="term-original">alemão: Ödipuskomplex</p>
+<p>Conjunto organizado de desejos amorosos e hostis que a criança experimenta em relação aos pais. Freud o considerou o "complexo nuclear" de todas as neuroses. Sua resolução (pela identificação com o genitor do mesmo sexo e abandono do desejo incestuoso) é crucial para a estruturação do psiquismo e a entrada na ordem simbólica. Lacan o reformula em termos linguísticos: a metáfora paterna.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-R">Repressão (Verdrängung)</a> <a href="#letra-N">Nome-do-Pai</a> <a href="#letra-I">Id/Ego/Superego</a></div>
+</div>
+
+<div class="term-card" data-term="compulsão à repetição">
+<h3>Compulsão &agrave; Repeti&ccedil;&atilde;o</h3>
+<p class="term-original">alemão: Wiederholungszwang</p>
+<p>Tendência do sujeito a repetir experiências traumáticas ou dolorosas, revivendo-as em vez de recordá-las. Freud a descreveu em <em>Além do Princípio do Prazer</em> (1920) como manifestação da pulsão de morte, operando aquém do princípio do prazer. Manifesta-se na transferência, nos sonhos traumáticos e nos padrões recorrentes de relacionamento.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-P">Pulsão de Morte (Todestrieb)</a> <a href="#letra-T">Transferência</a> <a href="#letra-T">Trauma</a></div>
+</div>
+
+<div class="term-card" data-term="condensação">
+<h3>Condensa&ccedil;&atilde;o</h3>
+<p class="term-original">alemão: Verdichtung</p>
+<p>Um dos mecanismos fundamentais do trabalho do sonho, identificado por Freud. Consiste na fusão de vários pensamentos latentes em uma única imagem ou elemento manifesto. Uma figura no sonho pode representar várias pessoas; uma palavra pode condensar múltiplos significados. Opera também nos chistes e na formação de sintomas.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-D">Deslocamento</a> <a href="#letra-I">Interpretação dos Sonhos</a> <a href="#letra-I">Inconsciente</a></div>
+</div>
+
+<div class="term-card" data-term="container contido bion">
+<h3>Container/Contido (Bion)</h3>
+<p class="term-original">inglês: Container/Contained — W. R. Bion</p>
+<p>Modelo proposto por Wilfred Bion para descrever a função da mente materna (e posteriormente do analista) como "continente" das angústias e projeções do bebê (conteúdos). A mãe recebe as identificações projetivas do infante, as metaboliza e as devolve em forma tolerável. Na análise, o analista funciona como container dos conteúdos emocionais do analisando.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-I">Identificação Projetiva</a> <a href="#letra-R">Rêverie</a> <a href="#letra-C">Campo Analítico</a></div>
+</div>
+
+<div class="term-card" data-term="contratransferência">
+<h3>Contratransferência</h3>
+<p class="term-original">alemão: Gegenübertragung</p>
+<p>Conjunto de reações inconscientes do analista às transferências do analisando. Inicialmente vista como obstáculo a ser superado, a contratransferência foi progressivamente reconhecida como instrumento valioso de compreensão do campo analítico. Autores como Paula Heimann, Racker e os Baranger a consideram ferramenta diagnóstica essencial.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-T">Transferência</a> <a href="#letra-C">Campo Analítico</a> <a href="#letra-I">Intersubjetividade</a></div>
+</div>
+
+</div><!-- /letter-section C -->
+
+<div class="letter-section" data-letter="D">
+<h2 class="letter-heading" id="letra-D">D</h2>
+
+<div class="term-card" data-term="desejo">
+<h3>Desejo</h3>
+<p class="term-original">alemão: Wunsch / francês: Désir</p>
+<p>Conceito central em Freud e Lacan. Para Freud, o desejo é a força motriz do sonho e do sintoma — realizações alucinatórias de uma satisfação perdida. Para Lacan, o desejo é desejo do Outro: constituído na linguagem, articulado ao significante e fundamentalmente insatisfeito. O desejo diferencia-se da necessidade (biológica) e da demanda (endereçada ao Outro).</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-F">Falta</a> <a href="#letra-G">Gozo (Jouissance)</a> <a href="#letra-O">Objeto a</a></div>
+</div>
+
+<div class="term-card" data-term="deslocamento">
+<h3>Deslocamento</h3>
+<p class="term-original">alemão: Verschiebung</p>
+<p>Mecanismo do trabalho do sonho (e do inconsciente) pelo qual a intensidade psíquica de uma representação é transferida para outra, menos carregada afetivamente. Permite que conteúdos angustiantes apareçam no sonho de forma disfarçada. É a base dos mecanismos de defesa como a fobia (deslocamento do medo para um objeto substituto).</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-C">Condensação</a> <a href="#letra-I">Interpretação dos Sonhos</a> <a href="#letra-F">Formação Reativa</a></div>
+</div>
+
+</div><!-- /letter-section D -->
+
+<div class="letter-section" data-letter="E">
+<h2 class="letter-heading" id="letra-E">E</h2>
+
+<div class="term-card" data-term="elaboração onírica">
+<h3>Elabora&ccedil;&atilde;o On&iacute;rica</h3>
+<p class="term-original">alemão: Traumarbeit</p>
+<p>Conjunto de operações psíquicas que transformam os pensamentos latentes do sonho em conteúdo manifesto. Inclui condensação, deslocamento, figuração (representabilidade) e elaboração secundária. É o conceito-chave de <em>A Interpretação dos Sonhos</em> (1900) e modelo do funcionamento inconsciente em geral.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-C">Condensação</a> <a href="#letra-D">Deslocamento</a> <a href="#letra-I">Interpretação dos Sonhos</a></div>
+</div>
+
+<div class="term-card" data-term="enquadre setting">
+<h3>Enquadre (Setting)</h3>
+<p class="term-original">inglês/francês: Setting / Cadre</p>
+<p>Conjunto de regras e condições que estruturam a situação analítica: frequência, duração das sessões, honorários, posição do divã, neutralidade, abstinência. O enquadre não é mero protocolo técnico — é ele que torna possível o surgimento da transferência e o trabalho do inconsciente. Autores contemporâneos discutem sua flexibilização (setting online, sessões curtas).</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-T">Transferência</a> <a href="#letra-A">Associação Livre</a> <a href="#letra-R">Resistência</a></div>
+</div>
+
+<div class="term-card" data-term="espaço potencial">
+<h3>Espa&ccedil;o Potencial</h3>
+<p class="term-original">inglês: Potential Space — D. W. Winnicott</p>
+<p>Área intermediária de experiência entre a realidade interna e a realidade compartilhada, onde ocorre o brincar, a criatividade cultural e a experiência transicional. Não é dentro nem fora, mas um terceiro espaço de ilusão que a mãe suficientemente boa permite à criança habitar. Na análise, é o espaço onde a transferência pode ser jogada e transformada.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-O">Objeto Transicional</a> <a href="#letra-S">Self Verdadeiro/Falso</a> <a href="#letra-C">Campo Analítico</a></div>
+</div>
+
+<div class="term-card" data-term="estádio do espelho">
+<h3>Est&aacute;dio do Espelho</h3>
+<p class="term-original">francês: Stade du miroir — J. Lacan</p>
+<p>Momento fundamental da estruturação do sujeito (6-18 meses) em que a criança reconhece sua imagem no espelho e identifica-se jubilosamente com ela. Essa identificação instaura o eu (moi) como uma imagem unificada e exterior — uma "gestalt" —, mas funda uma alienação estrutural: o sujeito é capturado por uma imagem de si que é, ao mesmo tempo, ele e outro.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-I">Imaginário</a> <a href="#letra-N">Narcisismo</a> <a href="#letra-R">Real/Simbólico/Imaginário</a></div>
+</div>
+
+</div><!-- /letter-section E -->
+
+<div class="letter-section" data-letter="F">
+<h2 class="letter-heading" id="letra-F">F</h2>
+
+<div class="term-card" data-term="falta">
+<h3>Falta</h3>
+<p class="term-original">francês: Manque</p>
+<p>Conceito lacaniano que designa uma ausência estrutural no ser — a falta-a-ser (manque-à-être). O sujeito é constituído por uma falta fundamental que o desejo busca incessantemente preencher, mas que é impossível de ser satisfeita. A falta articula-se ao objeto a como causa do desejo e à castração simbólica.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-D">Desejo</a> <a href="#letra-O">Objeto a</a> <a href="#letra-G">Gozo (Jouissance)</a></div>
+</div>
+
+<div class="term-card" data-term="fantasia">
+<h3>Fantasia</h3>
+<p class="term-original">alemão: Phantasie</p>
+<p>Cena imaginária consciente ou inconsciente na qual o sujeito realiza um desejo. As fantasias são o "cenário" do desejo — estruturas narrativas que organizam a vida psíquica. Freud distingue fantasias primárias (originais, universais: vida intrauterina, sedução, castração) e fantasias secundárias. Para Lacan, a fantasia fundamental ($◊a) é a resposta do sujeito ao enigma do desejo do Outro.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-D">Desejo</a> <a href="#letra-I">Inconsciente</a> <a href="#letra-A">Angústia</a></div>
+</div>
+
+<div class="term-card" data-term="foraclusão verwerfung">
+<h3>Foraclus&atilde;o (Verwerfung)</h3>
+<p class="term-original">alemão: Verwerfung / francês: Forclusion</p>
+<p>Mecanismo específico da psicose, segundo Lacan. Diferente do recalque (que retorna pelo sintoma), a foraclusão é a rejeição de um significante fundamental — o Nome-do-Pai — do universo simbólico do sujeito. O que é foracluído no Simbólico retorna no Real, sob a forma de alucinações e delírios.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-N">Nome-do-Pai</a> <a href="#letra-R">Real/Simbólico/Imaginário</a> <a href="#letra-C">Clivagem (Spaltung)</a></div>
+</div>
+
+<div class="term-card" data-term="formação reativa">
+<h3>Formação Reativa</h3>
+<p class="term-original">alemão: Reaktionsbildung</p>
+<p>Mecanismo de defesa pelo qual um impulso ou desejo inconsciente é substituído por seu oposto manifesto. Exemplo típico: a pessoa que sente hostilidade inconsciente torna-se excessivamente gentil e solícita. A formação reativa é rígida, exagerada e compulsiva, distinguindo-se de uma formação genuína.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-R">Repressão (Verdrängung)</a> <a href="#letra-S">Sublimação</a> <a href="#letra-D">Deslocamento</a></div>
+</div>
+
+</div><!-- /letter-section F -->
+
+<div class="letter-section" data-letter="G">
+<h2 class="letter-heading" id="letra-G">G</h2>
+
+<div class="term-card" data-term="gozo jouissance">
+<h3>Gozo (Jouissance)</h3>
+<p class="term-original">francês: Jouissance — J. Lacan</p>
+<p>Conceito lacaniano que designa um excesso de prazer que tangencia a dor, ultrapassando o princípio do prazer. Diferencia-se do prazer (limitado, regulado) por ser uma satisfação paradoxal e desregulada. Lacan distingue gozo fálico (ligado à castração), gozo do Outro (místico, impossível) e mais-gozar (mais-de-gozar, objeto a). O gozo é o que o sujeito busca sem saber.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-D">Desejo</a> <a href="#letra-O">Objeto a</a> <a href="#letra-P">Pulsão de Morte (Todestrieb)</a></div>
+</div>
+
+</div><!-- /letter-section G -->
+
+<div class="letter-section" data-letter="I">
+<h2 class="letter-heading" id="letra-I">I</h2>
+
+<div class="term-card" data-term="id ego superego">
+<h3>Id / Ego / Superego</h3>
+<p class="term-original">alemão: Es / Ich / Über-Ich</p>
+<p>Segunda tópica freudiana (1923). O Id é a instância pulsional, regida pelo princípio do prazer, totalmente inconsciente. O Ego desenvolve-se a partir do Id como mediador com a realidade, operando pelo princípio da realidade; parte é consciente, parte inconsciente. O Superego é herdeiro do complexo de Édipo, instância crítica e ideal, fonte de culpa e auto-observação.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-C">Complexo de Édipo</a> <a href="#letra-R">Repressão (Verdrängung)</a> <a href="#letra-N">Narcisismo</a></div>
+</div>
+
+<div class="term-card" data-term="identificação projetiva">
+<h3>Identificação Projetiva</h3>
+<p class="term-original">inglês: Projective Identification — M. Klein</p>
+<p>Mecanismo descrito por Melanie Klein no qual o sujeito projeta partes de si (boas ou más) em um objeto externo, identificando-se com ele. Diferencia-se da projeção simples por implicar uma pressão sobre o receptor para que se comporte de acordo com o projetado. Conceito expandido por Bion (comunicação primitiva) e por autores relacionais (interação bidirecional).</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-P">Posição Esquizo-Paranoide</a> <a href="#letra-C">Container/Contido (Bion)</a> <a href="#letra-T">Transferência</a></div>
+</div>
+
+<div class="term-card" data-term="inconsciente">
+<h3>Inconsciente</h3>
+<p class="term-original">alemão: das Unbewusste</p>
+<p>Conceito fundamental da psicanálise. Não é meramente o que está fora da consciência, mas um sistema psíquico com leis próprias (processo primário, livre circulação de energia, atemporalidade). Freud o descreveu primeiramente como "a outra cena" (ein anderer Schauplatz). É o objeto da psicanálise: o que insiste, se repete e retorna apesar da consciência.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-R">Repressão (Verdrängung)</a> <a href="#letra-A">Associação Livre</a> <a href="#letra-I">Id/Ego/Superego</a></div>
+</div>
+
+<div class="term-card" data-term="interpretação dos sonhos">
+<h3>Interpreta&ccedil;&atilde;o dos Sonhos</h3>
+<p class="term-original">alemão: Traumdeutung</p>
+<p>Método de acesso ao inconsciente através da análise dos sonhos, desenvolvido por Freud em sua obra magna de 1900. Distingue conteúdo manifesto (aquilo que o sonhador recorda) e pensamentos latentes (desejos inconscientes). A interpretação percorre o caminho inverso da elaboração onírica, desfazendo condensação, deslocamento e figuração.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-E">Elaboração Onírica</a> <a href="#letra-C">Condensação</a> <a href="#letra-D">Deslocamento</a></div>
+</div>
+
+<div class="term-card" data-term="intersubjetividade">
+<h3>Intersubjetividade</h3>
+<p class="term-original">inglês/francês: Intersubjectivity</p>
+<p>Dimensão da experiência psíquica que se constitui entre sujeitos, no espaço relacional. Na psicanálise contemporânea (escola relacional, psicanálise de campo), a intersubjetividade substitui o modelo unipessoal (mente isolada) por um modelo bipessoal ou de campo: o psiquismo emerge e se transforma no encontro com o outro. Diálogo com a fenomenologia, a teoria do apego e as neurociências.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-C">Campo Analítico</a> <a href="#letra-C">Contratransferência</a> <a href="#letra-M">Mentalização</a></div>
+</div>
+
+</div><!-- /letter-section I -->
+
+<div class="letter-section" data-letter="L">
+<h2 class="letter-heading" id="letra-L">L</h2>
+
+<div class="term-card" data-term="libido">
+<h3>Libido</h3>
+<p class="term-original">latim: libido — "desejo", "vontade"</p>
+<p>Energia postulada por Freud como substrato das transformações da pulsão sexual. A libido pode ser investida em objetos (catexia), retirada, deslocada ou sublimada. Jung ampliou o conceito para "energia psíquica" geral. Freud manteve sua acepção sexual, distinguindo libido do ego (narcísica) e libido objetal.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-P">Pulsão (Trieb)</a> <a href="#letra-S">Sublimação</a> <a href="#letra-N">Narcisismo</a></div>
+</div>
+
+</div><!-- /letter-section L -->
+
+<div class="letter-section" data-letter="M">
+<h2 class="letter-heading" id="letra-M">M</h2>
+
+<div class="term-card" data-term="mal estar unbehagen">
+<h3>Mal-Estar (Unbehagen)</h3>
+<p class="term-original">alemão: Unbehagen — "desconforto", "inquietação"</p>
+<p>Conceito-título da obra freudiana <em>O Mal-Estar na Civilização</em> (1930). Designa o desconforto estrutural do sujeito na cultura: o preço da civilização é a renúncia pulsional, que gera culpa e infelicidade. Para Freud, o mal-estar é constitutivo da vida em sociedade — um resto impossível de eliminar. Tema retomado por autores contemporâneos (Birman, Kehl, Žižek).</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-P">Pulsão (Trieb)</a> <a href="#letra-A">Angústia</a> <a href="#letra-G">Gozo (Jouissance)</a></div>
+</div>
+
+<div class="term-card" data-term="mentalização">
+<h3>Mentaliza&ccedil;&atilde;o</h3>
+<p class="term-original">inglês: Mentalization — Fonagy & Target</p>
+<p>Capacidade de compreender o comportamento próprio e alheio em termos de estados mentais (crenças, desejos, emoções, intenções). Desenvolvida no contexto do apego seguro, a mentalização é considerada uma aquisição fundamental para a regulação emocional e a saúde mental. Diálogo entre psicanálise, teoria do apego e neurociência cognitiva.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-A">Apego (Attachment)</a> <a href="#letra-I">Intersubjetividade</a> <a href="#letra-N">Neuropsicanálise</a></div>
+</div>
+
+</div><!-- /letter-section M -->
+
+<div class="letter-section" data-letter="N">
+<h2 class="letter-heading" id="letra-N">N</h2>
+
+<div class="term-card" data-term="narcisismo">
+<h3>Narcisismo</h3>
+<p class="term-original">alemão: Narzißmus</p>
+<p>Investimento libidinal no próprio eu. Freud distingue narcisismo primário (estado original da libido investida no eu, anterior ao investimento objetal) e narcisismo secundário (retirada da libido dos objetos de volta ao eu). <em>Introdução ao Narcisismo</em> (1914) é marco na teoria freudiana. Lacan reformula o narcisismo a partir do Estádio do Espelho.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-E">Estádio do Espelho</a> <a href="#letra-I">Id/Ego/Superego</a> <a href="#letra-L">Libido</a></div>
+</div>
+
+<div class="term-card" data-term="negação verleugnung">
+<h3>Nega&ccedil;&atilde;o (Verleugnung)</h3>
+<p class="term-original">alemão: Verleugnung</p>
+<p>Mecanismo de defesa específico da perversão, no qual o sujeito reconhece e ao mesmo tempo recusa uma percepção traumática da realidade (tipicamente a diferença anatômica entre os sexos). Diferencia-se do recalque (Verdrängung) e da foraclusão (Verwerfung). Freud o descreveu no estudo do fetichismo (1927).</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-F">Foraclusão (Verwerfung)</a> <a href="#letra-C">Clivagem (Spaltung)</a> <a href="#letra-R">Repressão (Verdrängung)</a></div>
+</div>
+
+<div class="term-card" data-term="neuropsicanálise">
+<h3>Neuropsican&aacute;lise</h3>
+<p class="term-original">inglês: Neuropsychoanalysis</p>
+<p>Campo interdisciplinar fundado por Mark Solms, que busca integrar conceitos psicanalíticos com as neurociências modernas. Examina os correlatos neurais de fenômenos como sonhos, inconsciente, afeto e memória. Diálogo com Damasio, Panksepp e LeDoux. A neuropsicanálise não substitui a clínica, mas oferece uma base empírica para hipóteses psicanalíticas.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-I">Inconsciente</a> <a href="#letra-P">Pulsão (Trieb)</a> <a href="#letra-M">Mentalização</a></div>
+</div>
+
+<div class="term-card" data-term="nome do pai">
+<h3>Nome-do-Pai</h3>
+<p class="term-original">francês: Nom-du-Père — J. Lacan</p>
+<p>Conceito lacaniano que designa a função paterna como operador simbólico fundamental. O Nome-do-Pai é o significante que introduz a lei da castração e permite à criança sair da relação dual com a mãe, inscrevendo-a na ordem simbólica. Sua foraclusão (ausência) é o mecanismo estruturante da psicose. Na última fase de Lacan, o conceito é relativizado (pluralizado: "nomes-do-pai").</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-F">Foraclusão (Verwerfung)</a> <a href="#letra-C">Complexo de Édipo</a> <a href="#letra-R">Real/Simbólico/Imaginário</a></div>
+</div>
+
+</div><!-- /letter-section N -->
+
+<div class="letter-section" data-letter="O">
+<h2 class="letter-heading" id="letra-O">O</h2>
+
+<div class="term-card" data-term="objeto a">
+<h3>Objeto a</h3>
+<p class="term-original">francês: Objet a — J. Lacan</p>
+<p>Conceito lacaniano que designa o objeto causa do desejo, irredutível a qualquer objeto empírico. O objeto a é o resto da operação de constituição do sujeito — aquilo que se perde na entrada na linguagem e que o desejo busca reencontrar. Manifesta-se como olhar, voz, seio, fezes, falo. É o "mais-de-gozar".</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-D">Desejo</a> <a href="#letra-F">Falta</a> <a href="#letra-G">Gozo (Jouissance)</a></div>
+</div>
+
+<div class="term-card" data-term="objeto transicional">
+<h3>Objeto Transicional</h3>
+<p class="term-original">inglês: Transitional Object — D. W. Winnicott</p>
+<p>Objeto material (ursinho, cobertor, pedaço de pano) escolhido pela criança como primeiro "não-eu" que simultaneamente é e não é parte dela. O objeto transicional Situa-se no espaço potencial entre a realidade interna e externa, auxiliando a transição da fusão com a mãe para a relação com a realidade compartilhada. Fundamental para o desenvolvimento da capacidade de simbolização.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-E">Espaço Potencial</a> <a href="#letra-S">Self Verdadeiro/Falso</a> <a href="#letra-I">Intersubjetividade</a></div>
+</div>
+
+</div><!-- /letter-section O -->
+
+<div class="letter-section" data-letter="P">
+<h2 class="letter-heading" id="letra-P">P</h2>
+
+<div class="term-card" data-term="posição depressiva">
+<h3>Posi&ccedil;&atilde;o Depressiva</h3>
+<p class="term-original">inglês: Depressive Position — M. Klein</p>
+<p>Segunda posição descrita por Melanie Klein, alcançada por volta do 4-6 meses. A criança reconhece a mãe como objeto total (não mais parcial, bom ou mau), experimenta culpa por seus ataques anteriores e deseja reparar. A integração de amor e ódio é o trabalho psíquico central desta posição, que nunca é completamente superada — retorna na vida adulta na capacidade de luto e preocupação ética.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-P">Posição Esquizo-Paranoide</a> <a href="#letra-I">Identificação Projetiva</a> <a href="#letra-S">Sublimação</a></div>
+</div>
+
+<div class="term-card" data-term="posição esquizo paranoide">
+<h3>Posi&ccedil;&atilde;o Esquizo-Paran&oacute;ide</h3>
+<p class="term-original">inglês: Paranoid-Schizoid Position — M. Klein</p>
+<p>Primeira posição do desenvolvimento psíquico segundo Melanie Klein (predominante nos primeiros 3-4 meses). Caracteriza-se pela clivagem do objeto (bom vs. mau), pela identificação projetiva e pela angústia paranóide de aniquilação. O ego imaturo defende-se fragmentando a experiência em partes gerenciáveis. Posição que retorna ao longo da vida em situações de estresse intenso.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-P">Posição Depressiva</a> <a href="#letra-I">Identificação Projetiva</a> <a href="#letra-C">Clivagem (Spaltung)</a></div>
+</div>
+
+<div class="term-card" data-term="pulsão trieb">
+<h3>Puls&atilde;o (Trieb)</h3>
+<p class="term-original">alemão: Trieb — "impulso", "força"</p>
+<p>Conceito fundamental da metapsicologia freudiana. Diferentemente do instinto (Instinkt), a pulsão é uma força fronteiriça entre o somático e o psíquico, com fonte (zona erógena), alvo (satisfação) e objeto (variável, contingente). Freud distinguiu pulsões sexuais (Eros) e pulsões de autoconservação, e posteriormente pulsão de vida e pulsão de morte.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-P">Pulsão de Morte (Todestrieb)</a> <a href="#letra-L">Libido</a> <a href="#letra-C">Compulsão à Repetição</a></div>
+</div>
+
+<div class="term-card" data-term="pulsão de morte todestrieb">
+<h3>Puls&atilde;o de Morte (Todestrieb)</h3>
+<p class="term-original">alemão: Todestrieb</p>
+<p>Conceito introduzido por Freud em <em>Além do Princípio do Prazer</em> (1920). Designa uma força pulsional fundamental que tende à redução completa das tensões, ao retorno ao estado inorgânico, ao zero. Manifesta-se na compulsão à repetição, na agressividade, no masoquismo e, quando voltada para fora, na destrutividade. Conceito polêmico e fecundo, retomado por Klein, Lacan e pela teoria crítica.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-P">Pulsão (Trieb)</a> <a href="#letra-C">Compulsão à Repetição</a> <a href="#letra-G">Gozo (Jouissance)</a></div>
+</div>
+
+</div><!-- /letter-section P -->
+
+<div class="letter-section" data-letter="R">
+<h2 class="letter-heading" id="letra-R">R</h2>
+
+<div class="term-card" data-term="real simbólico imaginário rsi">
+<h3>Real / Simb&oacute;lico / Imagin&aacute;rio (RSI)</h3>
+<p class="term-original">francês: Réel, Symbolique, Imaginaire — J. Lacan</p>
+<p>Três registros fundamentais do nó borromeano lacaniano. O Imaginário é o registro da imagem, da identificação, do eu (moi) — dimensão ilusória da totalidade. O Simbólico é a ordem da linguagem, do significante, da lei — o que estrutura o sujeito e o inscreve na cultura. O Real é o impossível de simbolizar — aquilo que resiste à significação, retorna, insiste. Os três registros são interdependentes e irredutíveis.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-E">Estádio do Espelho</a> <a href="#letra-N">Nome-do-Pai</a> <a href="#letra-S">Sinthome</a></div>
+</div>
+
+<div class="term-card" data-term="recalque">
+<h3>Recalque</h3>
+<p class="term-original">alemão: Verdrängung</p>
+<p>Sinônimo de <strong>repressão</strong> (Verdrängung). Ver entrada correspondente.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-R">Repressão (Verdrängung)</a></div>
+</div>
+
+<div class="term-card" data-term="regressão">
+<h3>Regress&atilde;o</h3>
+<p class="term-original">alemão: Regression</p>
+<p>Retorno a modos anteriores de funcionamento psíquico, seja na linha temporal (regressão a fases libidinais anteriores), na linha formal (do pensamento secundário ao primário) ou na linha tópica (regressão no aparelho psíquico, da consciência à percepção). Na situação analítica, a regressão é facilitada pelo enquadre e pela transferência.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-T">Transferência</a> <a href="#letra-E">Enquadre (Setting)</a> <a href="#letra-C">Compulsão à Repetição</a></div>
+</div>
+
+<div class="term-card" data-term="repressão verdrängung">
+<h3>Repress&atilde;o (Verdr&auml;ngung)</h3>
+<p class="term-original">alemão: Verdrängung</p>
+<p>Operação fundamental pela qual o sujeito mantém fora da consciência representações incompatíveis com o ego (desejos, fantasias, memórias traumáticas). O reprimido não é anulado — retorna sob formas disfarçadas (sonhos, sintomas, chistes, atos falhos). Freud a distingue de outros mecanismos como a Verleugnung (negação) e a Verwerfung (foraclusão). É a pedra angular do funcionamento psíquico neurótico.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-F">Formação Reativa</a> <a href="#letra-S">Sublimação</a> <a href="#letra-R">Resistência</a></div>
+</div>
+
+<div class="term-card" data-term="resistência">
+<h3>Resist&ecirc;ncia</h3>
+<p class="term-original">alemão: Widerstand</p>
+<p>Força oposta ao trabalho analítico que protege as defesas do sujeito contra a tomada de consciência de conteúdos reprimidos. Manifesta-se como silêncio, intelectualização, atrasos, questionamento do método, atuações. Freud descobriu que a resistência é ao mesmo tempo obstáculo e via régia — onde resiste, há sentido inconsciente. A análise das resistências é parte central do trabalho clínico.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-T">Transferência</a> <a href="#letra-R">Repressão (Verdrängung)</a> <a href="#letra-A">Acting Out</a></div>
+</div>
+
+<div class="term-card" data-term="réverie">
+<h3>R&ecirc;verie</h3>
+<p class="term-original">francês — "devaneio" — W. R. Bion</p>
+<p>Estado mental de abertura receptiva e criativa da mãe (ou do analista) que acolhe as identificações projetivas do bebê (ou analisando) e as metaboliza. A rêverie materna é a condição para que o bebê desenvolva sua própria capacidade de pensar. No campo analítico, a rêverie do analista é instrumento de escuta do inconsciente em coconstrução.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-C">Container/Contido (Bion)</a> <a href="#letra-C">Campo Analítico</a> <a href="#letra-I">Intersubjetividade</a></div>
+</div>
+
+</div><!-- /letter-section R -->
+
+<div class="letter-section" data-letter="S">
+<h2 class="letter-heading" id="letra-S">S</h2>
+
+<div class="term-card" data-term="self verdadeiro falso">
+<h3>Self Verdadeiro / Falso</h3>
+<p class="term-original">inglês: True Self / False Self — D. W. Winnicott</p>
+<p>Distinção winnicottiana entre o self autêntico (espontâneo, criativo, gestual) e a máscara adaptativa (falso self) que a criança desenvolve para proteger o self verdadeiro em ambientes não suficientemente bons. O falso self é uma defesa necessária, mas seu predomínio excessivo leva a um sentimento de irrealidade, vazio e falta de sentido na vida adulta. O objetivo da análise é criar condições para o self verdadeiro emergir.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-O">Objeto Transicional</a> <a href="#letra-E">Espaço Potencial</a> <a href="#letra-I">Intersubjetividade</a></div>
+</div>
+
+<div class="term-card" data-term="sinthome">
+<h3>Sinthome</h3>
+<p class="term-original">francês: Sinthome — J. Lacan (1970s)</p>
+<p>Conceito tardio de Lacan, grafia arcaica de "symptôme" (sintoma). Designa um quarto anel do nó borromeano que sustenta a amarração entre Real, Simbólico e Imaginário quando o Nome-do-Pai é insuficiente. O sinthome é uma invenção singular do sujeito — um modo de gozar que mantém o psiquismo coeso. Conceito que expande a clínica para além da neurose, abrangendo psicose e estruturas contemporâneas.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-R">Real/Simbólico/Imaginário</a> <a href="#letra-G">Gozo (Jouissance)</a> <a href="#letra-N">Nome-do-Pai</a></div>
+</div>
+
+<div class="term-card" data-term="sublimação">
+<h3>Sublima&ccedil;&atilde;o</h3>
+<p class="term-original">alemão: Sublimierung</p>
+<p>Processo pelo qual a pulsão é desviada de seu alvo original (sexual) para alvos não-sexuais socialmente valorizados — arte, ciência, trabalho intelectual. Diferencia-se de outras defesas por não implicar recalque ou formação reativa: a pulsão é satisfeita, mas em um registro deslocado e dessexualizado. Conceito revisitado por Lacan como "satisfação da pulsão sem recalque".</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-P">Pulsão (Trieb)</a> <a href="#letra-L">Libido</a> <a href="#letra-F">Formação Reativa</a></div>
+</div>
+
+</div><!-- /letter-section S -->
+
+<div class="letter-section" data-letter="T">
+<h2 class="letter-heading" id="letra-T">T</h2>
+
+<div class="term-card" data-term="transferência">
+<h3>Transfer&ecirc;ncia</h3>
+<p class="term-original">alemão: Übertragung</p>
+<p>Fenômeno central da clínica psicanalítica no qual o analisando atualiza na relação com o analista desejos, fantasias e conflitos inconscientes originados em relações significativas do passado (especialmente infantis). A transferência não é obstáculo, mas o próprio campo onde o trabalho analítico se realiza. Freud a descobriu no caso Dora (1905) e a formalizou como ferramenta técnica. Lacan a definiu como "atualização da realidade do inconsciente".</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-C">Contratransferência</a> <a href="#letra-R">Resistência</a> <a href="#letra-A">Associação Livre</a></div>
+</div>
+
+<div class="term-card" data-term="trauma">
+<h3>Trauma</h3>
+<p class="term-original">grego: τραῦμα — "ferida" / alemão: Trauma</p>
+<p>Evento ou situação de intensidade esmagadora que rompe as defesas do aparelho psíquico, produzindo uma excitação excessiva que não pode ser ligada (simbolizada). Freud oscilou entre teoria do trauma real (seda ção) e teoria da fantasia. Revisto na clínica contemporânea (trauma precoce, trauma complexo, trauma cumulativo). A elaboração do trauma é um dos horizontes do tratamento.</p>
+<div class="ver-tambem"><strong>Ver tamb&eacute;m:</strong> <a href="#letra-C">Compulsão à Repetição</a> <a href="#letra-A">Angústia</a> <a href="#letra-R">Repressão (Verdrängung)</a></div>
+</div>
+
+</div><!-- /letter-section T -->
+
+</div><!-- /glossarioEntries -->
+
+<script>
+(function() {
+  const searchInput = document.getElementById('glossarioSearch');
+  const countDisplay = document.getElementById('glossarioCount');
+  const cards = document.querySelectorAll('.term-card');
+  const letterSections = document.querySelectorAll('.letter-section');
+  const alphaNav = document.getElementById('alphaNav');
+
+  // ─── Build alphabetical nav ───
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const letterMap = {};
+  letterSections.forEach(function(section) {
+    var l = section.getAttribute('data-letter');
+    if (l) letterMap[l] = true;
+  });
+
+  letters.forEach(function(l) {
+    var a = document.createElement('a');
+    a.textContent = l;
+    if (letterMap[l]) {
+      a.href = '#letra-' + l;
+    } else {
+      a.className = 'empty';
+      a.href = '#';
+      a.setAttribute('tabindex', '-1');
+    }
+    alphaNav.appendChild(a);
+  });
+
+  // ─── Search filter ───
+  function filterTerms() {
+    var q = searchInput.value.trim().toLowerCase();
+    var visibleCount = 0;
+
+    cards.forEach(function(card) {
+      var termText = card.getAttribute('data-term') || '';
+      var fullText = card.textContent.toLowerCase();
+      var match = termText.indexOf(q) !== -1 || fullText.indexOf(q) !== -1;
+      if (!q || match) {
+        card.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    // Hide/show letter sections
+    letterSections.forEach(function(section) {
+      var visibleCards = section.querySelectorAll('.term-card:not(.hidden)').length;
+      section.style.display = visibleCards === 0 ? 'none' : '';
+    });
+
+    countDisplay.textContent = visibleCount + ' termo' + (visibleCount !== 1 ? 's' : '') + ' encontrado' + (visibleCount !== 1 ? 's' : '');
+  }
+
+  searchInput.addEventListener('input', filterTerms);
+})();
+</script>
+
+<footer style="margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--color-border); font-size: var(--text-sm); color: var(--color-text-muted);">
+  <p><a href="../index.html">&larr; Voltar ao Dashboard</a></p>
+</footer>
+</body>
+</html>

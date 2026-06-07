@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autores da Psicanálise — Estudos</title>
+	<link rel="stylesheet" href="../../templates/fonts/fonts.css">
+<link rel="stylesheet" href="../../templates/style.css">
+<style>
+/* ─── Authors page ─── */
+body { max-width: 960px; }
+
+.authors-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+
+@media (max-width: 640px) {
+  .authors-grid { grid-template-columns: 1fr; }
+}
+
+.author-card {
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.author-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.author-card h3 {
+  margin: 0;
+  font-size: var(--text-lg);
+  color: var(--color-accent);
+}
+
+.author-dates {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+.author-contribution {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: var(--space-1) 0;
+}
+
+.author-works {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  margin: var(--space-1) 0;
+  padding-left: var(--space-4);
+  color: var(--color-text);
+}
+
+.author-works li {
+  margin-bottom: 2px;
+}
+
+.author-works li::marker {
+  color: var(--color-accent);
+}
+
+.author-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 2px 10px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: auto;
+}
+
+.badge-fundador {
+  background: #ebf4ff;
+  color: #2c5282;
+}
+.badge-escola-inglesa {
+  background: #f0fff4;
+  color: #276749;
+}
+.badge-lacaniana {
+  background: #fffff0;
+  color: #b7791f;
+}
+.badge-relacional {
+  background: #fef2f2;
+  color: #9b2c2c;
+}
+.badge-contemporaneo {
+  background: #f5f5ff;
+  color: #5a4a9a;
+}
+.badge-francesa {
+  background: #fff5f0;
+  color: #c05621;
+}
+.badge-junguiana {
+  background: #f0f5ff;
+  color: #2b6cb0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .badge-fundador { background: #1a3050; color: #7eb8da; }
+  .badge-escola-inglesa { background: #1a3028; color: #68d391; }
+  .badge-lacaniana { background: #1a1a10; color: #ecc94b; }
+  .badge-relacional { background: #301a1a; color: #fc8181; }
+  .badge-contemporaneo { background: #1a1a30; color: #b3a0ff; }
+  .badge-francesa { background: #301a10; color: #f6ad55; }
+  .badge-junguiana { background: #102030; color: #90cdf4; }
+}
+
+.author-session-link {
+  font-size: var(--text-xs);
+  align-self: flex-start;
+}
+
+.author-session-link a {
+  font-size: var(--text-xs);
+  border-bottom: none;
+}
+
+.author-count {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+</style>
+</head>
+<body>
+
+<a href="../index.html">&larr; Voltar ao Dashboard</a>
+
+<div>
+  <h1>Autores da Psican&aacute;lise</h1>
+  <p>Bios, contribui&ccedil;&otilde;es e obras principais dos pensadores que moldaram a psican&aacute;lise — de Freud aos contempor&acirc;neos.</p>
+  <div class="author-count">23 autores</div>
+</div>
+
+<div class="authors-grid">
+
+<div class="author-card">
+  <h3>Sigmund Freud</h3>
+  <span class="author-dates">1856–1939</span>
+  <p class="author-contribution">Fundador da psican&aacute;lise. Criou os conceitos de inconsciente, puls&atilde;o, repress&atilde;o, transfer&ecirc;ncia e a t&eacute;cnica da associa&ccedil;&atilde;o livre.</p>
+  <ul class="author-works">
+    <li><em>A Interpreta&ccedil;&atilde;o dos Sonhos</em> (1900)</li>
+    <li><em>Tr&ecirc;s Ensaios sobre a Teoria da Sexualidade</em> (1905)</li>
+    <li><em>Al&eacute;m do Princ&iacute;pio do Prazer</em> (1920)</li>
+  </ul>
+  <span class="author-badge badge-fundador">Fundador</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-0-orientacao/s01-introducao.html">Sess&atilde;o S01</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Josef Breuer</h3>
+  <span class="author-dates">1842–1925</span>
+  <p class="author-contribution">M&eacute;dico e fisiologista vienense, precursor da psican&aacute;lise. Desenvolveu o m&eacute;todo cat&aacute;rtico com o caso Anna O.</p>
+  <ul class="author-works">
+    <li><em>Estudos sobre a Histeria</em> (1895, com Freud)</li>
+    <li><em>Mecanismo Ps&iacute;quico dos Fen&ocirc;menos Hist&eacute;ricos</em> (1893)</li>
+  </ul>
+  <span class="author-badge badge-fundador">Precursor</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-1-fundacoes/s02-pre-historia.html">Sess&atilde;o S02</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Alfred Adler</h3>
+  <span class="author-dates">1870–1937</span>
+  <p class="author-contribution">M&eacute;dico e psicoterapeuta austr&iacute;aco, fundador da psicologia individual. &Ecirc;nfase no sentimento de inferioridade e na luta por superioridade.</p>
+  <ul class="author-works">
+    <li><em>Estudo da Inferioridade Org&acirc;nica</em> (1907)</li>
+    <li><em>A Ci&ecirc;ncia da Natureza Humana</em> (1927)</li>
+  </ul>
+  <span class="author-badge badge-fundador">Dissidente</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-2-dissidencias/s10-adler.html">Sess&atilde;o S10</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Carl Gustav Jung</h3>
+  <span class="author-dates">1875–1961</span>
+  <p class="author-contribution">Psiquiatra su&iacute;&ccedil;o, fundador da psicologia anal&iacute;tica. Conceitos de inconsciente coletivo, arqu&eacute;tipos, individua&ccedil;&atilde;o e tipos psicol&oacute;gicos.</p>
+  <ul class="author-works">
+    <li><em>O Homem e seus S&iacute;mbolos</em> (1964)</li>
+    <li><em>Tipos Psicol&oacute;gicos</em> (1921)</li>
+    <li><em>O Eu e o Inconsciente</em> (1928)</li>
+  </ul>
+  <span class="author-badge badge-junguiana">Junguiana</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-2-dissidencias/s11-jung.html">Sess&atilde;o S11</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Otto Rank</h3>
+  <span class="author-dates">1884–1939</span>
+  <p class="author-contribution">Psicanalista e escritor austr&iacute;aco. Desenvolveu a teoria do trauma do nascimento e uma psicoterapia focada no aqui-e-agora.</p>
+  <ul class="author-works">
+    <li><em>O Trauma do Nascimento</em> (1924)</li>
+    <li><em>Arte e Artista</em> (1932)</li>
+  </ul>
+  <span class="author-badge badge-fundador">Dissidente</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-2-dissidencias/s12-otto-rank.html">Sess&atilde;o S12</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Anna Freud</h3>
+  <span class="author-dates">1895–1982</span>
+  <p class="author-contribution">Filha de Freud, pioneira da psican&aacute;lise com crian&ccedil;as. Sistematizou os mecanismos de defesa do ego.</p>
+  <ul class="author-works">
+    <li><em>O Ego e os Mecanismos de Defesa</em> (1936)</li>
+    <li><em>Inf&acirc;ncia Normal e Patol&oacute;gica</em> (1965)</li>
+  </ul>
+  <span class="author-badge badge-escola-inglesa">Escola Inglesa</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-2-dissidencias/s13-anna-freud.html">Sess&atilde;o S13</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Heinz Hartmann</h3>
+  <span class="author-dates">1894–1970</span>
+  <p class="author-contribution">M&eacute;dico e psicanalista austr&iacute;aco, fundador da psicologia do ego. Estabeleceu a &aacute;rea livre de conflitos e as fun&ccedil;&otilde;es aut&ocirc;nomas do ego.</p>
+  <ul class="author-works">
+    <li><em>Psicologia do Ego e o Problema da Adapta&ccedil;&atilde;o</em> (1939)</li>
+    <li><em>Ensaios sobre a Psicologia do Ego</em> (1964)</li>
+  </ul>
+  <span class="author-badge badge-escola-inglesa">Psicologia do Ego</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-2-dissidencias/s14-ego-psychology.html">Sess&atilde;o S14</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Erik Erikson</h3>
+  <span class="author-dates">1902–1994</span>
+  <p class="author-contribution">Psicanalista dinamarqu&ecirc;s-alem&atilde;o. Desenvolveu a teoria do desenvolvimento psicossocial em oito est&aacute;gios, integrando psican&aacute;lise e ci&ecirc;ncias sociais.</p>
+  <ul class="author-works">
+    <li><em>Inf&acirc;ncia e Sociedade</em> (1950)</li>
+    <li><em>Identidade: Juventude e Crise</em> (1968)</li>
+  </ul>
+  <span class="author-badge badge-escola-inglesa">Psicossocial</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-2-dissidencias/s14-ego-psychology.html">Sess&atilde;o S14</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Melanie Klein</h3>
+  <span class="author-dates">1882–1960</span>
+  <p class="author-contribution">Psicanalista austr&iacute;aca-brit&acirc;nica, pioneira da psican&aacute;lise com crian&ccedil;as. Desenvolveu a teoria das posi&ccedil;&otilde;es e a identifica&ccedil;&atilde;o projetiva.</p>
+  <ul class="author-works">
+    <li><em>A Psican&aacute;lise de Crian&ccedil;as</em> (1932)</li>
+    <li><em>Inveja e Gratid&atilde;o</em> (1957)</li>
+  </ul>
+  <span class="author-badge badge-escola-inglesa">Escola Inglesa</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-2-dissidencias/s15-melanie-klein.html">Sess&atilde;o S15</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Ronald Fairbairn</h3>
+  <span class="author-dates">1889–1964</span>
+  <p class="author-contribution">Psiquiatra e psicanalista escoc&ecirc;s. Reformulou a teoria das rela&ccedil;&otilde;es objetais: a libido &eacute; primariamente busca por objeto, n&atilde;o por prazer.</p>
+  <ul class="author-works">
+    <li><em>Teoria Psicanal&iacute;tica das Rela&ccedil;&otilde;es Objetais</em> (1952)</li>
+    <li><em>Estudos em Psican&aacute;lise</em> (p&oacute;stumo, 1994)</li>
+  </ul>
+  <span class="author-badge badge-escola-inglesa">Independente</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-3-relacoes-objetais/s16-fairbairn.html">Sess&atilde;o S16</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Donald Winnicott</h3>
+  <span class="author-dates">1896–1971</span>
+  <p class="author-contribution">Pediatra e psicanalista ingl&ecirc;s. Criou os conceitos de objeto transicional, espa&ccedil;o potencial, self verdadeiro/falso e m&atilde;e suficientemente boa.</p>
+  <ul class="author-works">
+    <li><em>O Brincar e a Realidade</em> (1971)</li>
+    <li><em>Da Pediatria &agrave; Psican&aacute;lise</em> (1958)</li>
+  </ul>
+  <span class="author-badge badge-escola-inglesa">Independente</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-3-relacoes-objetais/s17-winnicott.html">Sess&atilde;o S17</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Michael Balint</h3>
+  <span class="author-dates">1896–1970</span>
+  <p class="author-contribution">M&eacute;dico e psicanalista h&uacute;ngaro-brit&acirc;nico. Desenvolveu o conceito de falha b&aacute;sica e os grupos Balint para m&eacute;dicos.</p>
+  <ul class="author-works">
+    <li><em>A Falha B&aacute;sica</em> (1968)</li>
+    <li><em>O M&eacute;dico, seu Paciente e a Doen&ccedil;a</em> (1957)</li>
+  </ul>
+  <span class="author-badge badge-escola-inglesa">Escola de Budapeste</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-3-relacoes-objetais/s18-balint.html">Sess&atilde;o S18</a></span>
+</div>
+
+<div class="author-card">
+  <h3>John Bowlby</h3>
+  <span class="author-dates">1907–1990</span>
+  <p class="author-contribution">Psiquiatra e psicanalista ingl&ecirc;s, fundador da teoria do apego (attachment). O v&iacute;nculo beb&ecirc;-cuidador como necessidade prim&aacute;ria.</p>
+  <ul class="author-works">
+    <li><em>Apego e Perda</em> (trilogia, 1969-1980)</li>
+    <li><em>Forma&ccedil;&atilde;o e Ruptura dos La&ccedil;os Afetivos</em> (1979)</li>
+  </ul>
+  <span class="author-badge badge-escola-inglesa">Apego</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-3-relacoes-objetais/s19-bowlby.html">Sess&atilde;o S19</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Wilfred Bion</h3>
+  <span class="author-dates">1897–1979</span>
+  <p class="author-contribution">Psicanalista ingl&ecirc;s. Desenvolveu a teoria do pensar, o modelo Container/Contido, a r&ecirc;verie e a Grade.</p>
+  <ul class="author-works">
+    <li><em>Experi&ecirc;ncias com Grupos</em> (1961)</li>
+    <li><em>Aprendendo da Experi&ecirc;ncia</em> (1962)</li>
+    <li><em>Elementos de Psican&aacute;lise</em> (1963)</li>
+  </ul>
+  <span class="author-badge badge-escola-inglesa">Escola Inglesa</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-3-relacoes-objetais/s20-bion-i.html">Sess&atilde;o S20</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Jacques Lacan</h3>
+  <span class="author-dates">1901–1981</span>
+  <p class="author-contribution">Psicanalista franc&ecirc;s. Prop&ocirc;s o "retorno a Freud" pela lingu&iacute;stica estrutural: RSI, est&aacute;dio do espelho, Nome-do-Pai, objeto a.</p>
+  <ul class="author-works">
+    <li><em>Escritos</em> (1966)</li>
+    <li><em>O Semin&aacute;rio, livro 11: Os Quatro Conceitos Fundamentais</em> (1964/1973)</li>
+    <li><em>O Semin&aacute;rio, livro 20: Mais, Ainda</em> (1972-73/1975)</li>
+  </ul>
+  <span class="author-badge badge-lacaniana">Lacaniana</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-4-lacan/s21-lacan-i.html">Sess&atilde;o S21</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Heinz Kohut</h3>
+  <span class="author-dates">1913–1981</span>
+  <p class="author-contribution">Psicanalista austr&iacute;aco-americano, fundador da psicologia do self. &Ecirc;nfase na empatia e nos d&eacute;ficits narc&iacute;sicos.</p>
+  <ul class="author-works">
+    <li><em>A An&aacute;lise do Self</em> (1971)</li>
+    <li><em>A Restaura&ccedil;&atilde;o do Self</em> (1977)</li>
+  </ul>
+  <span class="author-badge badge-contemporaneo">Self Psychology</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-5-contemporaneidade/s27-psicanalise-relacional.html">Sess&atilde;o S27</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Stephen Mitchell</h3>
+  <span class="author-dates">1946–2000</span>
+  <p class="author-contribution">Psicanalista americano, l&iacute;der da virada relacional na psican&aacute;lise. Integrou as escolas de rela&ccedil;&otilde;es objetais, interpersonal e self psychology.</p>
+  <ul class="author-works">
+    <li><em>Conceitos Relacionais em Psican&aacute;lise</em> (1988)</li>
+    <li><em>Esperan&ccedil;a e Medo em Psican&aacute;lise</em> (1993)</li>
+  </ul>
+  <span class="author-badge badge-relacional">Relacional</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-5-contemporaneidade/s27-psicanalise-relacional.html">Sess&atilde;o S27</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Thomas Ogden</h3>
+  <span class="author-dates">n. 1946</span>
+  <p class="author-contribution">Psicanalista americano contempor&acirc;neo. Desenvolveu o conceito de terceiro anal&iacute;tico e a leitura criativa de autores (Klein, Bion, Winnicott).</p>
+  <ul class="author-works">
+    <li><em>O Terceiro na An&aacute;lise</em> (1994)</li>
+    <li><em>Esta Arte da Psican&aacute;lise</em> (2005)</li>
+  </ul>
+  <span class="author-badge badge-relacional">Relacional</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-5-contemporaneidade/s28-teoria-do-campo.html">Sess&atilde;o S28</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Mark Solms</h3>
+  <span class="author-dates">n. 1961</span>
+  <p class="author-contribution">Neuropsicanalista sul-africano, fundador do campo da neuropsican&aacute;lise. Integra conceitos psicanal&iacute;ticos com neuroci&ecirc;ncias modernas.</p>
+  <ul class="author-works">
+    <li><em>C&eacute;rebro e Mundo Interno</em> (2002, com Turnbull)</li>
+    <li><em>A Fonte Oculta</em> (2021)</li>
+  </ul>
+  <span class="author-badge badge-contemporaneo">Neuropsican&aacute;lise</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-5-contemporaneidade/s30-neuropsicanalise.html">Sess&atilde;o S30</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Slavoj &#381;i&#382;ek</h3>
+  <span class="author-dates">n. 1949</span>
+  <p class="author-contribution">Fil&oacute;sofo e psicanalista esloveno. Integra Lacan, marxismo e cr&iacute;tica cultural. Releituras pol&iacute;ticas dos conceitos lacanianos.</p>
+  <ul class="author-works">
+    <li><em>O Sublime Objeto da Ideologia</em> (1989)</li>
+    <li><em>Eles N&atilde;o Sabem o que Fazem</em> (1991)</li>
+  </ul>
+  <span class="author-badge badge-lacaniana">Lacaniana / Filosofia</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-5-contemporaneidade/s31-psicanalise-e-sociedade.html">Sess&atilde;o S31</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Judith Butler</h3>
+  <span class="author-dates">n. 1956</span>
+  <p class="author-contribution">Fil&oacute;sofa e te&oacute;rica de g&ecirc;nero. Di&aacute;logo cr&iacute;tico com Freud, Lacan e a psican&aacute;lise queer. Melancolia de g&ecirc;nero e forma&ccedil;&atilde;o do sujeito.</p>
+  <ul class="author-works">
+    <li><em>Problemas de G&ecirc;nero</em> (1990)</li>
+    <li><em>A Vida Ps&iacute;quica do Poder</em> (1997)</li>
+  </ul>
+  <span class="author-badge badge-contemporaneo">Filosofia / G&ecirc;nero</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-5-contemporaneidade/s31-psicanalise-e-sociedade.html">Sess&atilde;o S31</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Antonino Ferro</h3>
+  <span class="author-dates">n. 1947</span>
+  <p class="author-contribution">Psicanalista italiano contempor&acirc;neo, principal expoente da psican&aacute;lise de campo. A sala de an&aacute;lise como teatro do inconsciente compartilhado.</p>
+  <ul class="author-works">
+    <li><em>A Psican&aacute;lise como Literatura e Terapia</em> (1999)</li>
+    <li><em>Campos On&iacute;ricos</em> (2013)</li>
+  </ul>
+  <span class="author-badge badge-contemporaneo">Campo Anal&iacute;tico</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-5-contemporaneidade/s28-teoria-do-campo.html">Sess&atilde;o S28</a></span>
+</div>
+
+<div class="author-card">
+  <h3>Franco da Rocha</h3>
+  <span class="author-dates">1864–1933</span>
+  <p class="author-contribution">M&eacute;dico psiquiatra brasileiro, introdutor da psican&aacute;lise no Brasil. Fundou o Hospital do Juquery e foi o primeiro a divulgar Freud em portugu&ecirc;s.</p>
+  <ul class="author-works">
+    <li><em>O Dogma de Freud</em> (1920)</li>
+    <li><em>O Universo e a Vida</em> (1928)</li>
+  </ul>
+  <span class="author-badge badge-fundador">Pioneiro no Brasil</span>
+  <span class="author-session-link"><a href="../sessoes/modulo-5-contemporaneidade/s32-psicanalise-brasileira.html">Sess&atilde;o S32</a></span>
+</div>
+
+</div><!-- /authors-grid -->
+
+<footer style="margin-top: var(--space-10); padding-top: var(--space-6); border-top: 1px solid var(--color-border); font-size: var(--text-sm); color: var(--color-text-muted);">
+  <p><a href="../index.html">&larr; Voltar ao Dashboard</a></p>
+</footer>
+</body>
+</html>

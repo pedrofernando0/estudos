@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linha do Tempo da Psicanálise — Estudos</title>
+	<link rel="stylesheet" href="../../templates/fonts/fonts.css">
+<link rel="stylesheet" href="../../templates/style.css">
+<style>
+/* ─── Page-specific: Timeline ─── */
+body { max-width: 100%; padding: var(--space-6) var(--space-4); }
+
+.timeline-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.timeline-header {
+  margin-bottom: var(--space-8);
+}
+
+/* ─── Timeline ─── */
+.timeline-scroll {
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: var(--space-8) 0 var(--space-12);
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.timeline-scroll:active { cursor: grabbing; }
+
+.timeline-track {
+  position: relative;
+  min-width: 4800px;
+  height: 10px;
+  background: var(--color-timeline-bg);
+  border-radius: 5px;
+  margin: var(--space-8) 0;
+}
+
+.timeline-track::before,
+.timeline-track::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  width: 18px;
+  height: 18px;
+  background: var(--color-accent);
+  border-radius: 50%;
+}
+
+.timeline-track::before { left: -9px; }
+.timeline-track::after { right: -9px; }
+
+.timeline-year-mark {
+  position: absolute;
+  top: -24px;
+  transform: translateX(-50%);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+/* ─── Events ─── */
+.timeline-events {
+  position: relative;
+  min-width: 4800px;
+}
+
+.timeline-event {
+  position: absolute;
+  top: 0;
+  width: 180px;
+  cursor: pointer;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: -83px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  background: var(--color-accent);
+  border: 3px solid var(--color-bg);
+  border-radius: 50%;
+  z-index: 2;
+  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 0 0 2px var(--color-accent);
+}
+
+.timeline-event:hover .timeline-dot {
+  transform: translateX(-50%) scale(1.4);
+  box-shadow: 0 0 0 4px var(--color-accent);
+}
+
+.timeline-event.expanded .timeline-dot {
+  background: var(--color-accent-hover);
+  box-shadow: 0 0 0 4px var(--color-accent);
+}
+
+.timeline-event-header {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 180px;
+}
+
+.timeline-event-header .event-year {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.timeline-event-header .event-title {
+  display: block;
+  font-size: var(--text-xs);
+  line-height: 1.3;
+  color: var(--color-text);
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+/* ─── Description (expandable) ─── */
+.timeline-desc {
+  position: absolute;
+  top: -58px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.timeline-event.expanded .timeline-desc {
+  max-height: 180px;
+  padding: var(--space-3) var(--space-4);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.timeline-desc p {
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  margin-bottom: var(--space-2);
+}
+
+.timeline-desc .event-author {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ─── Events below the line ─── */
+.timeline-event.below {
+  /* positioned by JS so dot and event-header are below the line */
+}
+
+.timeline-event.below .timeline-dot {
+  top: 2px;
+}
+
+.timeline-event.below .timeline-event-header {
+  top: 24px;
+}
+
+.timeline-event.below .timeline-desc {
+  top: 60px;
+}
+
+/* ─── Legend — Era colors ─── */
+.timeline-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legend-dot.era-freud { background: #2c5282; }
+.legend-dot.era-pos { background: #276749; }
+.legend-dot.era-contemp { background: #b7791f; }
+
+/* ─── Era colors (applied via JS data) ─── */
+.timeline-event.era-freud .timeline-dot { background: #2c5282; box-shadow: 0 0 0 2px #2c5282; }
+.timeline-event.era-pos .timeline-dot { background: #276749; box-shadow: 0 0 0 2px #276749; }
+.timeline-event.era-contemp .timeline-dot { background: #b7791f; box-shadow: 0 0 0 2px #b7791f; }
+
+/* ─── Footer note ─── */
+.timeline-footer {
+  margin-top: var(--space-10);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-bg-callout);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .timeline-event { width: 150px; }
+  .timeline-event-header { width: 150px; }
+  .timeline-desc { width: 200px; }
+}
+</style>
+</head>
+<body>
+
+<div class="timeline-wrapper">
+
+<a href="../index.html">&larr; Voltar ao Dashboard</a>
+
+<div class="timeline-header">
+  <h1>Linha do Tempo da Psican&aacute;lise</h1>
+  <p>Dos prim&oacute;rdios na Salp&ecirc;tri&egrave;re ao setting online — 1885–2025.</p>
+</div>
+
+<div class="timeline-legend">
+  <span class="legend-item"><span class="legend-dot era-freud"></span> Funda&ccedil;&otilde;es Freudianas (1885–1939)</span>
+  <span class="legend-item"><span class="legend-dot era-pos"></span> P&oacute;s-Freudianos (1940–1979)</span>
+  <span class="legend-item"><span class="legend-dot era-contemp"></span> Contempor&acirc;neos (1980–hoje)</span>
+</div>
+
+<div class="timeline-scroll" id="timelineScroll">
+  <div class="timeline-track" id="timelineTrack">
+    <span class="timeline-year-mark" style="left:0%;">1885</span>
+    <span class="timeline-year-mark" style="left:10%;">1900</span>
+    <span class="timeline-year-mark" style="left:20%;">1910</span>
+    <span class="timeline-year-mark" style="left:30%;">1920</span>
+    <span class="timeline-year-mark" style="left:40%;">1930</span>
+    <span class="timeline-year-mark" style="left:50%;">1940</span>
+    <span class="timeline-year-mark" style="left:55%;">1950</span>
+    <span class="timeline-year-mark" style="left:60%;">1960</span>
+    <span class="timeline-year-mark" style="left:65%;">1970</span>
+    <span class="timeline-year-mark" style="left:70%;">1980</span>
+    <span class="timeline-year-mark" style="left:78%;">1990</span>
+    <span class="timeline-year-mark" style="left:85%;">2000</span>
+    <span class="timeline-year-mark" style="left:92%;">2015</span>
+    <span class="timeline-year-mark" style="left:98%;">2025</span>
+  </div>
+
+  <div class="timeline-events" id="timelineEvents">
+    <!-- Events will be rendered by JS -->
+  </div>
+</div>
+
+<div class="timeline-footer">
+  Esta linha do tempo &eacute; uma curadoria pedag&oacute;gica — n&atilde;o exaustiva.
+  Para cronologia completa, consulte Roudinesco (1999) e Gay (1988).
+  <p style="margin-top:var(--space-3)"><a href="../index.html">&larr; Voltar ao Dashboard</a></p>
+</div>
+
+</div>
+
+<script>
+(function() {
+  const eventsData = [
+    { year: 1885, title: "Charcot e a Salpêtrière", desc: "Freud estuda com Charcot em Paris, assiste às demonstrações sobre histeria e hipnose. Experiência determinante para o futuro da psicanálise.", author: "Sigmund Freud, Jean-Martin Charcot", era: "era-freud" },
+    { year: 1895, title: "Estudos sobre a Histeria", desc: "Publicação conjunta com Breuer. Caso Anna O. (Bertha Pappenheim) — a 'cura pela fala' (talking cure) e o método catártico. Marco zero da psicanálise.", author: "Freud & Breuer", era: "era-freud" },
+    { year: 1900, title: "A Interpretação dos Sonhos", desc: "Obra magna de Freud. Estabelece o inconsciente como objeto da psicanálise e o sonho como 'via régia' para seu acesso. Conceitos de condensação, deslocamento e elaboração onírica.", author: "Sigmund Freud", era: "era-freud" },
+    { year: 1901, title: "Psicopatologia da Vida Cotidiana", desc: "Freud demonstra que lapsos, esquecimentos e atos falhos são formações do inconsciente — não acidentes, mas atos psíquicos com sentido.", author: "Sigmund Freud", era: "era-freud" },
+    { year: 1905, title: "Três Ensaios sobre a Teoria da Sexualidade", desc: "Freud apresenta a teoria da sexualidade infantil, fases do desenvolvimento (oral, anal, fálica) e o conceito de pulsão sexual. Revoluciona a visão da infância.", author: "Sigmund Freud", era: "era-freud" },
+    { year: 1905, title: "Caso Dora — Fragmento da Análise de uma Histeria", desc: "Primeira grande publicação de caso clínico. Freud descobre e conceitua a transferência como instrumento técnico fundamental.", author: "Sigmund Freud", era: "era-freud" },
+    { year: 1910, title: "Fundação da IPA", desc: "International Psychoanalytical Association é fundada em Nuremberg por Sandor Ferenczi e Ernest Jones, com Jung como primeiro presidente. A psicanálise se institucionaliza internacionalmente.", author: "Ferenczi, Jones, Jung", era: "era-freud" },
+    { year: 1912, title: "Totem e Tabu", desc: "Freud aplica a psicanálise à antropologia: origens da cultura, do totemismo e do complexo de Édipo na horda primeva. Primeira incursão na teoria social.", author: "Sigmund Freud", era: "era-freud" },
+    { year: 1914, title: "Introdução ao Narcisismo", desc: "Freud introduz o conceito de narcisismo e distingue libido do ego e libido objetal. Reformulação da teoria das pulsões e do desenvolvimento do eu.", author: "Sigmund Freud", era: "era-freud" },
+    { year: 1917, title: "Conferências Introdutórias sobre Psicanálise", desc: "28 conferências que consolidam e divulgam sistematicamente a teoria psicanalítica. Acesso privilegiado ao pensamento freudiano maduro.", author: "Sigmund Freud", era: "era-freud" },
+    { year: 1920, title: "Além do Princípio do Prazer", desc: "Introdução do conceito de pulsão de morte (Todestrieb) e compulsão à repetição. Virada metapsicológica: o princípio do prazer não é absoluto.", author: "Sigmund Freud", era: "era-freud" },
+    { year: 1923, title: "O Ego e o Id", desc: "Segunda tópica freudiana: Id, Ego e Superego. Reformulação estrutural do aparelho psíquico. O ego como mediador entre pulsões, realidade e consciência moral.", author: "Sigmund Freud", era: "era-freud" },
+    { year: 1927, title: "Fetichismo", desc: "Freud descreve a Verleugnung (negação) e a clivagem do ego. Abre caminho para a compreensão da perversão como estrutura clínica distinta da neurose.", author: "Sigmund Freud", era: "era-freud" },
+    { year: 1930, title: "O Mal-Estar na Civilização", desc: "Reflexão sobre o desconforto estrutural do sujeito na cultura. A civilização exige renúncia pulsional; o preço é a culpa e a neurose. Obra-prima de teoria cultural.", author: "Sigmund Freud", era: "era-freud" },
+    { year: 1932, title: "Novas Conferências Introdutórias", desc: "Freud atualiza e amplia suas conferências anteriores, incorporando a segunda tópica e debatendo temas como feminilidade e cosmovisão (Weltanschauung).", author: "Sigmund Freud", era: "era-freud" },
+    { year: 1938, title: "Freud foge de Viena para Londres", desc: "Após a anexação (Anschluss) da Áustria pela Alemanha nazista, Freud exila-se em Londres com ajuda de Marie Bonaparte e Ernest Jones. Quatro irmãs de Freud morrerão em campos de concentração.", author: "Sigmund Freud", era: "era-freud" },
+    { year: 1939, title: "Morte de Freud", desc: "Sigmund Freud morre em Londres em 23 de setembro, aos 83 anos, após lutar contra um câncer de mandíbula por 16 anos. Sua obra compreende 23 volumes (Standard Edition).", author: "Sigmund Freud", era: "era-freud" },
+    { year: 1940, title: "Controvérsias na Sociedade Britânica", desc: "Debates científicos entre Anna Freud e Melanie Klein sobre teoria do desenvolvimento, técnica com crianças e o papel da fantasia. As Controversial Discussions definiram o futuro da psicanálise inglesa.", author: "Anna Freud, Melanie Klein", era: "era-pos" },
+    { year: 1945, title: "As Contribuições de Fairbairn", desc: "Ronald Fairbairn publica sua teoria das relações objetais, propondo que a libido é primariamente busca por objeto (não por prazer). Fundação da escola independente britânica.", author: "Ronald Fairbairn", era: "era-pos" },
+    { year: 1951, title: "Objetos e Fenômenos Transicionais", desc: "Winnicott publica seus estudos sobre o objeto transicional e o espaço potencial. Contribuição original sobre o desenvolvimento da capacidade de brincar e simbolizar.", author: "Donald Winnicott", era: "era-pos" },
+    { year: 1953, title: "Discurso de Roma", desc: "Lacan profere 'Função e Campo da Fala e da Linguagem' — o 'Discurso de Roma'. Fundação da SFP (Société Française de Psychanalyse). Retorno a Freud pela via da linguística estrutural.", author: "Jacques Lacan", era: "era-pos" },
+    { year: 1962, title: "Second Thoughts (Bion)", desc: "Bion publica 'Second Thoughts' e desenvolve sua teoria do pensar, o modelo Container/Contido e a grade (Grid) para análise do material clínico.", author: "Wilfred Bion", era: "era-pos" },
+    { year: 1966, title: "Écrits — Os Escritos de Lacan", desc: "Publicação dos 'Écrits' (Escritos), reunindo os principais artigos de Lacan. Obra que consolida o estruturalismo lacaniano e seu impacto na psicanálise e nas ciências humanas.", author: "Jacques Lacan", era: "era-pos" },
+    { year: 1971, title: "A Análise do Self (Kohut)", desc: "Heinz Kohut publica 'The Analysis of the Self', fundando a psicologia do self (self psychology). Ênfase na empatia e nos déficits narcísicos como objeto de análise.", author: "Heinz Kohut", era: "era-pos" },
+    { year: 1975, title: "Seminário 20 — Mais, Ainda", desc: "Lacan desenvolve as noções de gozo, mais-gozar, e a fórmula da sexuação. A 'outra satisfação' que escapa ao falo. Um dos seminários mais influentes.", author: "Jacques Lacan", era: "era-pos" },
+    { year: 1983, title: "Object Relations in Psychoanalytic Theory", desc: "Greenberg e Mitchell publicam obra que sistematiza o paradigma relacional em psicanálise, contrastando o modelo pulsional com o modelo relacional.", author: "Greenberg & Mitchell", era: "era-contemp" },
+    { year: 1988, title: "A Matriz Relacional (Mitchell)", desc: "Stephen Mitchell publica 'Relational Concepts in Psychoanalysis', consolidando a virada intersubjetiva e relacional na psicanálise americana.", author: "Stephen Mitchell", era: "era-contemp" },
+    { year: 1990, title: "O Surgimento da Neuropsicanálise", desc: "Mark Solms inicia pesquisas sobre correlatos neurais dos sonhos e do inconsciente. Diálogo com Damásio, Panksepp e LeDoux. Fundação da International Neuropsychoanalysis Society.", author: "Mark Solms", era: "era-contemp" },
+    { year: 1992, title: "Campo Analítico — Baranger", desc: "Willy e Madeleine Baranger publicam 'La situación analítica como campo dinâmico'. O campo bipessoal como matriz de coconstrução de significados na análise.", author: "Baranger & Baranger", era: "era-contemp" },
+    { year: 1999, title: "Dicionário de Psicanálise (Roudinesco & Plon)", desc: "Publicação do dicionário de referência que se tornaria obra essencial para estudantes e pesquisadores de psicanálise em língua francesa e portuguesa.", author: "Roudinesco & Plon", era: "era-contemp" },
+    { year: 2003, title: "Mentalização — Fonagy & Target", desc: "Peter Fonagy e Mary Target publicam trabalhos sobre mentalização, integrando psicanálise, teoria do apego e neurociência. A mentalização como mecanismo comum de mudança terapêutica.", author: "Fonagy & Target", era: "era-contemp" },
+    { year: 2005, title: "A Psicanálise de Campo (Ferro)", desc: "Antonino Ferro publica trabalhos que expandem o modelo de campo para incluir personagens oníricos, narrações compartilhadas e a 'sala de análise' como teatro do inconsciente.", author: "Antonino Ferro", era: "era-contemp" },
+    { year: 2010, title: "O Sujeito e o Outro — Butler e a Psicanálise", desc: "Judith Butler integra psicanálise, teoria de gênero e filosofia política. Diálogo crítico com Freud, Lacan e a teoria queer. Releitura da melancolia de gênero.", author: "Judith Butler", era: "era-contemp" },
+    { year: 2015, title: "Seminários Completos de Lacan", desc: "Publicação póstuma dos últimos seminários de Lacan (1979-1980), incluindo 'O Momento de Concluir' e 'A Topologia e o Tempo'. Completa o corpus lacaniano.", author: "Jacques Lacan", era: "era-contemp" },
+    { year: 2020, title: "Psicanálise e Pandemia — O Setting Online", desc: "O isolamento social força a migração em massa para a clínica remota. Debates intensos sobre a eficácia, os limites e as possibilidades do setting online para o trabalho analítico.", author: "Múltiplos autores", era: "era-contemp" },
+    { year: 2024, title: "Expansão da Clínica Contemporânea", desc: "A psicanálise dialoga com neurociência, gênero, raça, decolonialidade e tecnologia. A clínica se diversifica em settings, populações e culturas, mantendo o inconsciente como bússola.", author: "Múltiplos autores", era: "era-contemp" },
+  ];
+
+  // ─── Render events ───
+  var container = document.getElementById('timelineEvents');
+  var fragment = document.createDocumentFragment();
+
+  eventsData.forEach(function(ev, index) {
+    var yearNum = parseInt(ev.year, 10);
+    var position = ((yearNum - 1880) / 145) * 100;
+    var side = index % 2 === 0 ? 'above' : 'below';
+
+    var el = document.createElement('div');
+    el.className = 'timeline-event ' + side + ' ' + ev.era;
+    el.style.left = position + '%';
+    el.setAttribute('data-index', index);
+
+    el.innerHTML =
+      '<div class="timeline-dot"></div>' +
+      '<div class="timeline-event-header">' +
+        '<span class="event-year">' + ev.year + '</span>' +
+        '<span class="event-title">' + ev.title + '</span>' +
+      '</div>' +
+      '<div class="timeline-desc">' +
+        '<p>' + ev.desc + '</p>' +
+        '<span class="event-author">' + ev.author + '</span>' +
+      '</div>';
+
+    fragment.appendChild(el);
+  });
+
+  container.appendChild(fragment);
+
+  // ─── Click to expand ───
+  var events = container.querySelectorAll('.timeline-event');
+  events.forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isExpanded = el.classList.contains('expanded');
+
+      // Close all others
+      events.forEach(function(other) {
+        other.classList.remove('expanded');
+      });
+
+      if (!isExpanded) {
+        el.classList.add('expanded');
+      }
+    });
+  });
+
+  // Click outside to close
+  document.addEventListener('click', function() {
+    events.forEach(function(el) { el.classList.remove('expanded'); });
+  });
+
+  // ─── Drag scroll ───
+  var scrollContainer = document.getElementById('timelineScroll');
+  var isDown = false;
+  var startX, scrollLeft;
+
+  scrollContainer.addEventListener('mousedown', function(e) {
+    isDown = true;
+    startX = e.pageX - scrollContainer.offsetLeft;
+    scrollLeft = scrollContainer.scrollLeft;
+  });
+
+  scrollContainer.addEventListener('mouseleave', function() {
+    isDown = false;
+  });
+
+  scrollContainer.addEventListener('mouseup', function() {
+    isDown = false;
+  });
+
+  scrollContainer.addEventListener('mousemove', function(e) {
+    if (!isDown) return;
+    e.preventDefault();
+    var x = e.pageX - scrollContainer.offsetLeft;
+    var walk = (x - startX) * 1.5;
+    scrollContainer.scrollLeft = scrollLeft - walk;
+  });
+})();
+</script>
+
+</body>
+</html>

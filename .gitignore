@@ -1,0 +1,31 @@
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+.desktop.ini
+
+# Node modules (se usar ferramentas JS no futuro)
+node_modules/
+package-lock.json
+
+# Arquivos temporários
+*.tmp
+*.swp
+*.swo
+*~
+*.bak
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.pyc
+
+# Áudio gerado (opcional versionar)
+audio/*.mp3
+audio/*.wav
+audio/*.ogg
+
+# IDE
+.vscode/
+.idea/
