@@ -7,14 +7,14 @@ Ambiente de aprendizado autodirigido em HTML/CSS interativo. 36 sessões em 6 m�
 | Módulo | Título | Sessões | Status |
 |--------|--------|---------|--------|
 | 0 | Orientação | S00–S01 | ✅ Completo (2/2) |
-| 1 | Fundações: O Inconsciente Freudiano | S02–S09 | ⏳ Iniciado (1/8) |
+| 1 | Fundações: O Inconsciente Freudiano | S02–S09 | ⏳ Iniciado (2/8) |
 | 2 | Dissidências e Expansões | S10–S15 | ❌ Não iniciado |
 | 3 | Escola Inglesa e Relações Objetais | S16–S20 | ❌ Não iniciado |
 | 4 | Lacan e o Estruturalismo | S21–S26 | ❌ Não iniciado |
 | 5 | Contemporaneidade | S27–S32 | ❌ Não iniciado |
 | 6 | Síntese e Encerramento | S33–S35 | ❌ Não iniciado |
 
-**Próxima sessão a criar:** S03 (Módulo 1 · Fundações)  
+**Próxima sessão a criar:** S05 (Módulo 1 · Fundações)  
 **Brief completo:** `.claude/session-scaffold.md`  
 **Fonte canônica de nomenclatura:** `session-scaffold.md` — `tracking.js` e `skills/estudo-psicanalise/references/curriculo.md` foram alinhados a ele em 2026-06-07.
 
