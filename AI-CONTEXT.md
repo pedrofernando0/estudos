@@ -2,32 +2,53 @@
 
 Contexto técnico para agentes de IA. Atualizado a cada sessão significativa.
 
-## Session: 2026-06-07 (Auditoria, Skills, CI, Testes & Evolução)
+## Session: 2026-06-07 (Auditoria de Skills & Renomeação gemini.md → PROJECT.md)
 
-### Changes applied
-- [GIT] Pull origin/main → 550db51 (trouxe QA suite Playwright, session-scaffold, fixes a11y)
-- [DOCS] `.claude/CLAUDE.md:48` corrigido — paleta "parchment+terracota" (estava "cream+charcoal+deep-blue")
-- [SKILLS] 7 novas skills symlinkadas em `skills/` → total 10: framework-education, adversarial, hexagonal-architecture, tdd-skill, code-review, framework-engineering, frontend-design
-- [EDITOR] `.editorconfig`, `.prettierrc`, `.zed/settings.json` criados — formatação consistente
-- [CI] `.github/workflows/validate.yml` — valida HTML, CSS, links + QA tests em push/PR
-- [TEST] `tests/unit/tracking.test.js` — 39 testes unitários (Vitest + jsdom). Cobre todas as funções públicas de tracking.js
-- [CONFIG] `package.json` (type:module), `.htmlvalidate.json`, `.stylelintrc.json`, `vitest.config.js`
-- [SCRIPTS] 4 novos: `novo-assunto.sh`, `nova-sessao.sh`, `validar-links.sh`, `contar-palavras.sh`
-- [DOCS] README, gemini.md, .claude/CLAUDE.md atualizados com 10 skills, dev setup, scripts npm
+### Changes
+- [SKILLS] 4 symlinks irrelevantes removidos de `skills/`: hexagonal-architecture, code-review, tdd-skill, frontend-design. Diretórios fonte em `~/.agents/skills/` preservados.
+- [SKILLS] 6 skills mantidas: estudo-psicanalise, sessao-html, curadoria-psicanalise, framework-education, adversarial, framework-engineering
+- [DOCS] `gemini.md` renomeado para `PROJECT.md` via `git mv` — nome agnóstico de fornecedor. Header interno e todas as referências cruzadas atualizadas.
+- [SKILLS] 3 skills custom auditadas e refinadas: estudo-psicanalise (QA workflow + path fix), sessao-html (tipografia corrigida para v2, ARIA conventions, QA workflow, path fix), curadoria-psicanalise (sem alterações necessárias)
+- [DOCS] `.claude/CLAUDE.md` atualizado: skills table de 10→6, nova seção "Skills de Referência — Uso no Contexto Estudos" com triggers e exemplos para framework-education, adversarial, framework-engineering
+- [DOCS] `psicanalise/.claude/CLAUDE.md`, `README.md`, `AI-CONTEXT.md` atualizados com skills 10→6 e referências corrigidas
+- [DOCS] `AUDITORIA-SKILLS.md` criado com relatório de auditoria das 3 skills custom
+- [CONFIG] `.zed/settings.json` verificado — sem paths quebrados (no-op)
 
 ### State
-- 3/36 sessões geradas com briefs prontos S03–S35 em session-scaffold.md
-- 10 skills paradigmáticas symlinkadas em skills/
-- Suite QA Playwright (5 specs: a11y, dark-mode, quiz, nav, responsive)
-- 39 unit tests passando (tracking.js)
-- CI configurado (HTML + CSS + links + QA)
-- Zed config (.zed/settings.json) compartilhado
+- 6 skills ativas em `skills/` — 3 custom (estudo-psicanalise, sessao-html, curadoria-psicanalise) + 3 referência (framework-education, adversarial, framework-engineering)
+- `PROJECT.md` é a visão geral canônica do projeto (ex-gemini.md)
+- `AUDITORIA-SKILLS.md` documenta as correções aplicadas às skills custom
 
-### Pending (deferred)
-- Refatorar tracking.js para multi-assunto (namespace parameter) — Task 7
-- JSON Schema para conteúdo de sessões (separar domínio da apresentação) — Task 8
-- 33 sessões pendentes (S03–S35)
-- TTS não instalado
+## Session: 2026-06-07 (Auditoria, Skills, CI, Testes & Evolução)
+
+### Decisions
+- [EDITOR] Zed como editor recomendado — config compartilhada em `.zed/settings.json` com format_on_save + prettier
+- [SKILLS] 10 skills paradigmáticas no projeto — raiz `skills/` é fonte canônica; `psicanalise/skills/` removido (duplicação)
+- [CI] GitHub Actions para validação HTML/CSS/links + QA — sem deploy (site estático)
+- [TEST] Vitest + jsdom para unit tests; localStorage mockado via setup file (Node 22 requer `--localstorage-file`)
+- [AUDIT] Adversarial audit estabelecido como prática — `AUDITORIA-ADVERSARIAL.md` com 6 dimensões, 11 findings
+- [ARCH] Deferido: JSON Schema para sessões (separar domínio da apresentação) — requer discussão de formato
+- [ARCH] Deferido: tracking.js namespace para multi-assunto — requer migração de ES5→ES modules
+
+### Discoveries
+- [ADVERSARIAL] `.claude/CLAUDE.md:48` descrevia design system errado (v1 "cream+charcoal+deep-blue") quando código usa v2 ("parchment+terracota") — docs desatualizados são o bug mais comum em codebases AI-assisted
+- [ADVERSARIAL] `psicanalise/skills/` duplicava symlinks da raiz — ambiguidade de autoridade entre contexto raiz e assunto (H2)
+- [TEST] tracking.js usa padrão IIFE+var (ES5) — testar requer indirect eval; migrar para ES modules permitiria import direto
+- [QA] Remote já trouxe suite Playwright com axe-core (5 specs) — não precisou criar do zero
+- [SCALE] 33/36 sessões pendentes é o maior risco do projeto — session-scaffold.md reduz fricção mas não substitui geração
+
+### Constraints
+- [HTML] Vanilla JS only — sem frameworks, sem CDN, sem npm runtime. Node apenas para devDependencies
+- [FONTS] 22 WOFF2 self-hosted em `templates/fonts/` — `font-display: swap` causa FOUC em primeira carga (L2)
+- [NODE] Node 22+ requer `--localstorage-file` flag — contornado com localStorage mock em `tests/setup.js`
+- [TTS] Nenhum motor TTS instalado — `gerar-audio.sh` sempre falha até instalar edge-tts
+
+### Patterns
+- [SKILLS] Symlinks: canonical em `~/.agents/skills/<nome>/`, symlink em `<projeto>/skills/<nome>`. Nunca criar direto na pasta do projeto.
+- [COMMITS] Convencionais: feat/fix/docs/chore/ci/test/refactor. Co-Authored-By obrigatório.
+- [TEST] Unit tests para JS vanilla: indirect eval + globalThis + jsdom. Setup file para localStorage mock. Padrão replicável para `sessao.js`.
+- [SCRIPTS] Scripts bash em `scripts/`: shebang + `set -euo pipefail` + help (`-h`). Permissão 755.
+- [AUDIT] Adversarial: aplicar 6 dimensões (gap, contradiction, stress-test, failure-mode, assumptions, edge-case) + pre-mortem. Relatório em `AUDITORIA-ADVERSARIAL.md`.
 
 ## Session: 2026-06-08 (Diagnóstico, Correções e Próximos Passos)
 
@@ -104,7 +125,7 @@ Contexto técnico para agentes de IA. Atualizado a cada sessão significativa.
 - [DESIGN] `fonts.css` adicionado a 7 páginas que não carregavam fontes self-hosted (hub raiz, dashboard, 5 recursos)
 - [LINKS] 23 links de autor em `autores.html` corrigidos — apontavam para `sessoes/sessao-a1.html` (inexistente), agora mapeados para S01–S32
 - [INFRA] `git init` — projeto versionado, commit inicial com 54 arquivos
-- [DOCS] `gemini.md` criado na raiz
+- [DOCS] `PROJECT.md` (originalmente gemini.md) criado na raiz
 - [SKILLS] `psicanalise/skills/` populado com symlinks para `~/.agents/skills/`
 
 ### State

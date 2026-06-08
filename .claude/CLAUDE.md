@@ -44,13 +44,53 @@ Use via `Skill` tool no Claude Code:
 | `curadoria-psicanalise` | Psicanálise | Pesquisa acadêmica com fontes verificadas |
 | `framework-education` | Global | Auditoria pedagógica (Bloom, UbD, assessment) |
 | `adversarial` | Global | QA metodológica: gap analysis, contradições, failure modes |
-| `hexagonal-architecture` | Global | Design de ports & adapters, domain boundaries |
-| `tdd-skill` | Global | Disciplina test-first: red-green-refactor |
-| `code-review` | Global | Qualidade de código: correctness, security, performance |
 | `framework-engineering` | Global | Excelência de engenharia: DRY, SOLID, tooling |
-| `frontend-design` | Global | Qualidade visual: HTML/CSS polido |
 
 **Skills são symlinks em `skills/` → `~/.agents/skills/`.**
+
+### Skills de Referência — Uso no Contexto Estudos
+
+As 3 skills abaixo são catálogos genéricos compartilhados com outros projetos. Esta seção documenta como usá-las especificamente no contexto Estudos.
+
+#### `framework-education` — Auditoria Pedagógica
+
+**Triggers no Estudos:**
+- Auditar qualidade pedagógica de uma sessão antes de publicar (Wave D complementar)
+- Verificar progressão de níveis Bloom ao longo de um módulo
+- Avaliar se o scaffolding (ZPD) está calibrado para o estágio do currículo
+- Validar alinhamento entre objetivos de aprendizagem, conteúdo e assessment (UbD)
+
+**Exemplo de prompt:**
+> "Usando framework-education, audite a sessão S03 — A Interpretação dos Sonhos. Verifique: (1) nível Bloom declarado vs real, (2) scaffolding adequado para Módulo 1, (3) alinhamento objectives→evidence→activities (UbD), (4) qualidade do formative assessment (quiz)."
+
+**Limitações:** Framework-education é um catálogo de ~3000 linhas cobrindo todas as teorias pedagógicas. No contexto Estudos, focar apenas em Bloom revisada, UbD, spiral curriculum (Bruner) e ZPD (Vygotsky). Ignorar seções sobre edtech, educação infantil, ou psicometria avançada (IRT, Rasch) — não se aplicam.
+
+#### `adversarial` — QA Metodológica
+
+**Triggers no Estudos:**
+- Revisar um plano de sessão antes da Wave C (gap analysis)
+- Detectar contradições entre conteúdo da sessão e fontes da Wave A
+- Fazer pre-mortem: "O que faria esta sessão falhar para um estudante real?"
+- Auditar precisão conceitual: checar definições de termos psicanalíticos contra fontes canônicas
+- Stress-test de afirmações históricas (ex: "Freud foi o primeiro a..." — verificar)
+
+**Exemplo de prompt:**
+> "Usando adversarial, faça gap analysis da sessão S02 — O Inconsciente. Verifique: (1) há conceitos mencionados sem definição?, (2) alguma afirmação contradiz a Standard Edition?, (3) o que um estudante com zero conhecimento prévio não entenderia?, (4) a seção 'Viver Bem?' força conexão artificial ou é orgânica?"
+
+**Limitações:** Adversarial é genérico — cobre qualquer domínio. No contexto Estudos, sempre combiná-lo com a referência às fontes da Wave A para que as verificações sejam evidence-based, não especulativas.
+
+#### `framework-engineering` — Infraestrutura do Repo
+
+**Triggers no Estudos:**
+- Avaliar qualidade de engenharia do repositório (CI, testes, tooling)
+- Decidir sobre adoção de novas ferramentas ou padrões
+- Auditar DRY/SOLID no código vanilla JS (`sessao.js`, `tracking.js`)
+- Revisar configuração de CI/CD (GitHub Actions workflows)
+
+**Exemplo de prompt:**
+> "Usando framework-engineering, audite a infraestrutura de testes do Estudos. Verifique: (1) cobertura dos testes unitários (tracking.js — 39 testes, sessao.js — 0 testes), (2) qualidade da suite Playwright (5 specs), (3) tooling de validação (html-validate, stylelint, lychee), (4) gaps de engenharia e recomendações."
+
+**Limitações:** Framework-engineering cobre patterns para projetos de software (APIs, databases, containers). No contexto Estudos (HTML/CSS vanilla), focar apenas em: testing, CI/CD, code quality, tooling. Ignorar seções sobre backend, databases, containers, e Cloud — não se aplicam.
 
 ## Templates Compartilhados
 

@@ -1,4 +1,4 @@
-# gemini.md — Estudos
+# PROJECT.md — Estudos
 
 Hub multi-assunto de aprendizado autodirigido em HTML/CSS interativo.
 Projeto vanilla (sem frameworks, sem npm, sem CDN). Fontes self-hosted em WOFF2.
@@ -24,7 +24,7 @@ Projeto vanilla (sem frameworks, sem npm, sem CDN). Fontes self-hosted em WOFF2.
 ├── tests/                  # Testes unitários
 │   └── unit/tracking.test.js  # 39 testes para tracking.js
 ├── qa/                     # Testes Playwright (a11y, dark-mode, quiz, nav, responsive)
-├── skills/                 # 10 symlinks para skills paradigmáticas
+├── skills/                 # 6 symlinks para skills paradigmáticas
 ├── .zed/                   # Configuração do editor Zed (compartilhada)
 ├── .github/workflows/      # CI: validação HTML/CSS + link checker + QA
 └── psicanalise/            # Assunto ativo: Psicanálise & Viver Bem
@@ -44,7 +44,7 @@ Projeto vanilla (sem frameworks, sem npm, sem CDN). Fontes self-hosted em WOFF2.
 - **Acessibilidade:** WCAG AA (contraste ≥4.5:1), keyboard nav (← →), dark mode, responsivo (3 breakpoints)
 - **QA:** Suite Playwright + axe-core em `qa/`
 
-## Skills (10 symlinks em skills/)
+## Skills (6 symlinks em skills/)
 
 | Skill | Propósito |
 |-------|-----------|
@@ -53,11 +53,7 @@ Projeto vanilla (sem frameworks, sem npm, sem CDN). Fontes self-hosted em WOFF2.
 | `curadoria-psicanalise` | Pesquisa acadêmica com fontes verificadas |
 | `framework-education` | Lente pedagógica (Bloom, UbD, spiral curriculum) |
 | `adversarial` | QA metodológica (gap analysis, contradições, failure modes) |
-| `hexagonal-architecture` | Ports & adapters, domain boundaries |
-| `tdd-skill` | Test-first discipline (red-green-refactor) |
-| `code-review` | Code quality (correctness, security, performance) |
 | `framework-engineering` | Excelência de engenharia (DRY, SOLID, tooling) |
-| `frontend-design` | Qualidade visual (HTML/CSS polido) |
 
 ## Ferramentas de Desenvolvimento
 

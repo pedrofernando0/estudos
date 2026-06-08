@@ -19,15 +19,20 @@ Ambiente de aprendizado autodirigido em HTML/CSS interativo. 36 sessões em 6 m�
 
 ## Skills Disponíveis
 
-Este projeto tem 3 skills. Use a tool `Skill` para invocá-las pelo nome exato:
+Este projeto tem 6 skills (3 custom + 3 de referência). Use a tool `Skill` para invocá-las pelo nome exato:
 
 | Skill | Quando usar |
 |-------|------------|
 | `estudo-psicanalise` | Gerar, criar ou continuar sessões de estudo. Orquestrador principal. |
 | `sessao-html` | Criar ou editar páginas HTML de sessão usando o design system. |
 | `curadoria-psicanalise` | Pesquisar autores, conceitos, obras psicanalíticas com rigor acadêmico. |
+| `framework-education` | Auditoria pedagógica: Bloom, UbD, spiral curriculum, assessment. |
+| `adversarial` | QA metodológica: gap analysis, contradições, failure modes. |
+| `framework-engineering` | Infraestrutura do repo: DRY, SOLID, tooling, CI/CD. |
 
 **Fluxo principal**: `estudo-psicanalise` → delega pesquisa para `curadoria-psicanalise` → delega HTML para `sessao-html`.
+
+> Para orientações detalhadas de uso das skills de referência no contexto Estudos, ver `.claude/CLAUDE.md` na raiz.
 
 ## Ciclo de Produção (5 Waves)
 

@@ -63,7 +63,7 @@ Os arquivos em `templates/` são compartilhados entre todos os assuntos:
 
 ## Para Agentes de IA
 
-O arquivo `.claude/CLAUDE.md` contém instruções para agentes. Skills disponíveis (10):
+O arquivo `.claude/CLAUDE.md` contém instruções para agentes. Skills disponíveis (6):
 
 | Skill | Propósito |
 |-------|-----------|
@@ -72,11 +72,7 @@ O arquivo `.claude/CLAUDE.md` contém instruções para agentes. Skills disponí
 | `curadoria-psicanalise` | Pesquisa acadêmica com fontes verificadas (APA 7th) |
 | `framework-education` | Lente pedagógica: Bloom, UbD, spiral curriculum, assessment |
 | `adversarial` | QA metodológica: gap analysis, contradições, failure modes |
-| `hexagonal-architecture` | Lente arquitetural: ports & adapters, domain boundaries |
-| `tdd-skill` | Disciplina test-first: red-green-refactor |
-| `code-review` | Qualidade de código: correctness, security, performance |
 | `framework-engineering` | Excelência de engenharia: DRY, SOLID, tooling, CI/CD |
-| `frontend-design` | Qualidade visual: HTML/CSS polido, sem AI slop |
 
 > **Nota:** As skills são symlinks em `skills/` apontando para `~/.agents/skills/`.
 
