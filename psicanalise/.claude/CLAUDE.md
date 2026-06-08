@@ -15,7 +15,8 @@ Ambiente de aprendizado autodirigido em HTML/CSS interativo. 36 sessões em 6 m�
 | 6 | Síntese e Encerramento | S33–S35 | ❌ Não iniciado |
 
 **Próxima sessão a criar:** S03 (Módulo 1 · Fundações)  
-**Brief completo:** `.claude/session-scaffold.md`
+**Brief completo:** `.claude/session-scaffold.md`  
+**Fonte canônica de nomenclatura:** `session-scaffold.md` — `tracking.js` e `skills/estudo-psicanalise/references/curriculo.md` foram alinhados a ele em 2026-06-07.
 
 ## Skills Disponíveis
 

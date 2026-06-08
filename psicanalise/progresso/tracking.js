@@ -38,7 +38,7 @@ var EstudosTracking = (function() {
     { id:'S13', mod:2, modSlug:'modulo-2-dissidencias', slug:'s13-anna-freud', title:'Anna Freud e o Ego: Mecanismos de Defesa' },
     { id:'S14', mod:2, modSlug:'modulo-2-dissidencias', slug:'s14-ego-psychology', title:'Psicologia do Ego: Hartmann e Erikson' },
     { id:'S15', mod:2, modSlug:'modulo-2-dissidencias', slug:'s15-rank-ferenczi', title:'Otto Rank, Ferenczi e as Dissidências da Técnica' },
-    { id:'S16', mod:3, modSlug:'modulo-3-relacoes-objetais', slug:'s16-winnicott', title:'Donald Winnicott: Objeto Transitional e Ambiente Suficientemente Bom' },
+    { id:'S16', mod:3, modSlug:'modulo-3-relacoes-objetais', slug:'s16-winnicott', title:'Donald Winnicott: Objeto Transicional e Ambiente Suficientemente Bom' },
     { id:'S17', mod:3, modSlug:'modulo-3-relacoes-objetais', slug:'s17-bion', title:'Wilfred Bion: Pensamento, Continente e Conteúdo' },
     { id:'S18', mod:3, modSlug:'modulo-3-relacoes-objetais', slug:'s18-bowlby', title:'John Bowlby: Apego, Separação e Perda' },
     { id:'S19', mod:3, modSlug:'modulo-3-relacoes-objetais', slug:'s19-fairbairn', title:'Ronald Fairbairn: Ego Libidinal e Relações de Objeto' },

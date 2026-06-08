@@ -38,7 +38,7 @@ Projeto vanilla (sem frameworks, sem npm, sem CDN). Fontes self-hosted em WOFF2.
 
 - **36 sessões** (S00–S35), 6 módulos — Fundamentos Freudianos aos Contemporâneos
 - **Sessões geradas:** S00, S01, S02 (3 de 36)
-- **Próxima:** S03 — A Interpretação dos Sonhos
+- **Próxima:** S03 — O Inconsciente: Estrutura e Provas
 - **Briefs:** `psicanalise/.claude/session-scaffold.md` contém briefs para S03–S35
 - **Design system:** v2 (2026-06-07) — paleta parchment+sepia-charcoal+terracota, tipografia Cormorant Garamond+Newsreader+Manrope
 - **Acessibilidade:** WCAG AA (contraste ≥4.5:1), keyboard nav (← →), dark mode, responsivo (3 breakpoints)

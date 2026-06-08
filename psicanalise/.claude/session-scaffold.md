@@ -246,31 +246,31 @@ Documento de referência para todas as sessões pendentes. Serve como brief para
 ## MÓDULO 3 — ESCOLA INGLESA E RELAÇÕES OBJETAIS (S16–S20)
 
 ### S16 — Donald Winnicott: Objeto Transitional e Ambiente Suficientemente Bom
-**Arquivo:** `sessoes/modulo-3-britanicos/s16-winnicott.html`  
+**Arquivo:** `sessoes/modulo-3-relacoes-objetais/s16-winnicott.html`  
 **Conceitos-chave:** `objeto transitional`, `espaço potencial`, `mãe suficientemente boa`, `going on being`, `falso self`  
 **Timeline:** 1950–1971 — Winnicott em Londres  
 **Viver Bem:** O que é "bom o suficiente" na parentalidade (e em si mesmo). O falso self e a autenticidade.
 
 ### S17 — Wilfred Bion: Pensamento, Continente e Conteúdo
-**Arquivo:** `sessoes/modulo-3-britanicos/s17-bion.html`  
+**Arquivo:** `sessoes/modulo-3-relacoes-objetais/s17-bion.html`  
 **Conceitos-chave:** `continente/conteúdo`, `função alfa`, `elementos beta`, `rêverie materna`, `K (conhecimento)`  
 **Timeline:** 1962 — Aprendendo com a Experiência  
 **Viver Bem:** A capacidade de "conter" emoções próprias e alheias. O que é rêverie e como desenvolver tolerância ao não-saber.
 
 ### S18 — John Bowlby: Apego, Separação e Perda
-**Arquivo:** `sessoes/modulo-3-britanicos/s18-bowlby.html`  
+**Arquivo:** `sessoes/modulo-3-relacoes-objetais/s18-bowlby.html`  
 **Conceitos-chave:** `apego`, `figura de apego`, `base segura`, `padrões de apego` (seguro, ansioso, evitante, desorganizado)  
 **Timeline:** 1969–1980 — Trilogia Apego e Perda  
 **Viver Bem:** Estilos de apego nos relacionamentos adultos. Como o padrão de apego precoce molda as relações íntimas.
 
 ### S19 — Ronald Fairbairn: Ego Libidinal e Relações de Objeto
-**Arquivo:** `sessoes/modulo-3-britanicos/s19-fairbairn.html`  
+**Arquivo:** `sessoes/modulo-3-relacoes-objetais/s19-fairbairn.html`  
 **Conceitos-chave:** `ego libidinal`, `ego antilibidinal`, `sabotador interno`, `mau objeto internalizado`  
 **Timeline:** 1940–1952 — Fairbairn em Edimburgo  
 **Viver Bem:** Por que nos apegamos a relacionamentos e situações que nos fazem mal. O "mau objeto" como fonte de identidade.
 
 ### S20 — Michael Balint e a Falha Básica
-**Arquivo:** `sessoes/modulo-3-britanicos/s20-balint.html`  
+**Arquivo:** `sessoes/modulo-3-relacoes-objetais/s20-balint.html`  
 **Conceitos-chave:** `falha básica`, `área ocnofílica/filobática`, `amor primário`, `regressão terapêutica`  
 **Timeline:** 1968 — A Falha Básica  
 **Viver Bem:** Necessidades primárias não atendidas e sua influência nos vínculos adultos. A diferença entre regressão patológica e terapêutica.

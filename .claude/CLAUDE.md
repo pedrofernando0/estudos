@@ -61,7 +61,7 @@ As 3 skills abaixo são catálogos genéricos compartilhados com outros projetos
 - Validar alinhamento entre objetivos de aprendizagem, conteúdo e assessment (UbD)
 
 **Exemplo de prompt:**
-> "Usando framework-education, audite a sessão S03 — A Interpretação dos Sonhos. Verifique: (1) nível Bloom declarado vs real, (2) scaffolding adequado para Módulo 1, (3) alinhamento objectives→evidence→activities (UbD), (4) qualidade do formative assessment (quiz)."
+> "Usando framework-education, audite a sessão S03 — O Inconsciente: Estrutura e Provas. Verifique: (1) nível Bloom declarado vs real, (2) scaffolding adequado para Módulo 1, (3) alinhamento objectives→evidence→activities (UbD), (4) qualidade do formative assessment (quiz)."
 
 **Limitações:** Framework-education é um catálogo de ~3000 linhas cobrindo todas as teorias pedagógicas. No contexto Estudos, focar apenas em Bloom revisada, UbD, spiral curriculum (Bruner) e ZPD (Vygotsky). Ignorar seções sobre edtech, educação infantil, ou psicometria avançada (IRT, Rasch) — não se aplicam.
 

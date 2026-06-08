@@ -65,26 +65,26 @@ Contexto técnico para agentes de IA. Atualizado a cada sessão significativa.
 
 ### State
 - 3 de 36 sessões geradas (S00, S01, S02) — base sólida, sem bugs funcionais conhecidos
-- Próxima: **S03 — A Interpretação dos Sonhos** (Módulo 1)
+- Próxima: **S03 — O Inconsciente: Estrutura e Provas** (Módulo 1)
 - Repo público: https://github.com/pedrofernando0/estudos — main atualizado, sem CI/CD (intencional)
 
 ### Próximos Passos (ordenados por prioridade)
 
 1. **Gerar sessões S03–S09 (Módulo 1 — Fundações Freudianas)**
    - Usar skill `estudo-psicanalise` → ciclo 5-Wave (A: Pesquisa → B: Estrutura → C: HTML → D: QA → E: Publicação)
-   - S03: A Interpretação dos Sonhos
-   - S04: Metapsicologia e o Aparelho Psíquico
-   - S05: A Teoria da Sexualidade
-   - S06: O Complexo de Édipo
-   - S07: Pulsão de Morte e Além do Princípio do Prazer
+   - S03: O Inconsciente: Estrutura e Provas
+   - S04: Sonhos: A Interpretação Freudiana
+   - S05: Sexualidade Infantil e Desenvolvimento Psicossexual
+   - S06: A Segunda Tópica: Id, Ego e Superego
+   - S07: Pulsão de Morte e Compulsão à Repetição
    - S08: O Mal-Estar na Civilização
-   - S09: A Técnica Psicanalítica
+   - S09: Transferência, Contratransferência e a Relação Analítica
 
 2. **Gerar sessões S10–S15 (Módulo 2 — Dissidências e Expansões)**
-   - Adler, Jung, Rank, Anna Freud, Hartmann, Erikson, Melanie Klein
+   - Adler, Jung, Klein, Anna Freud, Hartmann/Erikson, Rank/Ferenczi
 
 3. **Gerar sessões S16–S20 (Módulo 3 — Escola Inglesa/Relações Objetais)**
-   - Fairbairn, Winnicott, Balint, Bowlby, Bion
+   - Winnicott, Bion, Bowlby, Fairbairn, Balint
 
 4. **Gerar sessões S21–S26 (Módulo 4 — Lacan e Estruturalismo)**
    - RSI, significante, discursos, sinthome
@@ -113,7 +113,7 @@ Contexto técnico para agentes de IA. Atualizado a cada sessão significativa.
 
 ### State
 - 3 de 36 sessões geradas (S00, S01, S02)
-- Próxima: S03 — A Interpretação dos Sonhos
+- Próxima: S03 — O Inconsciente: Estrutura e Provas
 - Repo público no GitHub — 3 commits, sem CI/CD (intencional)
 - Design system v2 com todos os bugs críticos corrigidos
 - JavaScript extraído para arquivo compartilhado (sessao.js)
@@ -130,7 +130,7 @@ Contexto técnico para agentes de IA. Atualizado a cada sessão significativa.
 
 ### State
 - 3 de 36 sessões geradas (S00, S01, S02)
-- Próxima: S03 — A Interpretação dos Sonhos
+- Próxima: S03 — O Inconsciente: Estrutura e Provas
 - QA visual (Puppeteer) e verificação de dark mode ainda pendentes
 - TTS não instalado
 
