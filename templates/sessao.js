@@ -77,9 +77,10 @@
         if (o.dataset.opt === chosen && !isCorrect) o.classList.add('incorrect');
       });
 
-      var correctIdx = parseInt(correct);
+      var allQuestions = document.querySelectorAll('.quiz-question');
+      var questionIdx = Array.prototype.indexOf.call(allQuestions, question);
       feedback.textContent = isCorrect
-        ? (correctMessages[correctIdx] || '✓ Correto!')
+        ? (correctMessages[questionIdx] || '✓ Correto!')
         : '✗ Incorreto. A resposta certa está destacada em verde.';
       feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
 
@@ -93,6 +94,29 @@
     opt.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
     });
+  });
+
+  // ─── Tooltips (keyboard + touch) ───
+  document.querySelectorAll('.conceito').forEach(function(c) {
+    if (!c.getAttribute('tabindex')) c.setAttribute('tabindex', '0');
+    c.addEventListener('focus', function() {
+      var tt = this.querySelector('.tooltip-content');
+      if (tt) tt.style.display = 'block';
+    });
+    c.addEventListener('blur', function() {
+      var tt = this.querySelector('.tooltip-content');
+      if (tt) tt.style.display = '';
+    });
+    c.addEventListener('click', function(e) {
+      var tt = this.querySelector('.tooltip-content');
+      if (!tt) return;
+      var open = tt.style.display === 'block';
+      document.querySelectorAll('.tooltip-content').forEach(function(t) { t.style.display = ''; });
+      if (!open) { tt.style.display = 'block'; e.stopPropagation(); }
+    });
+  });
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.tooltip-content').forEach(function(t) { t.style.display = ''; });
   });
 
   // ─── Reflexão ───

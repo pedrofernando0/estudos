@@ -557,7 +557,7 @@ blockquote cite::before { content: '— '; }
   margin-top: var(--space-3);
   padding: var(--space-2) var(--space-5);
   background: var(--color-accent);
-  color: #fffdf7;
+  color: var(--color-bg-card);
   border: none;
   border-radius: var(--radius-md);
   font-family: var(--font-ui);
