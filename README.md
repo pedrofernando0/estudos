@@ -7,7 +7,7 @@ Hub de aprendizado autodirigido em HTML/CSS interativo. Cada assunto é uma subp
 ## Como usar
 
 ```bash
-git clone https://github.com/pedro/estudos.git
+git clone https://github.com/pedrofernando0/estudos.git
 cd estudos
 ```
 
