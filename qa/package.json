@@ -1,0 +1,19 @@
+{
+  "name": "estudos-qa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "QA suite for Estudos — Playwright + axe-core",
+  "scripts": {
+    "test": "playwright test",
+    "test:a11y": "playwright test tests/accessibility.spec.js",
+    "test:nav": "playwright test tests/navigation.spec.js",
+    "test:quiz": "playwright test tests/quiz.spec.js",
+    "test:dark": "playwright test tests/dark-mode.spec.js",
+    "test:responsive": "playwright test tests/responsive.spec.js",
+    "test:ci": "playwright test --project=chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@axe-core/playwright": "^4.10.0"
+  }
+}

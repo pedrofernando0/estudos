@@ -73,6 +73,7 @@
 
       question.querySelectorAll('.quiz-option').forEach(function(o) {
         o.style.pointerEvents = 'none';
+        o.setAttribute('aria-checked', o.dataset.opt === chosen ? 'true' : 'false');
         if (o.dataset.opt === correct) o.classList.add('correct');
         if (o.dataset.opt === chosen && !isCorrect) o.classList.add('incorrect');
       });

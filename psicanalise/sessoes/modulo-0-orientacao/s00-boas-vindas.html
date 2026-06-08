@@ -9,8 +9,10 @@
 </head>
 <body>
 
-<!-- ═══════════════ READING PROGRESS BAR ═══════════════ -->
+<!-- ═══════════════ SKIP LINK ═══════════════ -->
+<a class="skip-link" href="#main-content">Pular para o conteúdo principal</a>
 
+<!-- ═══════════════ READING PROGRESS BAR ═══════════════ -->
 <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
 
 <!-- ═══════════════ SESSION HEADER ═══════════════ -->
@@ -26,7 +28,14 @@
   </h1>
 </header>
 
-<main>
+<main id="main-content">
+
+<!-- ═══════════════ BREADCRUMB ═══════════════ -->
+<nav class="breadcrumb" aria-label="Localização no curso">
+  <a href="../../index.html">Psicanálise</a>
+  <span aria-hidden="true"> › </span>
+  <span>Módulo 0 · Orientação</span>
+</nav>
 
 <!-- ═══════════════ PRE-LEITURA ═══════════════ -->
 <section class="pre-leitura">
@@ -37,7 +46,7 @@
 <!-- ═══════════════ CORPO ═══════════════ -->
 <section class="corpo">
 
-<p>Bem-vindo(a). Você está iniciando uma jornada de <span class="conceito" aria-describedby="tt-psicanalise">psicanálise<span class="tooltip-content" id="tt-psicanalise" role="tooltip">Método de investigação do inconsciente, forma de tratamento do sofrimento psíquico e corpo teórico sobre o funcionamento da mente. Criado por Sigmund Freud a partir de 1895.</span></span> — da sua fundação no final do século XIX até os debates mais vivos da contemporaneidade. São <strong>36 sessões</strong> organizadas em <strong>6 módulos</strong>.</p>
+<p>Bem-vindo(a). Você está iniciando uma jornada de <span class="conceito" aria-label="psicanálise: Método de investigação do inconsciente, forma de tratamento do sofrimento psíquico e corpo teórico sobre o funcionamento da mente. Criado por Sigmund Freud a partir de 1895.">psicanálise<span class="tooltip-content" role="tooltip">Método de investigação do inconsciente, forma de tratamento do sofrimento psíquico e corpo teórico sobre o funcionamento da mente. Criado por Sigmund Freud a partir de 1895.</span></span> — da sua fundação no final do século XIX até os debates mais vivos da contemporaneidade. São <strong>36 sessões</strong> organizadas em <strong>6 módulos</strong>.</p>
 
 <p>Mas esta não é uma jornada puramente teórica. A cada sessão, uma pergunta nos acompanha: <strong>o que a psicanálise tem a dizer sobre como viver bem hoje?</strong> Em meio ao caos de informações, à aceleração digital e à fragilidade dos laços, a psicanálise oferece não respostas prontas, mas <strong>perguntas melhores</strong>.</p>
 
@@ -119,11 +128,11 @@
 <p>A qualquer momento durante a jornada, você pode consultar:</p>
 
 <ul>
-  <li>📖 <strong>Glossário</strong> (<code>recursos/glossario.html</code>) — ~50 termos psicanalíticos com definições e referências cruzadas</li>
-  <li>📅 <strong>Linha do Tempo</strong> (<code>recursos/linha-do-tempo.html</code>) — 1880–2025, eventos, obras, autores</li>
-  <li>🧠 <strong>Mapa Conceitual</strong> (<code>recursos/mapa-conceitual.html</code>) — Rede navegável de conceitos interconectados</li>
-  <li>👤 <strong>Autores</strong> (<code>recursos/autores.html</code>) — 23+ cards biográficos com obras principais</li>
-  <li>📚 <strong>Referências</strong> (<code>recursos/referencias.html</code>) — Bibliografia comentada por módulo</li>
+  <li>📖 <strong><a href="../../recursos/glossario.html">Glossário</a></strong> — ~50 termos psicanalíticos com definições e referências cruzadas</li>
+  <li>📅 <strong><a href="../../recursos/linha-do-tempo.html">Linha do Tempo</a></strong> — 1880–2025, eventos, obras, autores</li>
+  <li>🧠 <strong><a href="../../recursos/mapa-conceitual.html">Mapa Conceitual</a></strong> — Rede navegável de conceitos interconectados</li>
+  <li>👤 <strong><a href="../../recursos/autores.html">Autores</a></strong> — 23+ cards biográficos com obras principais</li>
+  <li>📚 <strong><a href="../../recursos/referencias.html">Referências</a></strong> — Bibliografia comentada por módulo</li>
 </ul>
 
 <h2>Pacto de Estudo</h2>
@@ -141,7 +150,7 @@
 </section>
 
 <!-- ═══════════════ TIMELINE ANCHOR ═══════════════ -->
-<div class="timeline-mini">
+<div class="timeline-mini" aria-hidden="true">
   <div class="timeline-mini-dot"></div>
   <span>Início da jornada</span>
   <div class="timeline-mini-line"></div>
@@ -160,7 +169,7 @@
 
   <div class="quiz-question" data-correct="1">
     <p>1. Quantas sessões compõem esta jornada de estudos?</p>
-    <div class="quiz-options">
+    <div class="quiz-options" role="radiogroup" aria-label="Opções de resposta">
       <div class="quiz-option" data-opt="0" tabindex="0" role="radio" aria-checked="false">A) 24 sessões</div>
       <div class="quiz-option" data-opt="1" tabindex="0" role="radio" aria-checked="false">B) 36 sessões</div>
       <div class="quiz-option" data-opt="2" tabindex="0" role="radio" aria-checked="false">C) 48 sessões</div>
@@ -171,7 +180,7 @@
 
   <div class="quiz-question" data-correct="2">
     <p>2. Qual é o tripé que define a psicanálise?</p>
-    <div class="quiz-options">
+    <div class="quiz-options" role="radiogroup" aria-label="Opções de resposta">
       <div class="quiz-option" data-opt="0" tabindex="0" role="radio" aria-checked="false">A) Terapia, medicação e diagnóstico</div>
       <div class="quiz-option" data-opt="1" tabindex="0" role="radio" aria-checked="false">B) Divã, analista e paciente</div>
       <div class="quiz-option" data-opt="2" tabindex="0" role="radio" aria-checked="false">C) Método de investigação, forma de tratamento e corpo teórico</div>
@@ -182,7 +191,7 @@
 
   <div class="quiz-question" data-correct="0">
     <p>3. Quantos módulos compõem o currículo?</p>
-    <div class="quiz-options">
+    <div class="quiz-options" role="radiogroup" aria-label="Opções de resposta">
       <div class="quiz-option" data-opt="0" tabindex="0" role="radio" aria-checked="false">A) 7 (Módulos 0 a 6)</div>
       <div class="quiz-option" data-opt="1" tabindex="0" role="radio" aria-checked="false">B) 5 módulos</div>
       <div class="quiz-option" data-opt="2" tabindex="0" role="radio" aria-checked="false">C) 8 módulos</div>
@@ -219,6 +228,10 @@
       <span class="ref-type">Site</span>
       <strong>Sociedade Brasileira de Psicanálise (SBP)</strong>
       <br><small><a href="https://sbp.org.br">sbp.org.br</a> — Artigos, eventos e divulgação científica em psicanálise</small>
+    </li>
+    <li>
+      <span class="ref-type">Recurso</span>
+      Consulte o <a href="../../recursos/glossario.html">Glossário</a> e a <a href="../../recursos/linha-do-tempo.html">Linha do Tempo</a> como referências permanentes ao longo da jornada.
     </li>
   </ul>
 </section>
