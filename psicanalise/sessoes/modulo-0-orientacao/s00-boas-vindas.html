@@ -6,6 +6,10 @@
 <title>S00 — Boas-vindas | Estudos de Psicanálise</title>
 <link rel="stylesheet" href="../../../templates/fonts/fonts.css">
 <link rel="stylesheet" href="../../../templates/style.css">
+<!-- Anti-FOUC: aplica tema salvo antes do primeiro paint -->
+<script>
+(function(){try{var p=JSON.parse(localStorage.getItem('estudos-preferences')||'{}');if(p.theme)document.documentElement.setAttribute('data-theme',p.theme);}catch(e){}}());
+</script>
 </head>
 <body>
 
@@ -257,6 +261,7 @@ var SESSION_CORRECT_MESSAGES = [
 </script>
 <script src="../../progresso/tracking.js"></script>
 <script src="../../../templates/sessao.js"></script>
+<script src="../../../templates/preferences.js"></script>
 
 </body>
 </html>
