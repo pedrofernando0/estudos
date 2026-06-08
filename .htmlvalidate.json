@@ -1,15 +1,9 @@
 {
-  "extends": ["html-validate:standard"],
+  "extends": ["html-validate:recommended"],
   "rules": {
-    "no-trailing-whitespace": "off",
+    "aria-label-misuse": "warn",
     "no-inline-style": "off",
     "prefer-native-element": "off",
-    "attribute-boolean-style": "off",
-    "long-size": "off",
-    "heading-level": "off",
-    "no-redundant-role": "warn",
-    "element-permitted-content": "warn",
-    "wcag/h32": "off",
-    "wcag/h37": "off"
+    "empty-heading": "off"
   }
 }

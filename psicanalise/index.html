@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Psicanálise & Viver Bem — Dashboard</title>
+<title>Psicanálise &amp; Viver Bem — Dashboard</title>
 	<link rel="stylesheet" href="../templates/fonts/fonts.css">
 <link rel="stylesheet" href="../templates/style.css">
 <style>
@@ -63,7 +63,7 @@
 
 <footer class="footer-note" style="text-align:center;margin-top:var(--space-12);font-size:var(--text-sm);color:var(--color-text-muted)">
   <p>Use a skill <code>estudo-psicanalise</code> com Claude Code para gerar novas sessões.</p>
-  <p style="margin-top:var(--space-2)"><button onclick="if(confirm('Redefinir todo o progresso? Esta ação não pode ser desfeita.')){localStorage.removeItem(EstudosTracking.STORAGE_KEY);location.reload();}" style="font-size:var(--text-xs);padding:4px 12px;background:transparent;border:1px solid var(--color-border);border-radius:var(--radius-sm);color:var(--color-text-muted);cursor:pointer;">Redefinir progresso</button></p>
+  <p style="margin-top:var(--space-2)"><button type="button" onclick="if(confirm('Redefinir todo o progresso? Esta ação não pode ser desfeita.')){localStorage.removeItem(EstudosTracking.STORAGE_KEY);location.reload();}" style="font-size:var(--text-xs);padding:4px 12px;background:transparent;border:1px solid var(--color-border);border-radius:var(--radius-sm);color:var(--color-text-muted);cursor:pointer;">Redefinir progresso</button></p>
 </footer>
 
 <script src="progresso/tracking.js"></script>
