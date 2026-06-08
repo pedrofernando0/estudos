@@ -1,0 +1,31 @@
+{
+  "name": "estudos",
+  "version": "1.0.0",
+  "description": "Hub de aprendizado autodirigido em HTML/CSS interativo — zero dependências de runtime",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate:html": "html-validate '**/*.html' --ignore 'node_modules/'",
+    "validate:css": "stylelint 'templates/style.css' --fix=false",
+    "validate": "npm run validate:html && npm run validate:css",
+    "links": "lychee --base . --exclude 'node_modules/|audio/|.git/' --accept 200,201,301,302,304 '**/*.html'",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "test:qa": "cd qa && npx playwright test --project=chromium",
+    "test": "npm run test:unit && npm run validate",
+    "test:all": "npm run test:unit && npm run validate && npm run test:qa",
+    "setup": "npm install && cd qa && npm install && npx playwright install chromium --with-deps"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^3.0.0",
+    "happy-dom": "^15.0.0",
+    "html-validate": "^9.0.0",
+    "jsdom": "^29.1.1",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard": "^37.0.0",
+    "vitest": "^3.0.0"
+  },
+  "optionalDependencies": {
+    "lychee": "latest"
+  }
+}

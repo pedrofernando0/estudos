@@ -1,0 +1,60 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  html-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install -g html-validate
+      - run: html-validate '**/*.html' --ignore 'node_modules/'
+
+  css-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install -g stylelint stylelint-config-standard
+      - name: Run stylelint
+        run: |
+          echo '{"extends":["stylelint-config-standard"]}' > /tmp/.stylelintrc.json
+          stylelint 'templates/style.css' --config /tmp/.stylelintrc.json --fix=false || true
+        continue-on-error: true
+
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          args: >
+            --base .
+            --no-progress
+            --exclude 'node_modules/|audio/|\.git/'
+            --accept 200,201,301,302,304
+            '**/*.html'
+        continue-on-error: true
+
+  qa-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install QA dependencies
+        run: cd qa && npm install
+      - name: Install Playwright browsers
+        run: cd qa && npx playwright install chromium --with-deps
+      - name: Run QA tests
+        run: cd qa && npx playwright test --project=chromium

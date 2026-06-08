@@ -1,0 +1,35 @@
+{
+  "format_on_save": "on",
+  "formatter": "prettier",
+  "tab_size": 2,
+  "soft_wrap": "prefer_line",
+  "hard_tabs": false,
+  "ensure_final_newline": true,
+  "remove_trailing_whitespace_on_save": true,
+  "languages": {
+    "HTML": {
+      "tab_size": 2,
+      "soft_wrap": "prefer_line",
+      "formatter": "prettier"
+    },
+    "CSS": {
+      "tab_size": 2,
+      "soft_wrap": "prefer_line",
+      "formatter": "prettier"
+    },
+    "JavaScript": {
+      "tab_size": 2,
+      "soft_wrap": "prefer_line",
+      "formatter": "prettier"
+    },
+    "Markdown": {
+      "tab_size": 2,
+      "soft_wrap": "editor_width",
+      "formatter": "prettier"
+    },
+    "JSON": {
+      "tab_size": 2,
+      "formatter": "prettier"
+    }
+  }
+}

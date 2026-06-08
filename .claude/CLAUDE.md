@@ -42,10 +42,19 @@ Use via `Skill` tool no Claude Code:
 | `estudo-psicanalise` | Psicanálise | Orquestrador: geração de sessões com ciclo 5-Wave |
 | `sessao-html` | Global | Geração de HTML interativo com o design system |
 | `curadoria-psicanalise` | Psicanálise | Pesquisa acadêmica com fontes verificadas |
+| `framework-education` | Global | Auditoria pedagógica (Bloom, UbD, assessment) |
+| `adversarial` | Global | QA metodológica: gap analysis, contradições, failure modes |
+| `hexagonal-architecture` | Global | Design de ports & adapters, domain boundaries |
+| `tdd-skill` | Global | Disciplina test-first: red-green-refactor |
+| `code-review` | Global | Qualidade de código: correctness, security, performance |
+| `framework-engineering` | Global | Excelência de engenharia: DRY, SOLID, tooling |
+| `frontend-design` | Global | Qualidade visual: HTML/CSS polido |
+
+**Skills são symlinks em `skills/` → `~/.agents/skills/`.**
 
 ## Templates Compartilhados
 
-`templates/style.css` e `templates/sessao-template.html` são usados por todos os assuntos. O design system define: paleta de cores (cream+charcoal+deep-blue), tipografia (Cormorant Garamond+Newsreader+Manrope), componentes (quiz, tooltips, timeline-mini, callouts, viver-bem), dark mode automático, responsividade (3 breakpoints), WCAG AA.
+`templates/style.css` e `templates/sessao-template.html` são usados por todos os assuntos. O design system "Warm Academic Editorial" (v2) define: paleta de cores (parchment #fbf8f0 + sepia-charcoal #1f1a14 + terracota #8b5e3c), tipografia self-hosted (Cormorant Garamond + Newsreader + Manrope), componentes (quiz, tooltips, timeline-mini, callouts, viver-bem, breadcrumb, skip-link), dark mode automático (marrom-noite + creme + cobre), responsividade (3 breakpoints), WCAG AA com roles ARIA explícitos.
 
 ### Componentes: Uso Esperado por Sessão
 

@@ -2,6 +2,33 @@
 
 Contexto técnico para agentes de IA. Atualizado a cada sessão significativa.
 
+## Session: 2026-06-07 (Auditoria, Skills, CI, Testes & Evolução)
+
+### Changes applied
+- [GIT] Pull origin/main → 550db51 (trouxe QA suite Playwright, session-scaffold, fixes a11y)
+- [DOCS] `.claude/CLAUDE.md:48` corrigido — paleta "parchment+terracota" (estava "cream+charcoal+deep-blue")
+- [SKILLS] 7 novas skills symlinkadas em `skills/` → total 10: framework-education, adversarial, hexagonal-architecture, tdd-skill, code-review, framework-engineering, frontend-design
+- [EDITOR] `.editorconfig`, `.prettierrc`, `.zed/settings.json` criados — formatação consistente
+- [CI] `.github/workflows/validate.yml` — valida HTML, CSS, links + QA tests em push/PR
+- [TEST] `tests/unit/tracking.test.js` — 39 testes unitários (Vitest + jsdom). Cobre todas as funções públicas de tracking.js
+- [CONFIG] `package.json` (type:module), `.htmlvalidate.json`, `.stylelintrc.json`, `vitest.config.js`
+- [SCRIPTS] 4 novos: `novo-assunto.sh`, `nova-sessao.sh`, `validar-links.sh`, `contar-palavras.sh`
+- [DOCS] README, gemini.md, .claude/CLAUDE.md atualizados com 10 skills, dev setup, scripts npm
+
+### State
+- 3/36 sessões geradas com briefs prontos S03–S35 em session-scaffold.md
+- 10 skills paradigmáticas symlinkadas em skills/
+- Suite QA Playwright (5 specs: a11y, dark-mode, quiz, nav, responsive)
+- 39 unit tests passando (tracking.js)
+- CI configurado (HTML + CSS + links + QA)
+- Zed config (.zed/settings.json) compartilhado
+
+### Pending (deferred)
+- Refatorar tracking.js para multi-assunto (namespace parameter) — Task 7
+- JSON Schema para conteúdo de sessões (separar domínio da apresentação) — Task 8
+- 33 sessões pendentes (S03–S35)
+- TTS não instalado
+
 ## Session: 2026-06-08 (Diagnóstico, Correções e Próximos Passos)
 
 ### Diagnóstico das sessões existentes

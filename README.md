@@ -63,13 +63,50 @@ Os arquivos em `templates/` são compartilhados entre todos os assuntos:
 
 ## Para Agentes de IA
 
-O arquivo `.claude/CLAUDE.md` contém instruções para agentes. Skills disponíveis:
+O arquivo `.claude/CLAUDE.md` contém instruções para agentes. Skills disponíveis (10):
 
-- **`estudo-psicanalise`** — Orquestrador: geração de sessões com ciclo 5-Wave
-- **`sessao-html`** — Geração de HTML com o design system
-- **`curadoria-psicanalise`** — Pesquisa acadêmica com fontes verificadas (APA 7th)
+| Skill | Propósito |
+|-------|-----------|
+| `estudo-psicanalise` | Orquestrador: geração de sessões com ciclo 5-Wave |
+| `sessao-html` | Geração de HTML com o design system |
+| `curadoria-psicanalise` | Pesquisa acadêmica com fontes verificadas (APA 7th) |
+| `framework-education` | Lente pedagógica: Bloom, UbD, spiral curriculum, assessment |
+| `adversarial` | QA metodológica: gap analysis, contradições, failure modes |
+| `hexagonal-architecture` | Lente arquitetural: ports & adapters, domain boundaries |
+| `tdd-skill` | Disciplina test-first: red-green-refactor |
+| `code-review` | Qualidade de código: correctness, security, performance |
+| `framework-engineering` | Excelência de engenharia: DRY, SOLID, tooling, CI/CD |
+| `frontend-design` | Qualidade visual: HTML/CSS polido, sem AI slop |
 
-> **Nota:** As skills são symlinks para `~/.agents/skills/` e não fazem parte deste repositório. Consulte `.claude/CLAUDE.md` para instruções de instalação.
+> **Nota:** As skills são symlinks em `skills/` apontando para `~/.agents/skills/`.
+
+## Desenvolvimento
+
+```bash
+git clone https://github.com/pedrofernando0/estudos.git
+cd estudos
+npm install        # devDependencies apenas (validação, testes)
+npm run setup      # instala tudo + browsers Playwright
+```
+
+### Scripts
+
+| Comando | Descrição |
+|---------|-----------|
+| `npm run validate` | Valida HTML e CSS em todas as páginas |
+| `npm run test:unit` | Testes unitários (tracking.js) |
+| `npm run test:qa` | Testes Playwright (a11y, dark-mode, quiz, nav, responsive) |
+| `npm test` | Unit tests + validação HTML/CSS |
+| `npm run test:all` | Todos os testes (unit + validate + QA) |
+| `npm run links` | Verifica links quebrados |
+| `./scripts/novo-assunto.sh <nome>` | Scaffold de novo assunto |
+| `./scripts/nova-sessao.sh <assunto> <mod> <num> <slug>` | Scaffold de nova sessão |
+| `./scripts/validar-links.sh` | Verificação rápida de links internos |
+| `./scripts/contar-palavras.sh` | Estatísticas de conteúdo |
+
+### Editor
+
+Configurações compartilhadas em `.editorconfig`, `.prettierrc` e `.zed/settings.json`. Zed é o editor recomendado para contribuir.
 
 ## Licença
 
