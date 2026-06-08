@@ -9,6 +9,9 @@
 </head>
 <body>
 
+<!-- ═══════════════ SKIP LINK ═══════════════ -->
+<a class="skip-link" href="#main-content">Pular para o conteúdo principal</a>
+
 <!-- ═══════════════ READING PROGRESS BAR ═══════════════ -->
 <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
 
@@ -25,7 +28,14 @@
   </h1>
 </header>
 
-<main>
+<main id="main-content">
+
+<!-- ═══════════════ BREADCRUMB ═══════════════ -->
+<nav class="breadcrumb" aria-label="Localização no curso">
+  <a href="../../index.html">Psicanálise</a>
+  <span aria-hidden="true"> › </span>
+  <span>Módulo 0 · Nome do Módulo</span>
+</nav>
 
 <!-- ═══════════════ PRÉ-LEITURA ═══════════════ -->
 <section class="pre-leitura">
@@ -37,7 +47,9 @@
 <section class="corpo">
 
 <!-- CONTEÚDO PRINCIPAL AQUI -->
-<!-- Use: <span class="conceito"> para tooltips expansíveis -->
+<!-- Padrão de tooltip acessível (aria-label com texto completo da definição):
+     <span class="conceito" aria-label="TERMO: DEFINIÇÃO COMPLETA DO CONCEITO AQUI.">TERMO<span class="tooltip-content" role="tooltip">DEFINIÇÃO COMPLETA DO CONCEITO AQUI.</span></span>
+-->
 <!-- Use: <blockquote><cite> para citações -->
 <!-- Use: <div class="callout"><blockquote> para citações destacadas -->
 <!-- Use: <h2>, <h3> para estrutura de tópicos -->
@@ -45,7 +57,7 @@
 </section>
 
 <!-- ═══════════════ TIMELINE ANCHOR ═══════════════ -->
-<div class="timeline-mini">
+<div class="timeline-mini" aria-hidden="true">
   <div class="timeline-mini-dot"></div>
   <span>Evento ou período</span>
   <div class="timeline-mini-line"></div>
@@ -64,7 +76,7 @@
 
   <div class="quiz-question" data-correct="0">
     <p>1. Pergunta?</p>
-    <div class="quiz-options">
+    <div class="quiz-options" role="radiogroup" aria-label="Opções de resposta">
       <div class="quiz-option" data-opt="0" tabindex="0" role="radio" aria-checked="false">Opção A</div>
       <div class="quiz-option" data-opt="1" tabindex="0" role="radio" aria-checked="false">Opção B</div>
       <div class="quiz-option" data-opt="2" tabindex="0" role="radio" aria-checked="false">Opção C</div>
@@ -96,6 +108,8 @@
       <br><small>Detalhes · Duração · Idioma</small>
     </li>
   </ul>
+  <!-- Links para recursos: glossário, autores, timeline -->
+  <!-- Exemplo: <li>Consulte também o <a href="../../recursos/glossario.html">Glossário</a> para os termos desta sessão.</li> -->
 </section>
 
 </main>
