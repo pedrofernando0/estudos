@@ -2,6 +2,25 @@
 
 Contexto técnico para agentes de IA. Atualizado a cada sessão significativa.
 
+## Session: 2026-06-07 (GitHub Publication & Repo Organization)
+
+### Fixes applied
+- [CSS] `--text-md: 1rem` adicionado ao `:root` — `.session-subtitle` agora tem font-size explícito
+- [CSS] `--radius-full: 999px` adicionado ao `:root` — `.badge-item` agora tem border-radius circular
+- [A11Y] `--color-text-muted` ajustado para WCAG AA: `#6e6254` (light, ~5.0:1) / `#8c7a68` (dark, ~4.8:1)
+- [MOBILE] Touch events (`touchstart/touchmove/touchend`) adicionados ao drag-scroll da timeline
+- [JS] `templates/sessao.js` criado — extrai ~150 linhas de JS duplicadas de 4 arquivos HTML
+- [CLEAN] 3 arquivos `*-source.css` removidos de `templates/fonts/` (artefatos de download)
+- [GH] Repo publicado: https://github.com/pedrofernando0/estudos (3 commits, remote origin)
+- [GH] LICENSE (MIT), `.github/ISSUE_TEMPLATE.md`, README.md atualizado com badge+estrutura+clone
+
+### State
+- 3 de 36 sessões geradas (S00, S01, S02)
+- Próxima: S03 — A Interpretação dos Sonhos
+- Repo público no GitHub — 3 commits, sem CI/CD (intencional)
+- Design system v2 com todos os bugs críticos corrigidos
+- JavaScript extraído para arquivo compartilhado (sessao.js)
+
 ## Session: 2026-06-07 (Auditoria e Correções)
 
 ### Fixes applied

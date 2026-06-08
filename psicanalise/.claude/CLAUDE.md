@@ -27,7 +27,7 @@ Toda sessão segue: **Wave A** (Pesquisa Exaustiva) → **Wave B** (Estruturaç�
 | `sessoes/modulo-X/` | Sessões HTML geradas |
 | `recursos/` | Glossário, timeline, mapa conceitual, autores, referências |
 | `progresso/tracking.json` | Progresso do estudante |
-| `scripts/gerar-audio.sh` | Extrai texto e gera áudio via TTS |
+| `../scripts/gerar-audio.sh` | Extrai texto e gera áudio via TTS |
 | `.brainstorm/` | Boards de brainstorming |
 
 ## Convenções
