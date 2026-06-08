@@ -8,6 +8,7 @@ const SESSION_PAGES = [
   'psicanalise/sessoes/modulo-0-orientacao/s00-boas-vindas.html',
   'psicanalise/sessoes/modulo-0-orientacao/s01-introducao.html',
   'psicanalise/sessoes/modulo-1-fundacoes/s02-pre-historia.html',
+  'psicanalise/sessoes/modulo-1-fundacoes/s03-o-inconsciente.html',
 ];
 
 const RESOURCE_PAGES = [
