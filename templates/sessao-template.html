@@ -109,112 +109,17 @@
 </footer>
 
 <!-- ═══════════════ SCRIPTS ═══════════════ -->
-<script src="../../progresso/tracking.js"></script>
 <script>
-(function() {
-  'use strict';
-  var SESSION_ID = 'S00'; // ← ALTERAR para cada sessão (S00, S01, ... S35)
-  var totalQuestions = document.querySelectorAll('.quiz-question').length;
-  var answeredCorrect = 0;
-
-  // ─── Reading Progress Bar ───
-  var progressBar = document.getElementById('reading-progress');
-  function updateProgress() {
-    if (!progressBar) return;
-    var scrollTop = window.scrollY || document.documentElement.scrollTop;
-    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    var pct = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
-    progressBar.style.width = pct + '%';
-  }
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  updateProgress();
-
-  // ─── Keyboard Navigation ───
-  document.addEventListener('keydown', function(e) {
-    // Don't capture when typing in textarea/input
-    if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
-    if (e.key === 'ArrowRight' && !e.ctrlKey && !e.metaKey && !e.altKey && !e.shiftKey) {
-      var nextLink = document.querySelector('.session-nav a[rel="next"]');
-      if (nextLink && nextLink.href) window.location.href = nextLink.href;
-    }
-    if (e.key === 'ArrowLeft' && !e.ctrlKey && !e.metaKey && !e.altKey && !e.shiftKey) {
-      var prevLink = document.querySelector('.session-nav a[rel="prev"]');
-      if (prevLink && prevLink.href) window.location.href = prevLink.href;
-    }
-  });
-
-  // ─── Restore previous reflection ───
-  if (typeof EstudosTracking !== 'undefined') {
-    var prev = EstudosTracking.loadProgress();
-    var prevRefl = (prev.reflections || {})[SESSION_ID];
-    if (prevRefl) {
-      var ta = document.querySelector('.reflexao textarea');
-      if (ta && !ta.value) ta.value = prevRefl;
-    }
-  }
-
-  // ─── Quiz ───
-  // Mensagens de feedback contextualizadas por questão.
-  // ALTERAR para cada sessão: um array com uma mensagem por questão (índice = data-correct).
-  var correctMessages = [
-    '✓ Correto! (feedback contextual para questão 1)',
-    '✓ Correto! (feedback contextual para questão 2)',
-    '✓ Correto! (feedback contextual para questão 3)'
-  ];
-
-  document.querySelectorAll('.quiz-option').forEach(function(opt) {
-    opt.addEventListener('click', function() {
-      var question = this.closest('.quiz-question');
-      if (question.dataset.answered) return;
-      question.dataset.answered = '1';
-
-      var correct = question.dataset.correct;
-      var chosen = this.dataset.opt;
-      var feedback = question.querySelector('.quiz-feedback');
-      var isCorrect = chosen === correct;
-      if (isCorrect) answeredCorrect++;
-
-      question.querySelectorAll('.quiz-option').forEach(function(o) {
-        o.style.pointerEvents = 'none';
-        if (o.dataset.opt === correct) o.classList.add('correct');
-        if (o.dataset.opt === chosen && !isCorrect) o.classList.add('incorrect');
-      });
-
-      var correctIdx = parseInt(correct);
-      feedback.textContent = isCorrect
-        ? (correctMessages[correctIdx] || '✓ Correto!')
-        : '✗ Incorreto. A resposta certa está destacada em verde.';
-      feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
-
-      var allAnswered = document.querySelectorAll('.quiz-question[data-answered]').length === totalQuestions;
-      if (allAnswered && typeof EstudosTracking !== 'undefined') {
-        EstudosTracking.saveQuizResult(SESSION_ID, answeredCorrect, totalQuestions);
-        EstudosTracking.markSessionCompleted(SESSION_ID);
-      }
-    });
-
-    opt.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
-    });
-  });
-
-  // ─── Reflexão ───
-  window.salvarReflexao = function() {
-    var textarea = document.querySelector('.reflexao textarea');
-    var msg = document.querySelector('.reflexao-salva');
-    if (textarea.value.trim()) {
-      if (typeof EstudosTracking !== 'undefined') {
-        EstudosTracking.saveReflection(SESSION_ID, textarea.value);
-        EstudosTracking.markSessionCompleted(SESSION_ID);
-      } else {
-        localStorage.setItem('reflexao-' + SESSION_ID, textarea.value);
-      }
-      msg.style.display = 'block';
-      setTimeout(function() { msg.style.display = 'none'; }, 3000);
-    }
-  };
-})();
+// ← ALTERAR SESSION_ID e SESSION_CORRECT_MESSAGES para cada sessão
+var SESSION_ID = 'S00';
+var SESSION_CORRECT_MESSAGES = [
+  '✓ Correto! (feedback contextual para questão 1)',
+  '✓ Correto! (feedback contextual para questão 2)',
+  '✓ Correto! (feedback contextual para questão 3)'
+];
 </script>
+<script src="../../progresso/tracking.js"></script>
+<script src="../../templates/sessao.js"></script>
 
 </body>
 </html>

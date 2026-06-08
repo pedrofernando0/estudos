@@ -1,20 +1,47 @@
-# 📚 Estudos — Biblioteca Pessoal
+# 📚 Estudos — Biblioteca Pessoal de Aprendizado
 
-Hub de aprendizado autodirigido em HTML/CSS interativo. Cada assunto é uma subpasta independente com suas próprias sessões, dashboard e recursos.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+Hub de aprendizado autodirigido em HTML/CSS interativo. Cada assunto é uma subpasta independente com suas próprias sessões, dashboard e recursos. **Vanilla HTML/CSS/JS — zero dependências, offline-first.**
 
 ## Como usar
+
+```bash
+git clone https://github.com/pedro/estudos.git
+cd estudos
+```
 
 1. Abra `index.html` no navegador — é o portal de entrada
 2. Escolha um assunto (atualmente: Psicanálise & Viver Bem)
 3. Navegue pelas sessões na ordem (S00 → S01 → ...) ou use o dashboard
 4. Complete quizzes e reflexões ao final de cada sessão
-5. Seu progresso é salvo automaticamente (localStorage)
+5. Seu progresso é salvo automaticamente no navegador (localStorage)
+
+## Estrutura
+
+```
+estudos/
+├── index.html                  # Portal hub — seletor de assuntos
+├── templates/                  # CSS e templates compartilhados
+│   ├── style.css               # Design system (cores, tipografia, componentes, dark mode)
+│   ├── sessao-template.html    # Template base para sessões HTML
+│   ├── sessao.js               # JavaScript compartilhado (quiz, progresso, navegação)
+│   └── fonts/                  # Fontes self-hosted WOFF2 (Cormorant Garamond, Newsreader, Manrope)
+├── psicanalise/                # Assunto: Psicanálise & Viver Bem
+│   ├── index.html              # Dashboard do assunto
+│   ├── sessoes/                # Sessões HTML (36 planejadas, 3 geradas)
+│   ├── recursos/               # Glossário, timeline, mapa conceitual, autores, referências
+│   └── progresso/              # tracking.js (persistência localStorage)
+├── scripts/                    # Scripts utilitários (TTS audio)
+├── LICENSE                     # MIT
+└── .github/                    # Issue template
+```
 
 ## Assuntos
 
 ### 🧠 Psicanálise & Viver Bem (`psicanalise/`)
 
-**36 sessões · 6 módulos**
+**36 sessões · 6 módulos** · Da fundação freudiana à contemporaneidade
 
 | Módulo | Sessões | Conteúdo |
 |--------|---------|----------|
@@ -26,19 +53,24 @@ Hub de aprendizado autodirigido em HTML/CSS interativo. Cada assunto é uma subp
 | 5 — Contemporaneidade | S27–S32 | Intersubjetividade, campo, neuropsicanálise |
 | 6 — Síntese | S33–S35 | Diagnóstico do presente, ética do viver |
 
-## Templates Compartilhados
+## Design System
 
-Os arquivos em `templates/` são usados por todos os assuntos:
+Os arquivos em `templates/` são compartilhados entre todos os assuntos:
 
-- `style.css` — Design system completo (cores, tipografia, componentes, dark mode, responsivo)
-- `sessao-template.html` — Template base com todos os componentes interativos (quiz, tooltips, reflexão, navegação)
+- **`style.css`** — Design system "Warm Academic Editorial": paleta parchment+terracota, tipografia self-hosted, 3 breakpoints, dark mode automático, WCAG AA
+- **`sessao-template.html`** — Template base com todos os componentes interativos (quiz, tooltips, reflexão, progress bar, keyboard nav)
+- **`sessao.js`** — Lógica compartilhada de quiz, progresso, navegação e reflexão
 
 ## Para Agentes de IA
 
-O arquivo `.claude/CLAUDE.md` contém instruções para agentes Claude Code. Skills disponíveis:
+O arquivo `.claude/CLAUDE.md` contém instruções para agentes. Skills disponíveis:
 
-- `estudo-psicanalise` — Orquestrador de sessões do assunto Psicanálise
-- `sessao-html` — Gerador de HTML com o design system
-- `curadoria-psicanalise` — Pesquisa acadêmica com fontes verificadas
+- **`estudo-psicanalise`** — Orquestrador: geração de sessões com ciclo 5-Wave
+- **`sessao-html`** — Geração de HTML com o design system
+- **`curadoria-psicanalise`** — Pesquisa acadêmica com fontes verificadas (APA 7th)
 
-Cada assunto também tem seu próprio `.claude/CLAUDE.md` com instruções específicas.
+> **Nota:** As skills são symlinks para `~/.agents/skills/` e não fazem parte deste repositório. Consulte `.claude/CLAUDE.md` para instruções de instalação.
+
+## Licença
+
+MIT — veja [LICENSE](LICENSE).

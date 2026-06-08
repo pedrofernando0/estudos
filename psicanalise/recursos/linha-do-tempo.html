@@ -405,6 +405,24 @@ body { max-width: 100%; padding: var(--space-6) var(--space-4); }
     var walk = (x - startX) * 1.5;
     scrollContainer.scrollLeft = scrollLeft - walk;
   });
+
+  // ─── Touch drag scroll (mobile) ───
+  scrollContainer.addEventListener('touchstart', function(e) {
+    isDown = true;
+    startX = e.touches[0].pageX - scrollContainer.offsetLeft;
+    scrollLeft = scrollContainer.scrollLeft;
+  }, { passive: false });
+
+  scrollContainer.addEventListener('touchend', function() {
+    isDown = false;
+  });
+
+  scrollContainer.addEventListener('touchmove', function(e) {
+    if (!isDown) return;
+    var x = e.touches[0].pageX - scrollContainer.offsetLeft;
+    var walk = (x - startX) * 1.5;
+    scrollContainer.scrollLeft = scrollLeft - walk;
+  }, { passive: true });
 })();
 </script>
 
