@@ -1,6 +1,6 @@
 /**
  * Mock tracking state injected via page.addInitScript() in tests.
- * Simulates EstudosTracking already initialized with clean state.
+ * Uses Object.defineProperty to prevent overwrite by the real tracking.js.
  */
 
 const MOCK_TRACKING_SCRIPT = `
@@ -18,7 +18,11 @@ const MOCK_TRACKING_SCRIPT = `
       return { reflections: {}, completedSessions: [] };
     }
   };
-  window.EstudosTracking = window.__mockTracking;
+  Object.defineProperty(window, 'EstudosTracking', {
+    value: window.__mockTracking,
+    writable: false,
+    configurable: false
+  });
 `;
 
 module.exports = { MOCK_TRACKING_SCRIPT };

@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { checkA11y, injectAxe } = require('@axe-core/playwright');
+const AxeBuilder = require('@axe-core/playwright').default;
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '../..');
@@ -23,12 +23,10 @@ const ALL_PAGES = [...SESSION_PAGES, ...RESOURCE_PAGES, 'psicanalise/index.html'
 for (const pagePath of ALL_PAGES) {
   test(`WCAG AA: ${pagePath}`, async ({ page }) => {
     await page.goto(`file://${ROOT}/${pagePath}`);
-    await injectAxe(page);
-    await checkA11y(page, null, {
-      runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa'] },
-      detailedReport: true,
-      detailedReportOptions: { html: true },
-    });
+    const results = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa'])
+      .analyze();
+    expect(results.violations).toEqual([]);
   });
 }
 
