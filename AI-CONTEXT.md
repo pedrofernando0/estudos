@@ -2,6 +2,55 @@
 
 Contexto técnico para agentes de IA. Atualizado a cada sessão significativa.
 
+## Session: 2026-06-08 (Diagnóstico, Correções e Próximos Passos)
+
+### Diagnóstico das sessões existentes
+- Design system renderiza corretamente — caminhos CSS e variáveis estão certos em todas as páginas
+- Conteúdo de S01 e S02 é de alta qualidade (narrativa rica, citações reais, tooltips, viver-bem)
+- Havia 1 bug funcional no quiz (abaixo) e 33 sessões pendentes como maior lacuna
+
+### Fixes applied (PR #1 → main, squash merge)
+- [BUG] Quiz feedback corrigido em `sessao.js`: indexação mudou de `data-correct` (índice da opção, 0–3) para posição da questão no DOM via `Array.prototype.indexOf`. Antes, S01 Q1 mostrava a mensagem de Q3; S02 só Q1 estava correta por acidente.
+- [CSS] Cor hardcoded `#fffdf7` no `.reflexao button` substituída por `var(--color-bg-card)`
+- [A11Y] Elemento `<main>` adicionado ao template e às 3 sessões (S00, S01, S02) — landmark semântico para screen readers
+- [A11Y] Tooltips `.conceito` agora respondem a foco de teclado (focus/blur) e toque (toggle por clique, fecha ao clicar fora); `tabindex="0"` injetado via JS
+
+### State
+- 3 de 36 sessões geradas (S00, S01, S02) — base sólida, sem bugs funcionais conhecidos
+- Próxima: **S03 — A Interpretação dos Sonhos** (Módulo 1)
+- Repo público: https://github.com/pedrofernando0/estudos — main atualizado, sem CI/CD (intencional)
+
+### Próximos Passos (ordenados por prioridade)
+
+1. **Gerar sessões S03–S09 (Módulo 1 — Fundações Freudianas)**
+   - Usar skill `estudo-psicanalise` → ciclo 5-Wave (A: Pesquisa → B: Estrutura → C: HTML → D: QA → E: Publicação)
+   - S03: A Interpretação dos Sonhos
+   - S04: Metapsicologia e o Aparelho Psíquico
+   - S05: A Teoria da Sexualidade
+   - S06: O Complexo de Édipo
+   - S07: Pulsão de Morte e Além do Princípio do Prazer
+   - S08: O Mal-Estar na Civilização
+   - S09: A Técnica Psicanalítica
+
+2. **Gerar sessões S10–S15 (Módulo 2 — Dissidências e Expansões)**
+   - Adler, Jung, Rank, Anna Freud, Hartmann, Erikson, Melanie Klein
+
+3. **Gerar sessões S16–S20 (Módulo 3 — Escola Inglesa/Relações Objetais)**
+   - Fairbairn, Winnicott, Balint, Bowlby, Bion
+
+4. **Gerar sessões S21–S26 (Módulo 4 — Lacan e Estruturalismo)**
+   - RSI, significante, discursos, sinthome
+
+5. **Gerar sessões S27–S32 (Módulo 5 — Contemporaneidade)**
+   - Intersubjetividade, neuropsicanálise, psicanálise e sociedade, Brasil
+
+6. **Gerar sessões S33–S35 (Módulo 6 — Síntese e Encerramento)**
+
+7. **TTS**: instalar `edge-tts` e testar geração de áudio para S00
+
+### Constraints conhecidos
+- Tooltips hover-only em CSS puro (`:hover`) — JS já corrige para teclado/toque, mas o CSS original permanece como camada base para mouse
+
 ## Session: 2026-06-07 (GitHub Publication & Repo Organization)
 
 ### Fixes applied
